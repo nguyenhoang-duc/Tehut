@@ -9,10 +9,12 @@
         placeholder="Search" />
       <mat-icon class="h-4 w-4 text-secondary-content opacity-70">search</mat-icon>
     </label>
-    <div class="mt-6">
-      <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
-        >add</mat-icon
-      >
+    <div class="tooltip-base mt-6" data-tip="Add Quiz">
+      <button>
+        <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+          >add</mat-icon
+        >
+      </button>
     </div>
   </header>
 
@@ -23,9 +25,9 @@
     }
 
     <!-- Quiz Add Button  -->
-    <button class="group">
+    <button class="tooltip-base group mb-8 mr-8" data-tip="Add Quiz">
       <div
-        class="mb-8 mr-8 flex h-80 w-52 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow-xl group-hover:border-primary-content">
+        class="flex h-80 w-52 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow-xl group-hover:border-primary-content">
         <span
           class="inline-block text-center text-6xl text-secondary-content group-hover:text-primary-content"
           >+</span
