@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz } from '../../models/quiz.model';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { QuestionService } from '../../../question/services/question.service';
+import { QuizEditnameDialogComponent as QuizEditNameDialogComponent } from '../quiz-editname-dialog/quiz-editname-dialog.component';
 
 @Component({
   selector: 'app-quiz-edit',
@@ -11,6 +12,9 @@ import { QuestionService } from '../../../question/services/question.service';
   styleUrl: './quiz-edit.component.css',
 })
 export class QuizEditComponent implements OnInit {
+  @ViewChild('editNameDialog', { static: false })
+  editNameDialog!: QuizEditNameDialogComponent;
+
   quizIndex!: number;
   quiz!: Quiz;
 
@@ -28,6 +32,14 @@ export class QuizEditComponent implements OnInit {
 
   onRunQuiz() {
     this.router.navigate(['..', 'run'], { relativeTo: this.route });
+  }
+
+  onEditNameQuiz() {
+    this.editNameDialog.openDialog(this.quiz.name);
+  }
+
+  onEditNameConfirmed(newQuizName: string) {
+    this.quiz.name = newQuizName;
   }
 
   onAddEmptyQuizQuestion() {

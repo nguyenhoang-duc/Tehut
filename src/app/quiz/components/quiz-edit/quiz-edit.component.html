@@ -14,7 +14,7 @@
         >play_arrow</mat-icon
       >
     </button>
-    <button (click)="onAddEmptyQuizQuestion()" class="tooltip-base mt-6" data-tip="Edit Name">
+    <button (click)="onEditNameQuiz()" class="tooltip-base mt-6" data-tip="Edit Name">
       <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
         >edit</mat-icon
       >
@@ -49,5 +49,8 @@
         >
       </div>
     </button>
+
+    <app-quiz-editname-dialog (nameChanged)="onEditNameConfirmed($event)" #editNameDialog>
+    </app-quiz-editname-dialog>
   </section>
 </article>

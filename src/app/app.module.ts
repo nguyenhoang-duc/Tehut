@@ -11,6 +11,7 @@ import { QuizDeletionDialogComponent } from './quiz/components/quiz-deletion-dia
 import { QuizRunComponent } from './quiz/components/quiz-run/quiz-run.component';
 import { QuizEditComponent } from './quiz/components/quiz-edit/quiz-edit.component';
 import { QuestionCardComponent } from './question/components/question-card/question-card.component';
+import { QuizEditnameDialogComponent } from './quiz/components/quiz-editname-dialog/quiz-editname-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { QuestionCardComponent } from './question/components/question-card/quest
     QuizRunComponent,
     QuizEditComponent,
     QuestionCardComponent,
+    QuizEditnameDialogComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, MatIconModule],
   providers: [],

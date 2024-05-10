@@ -1,0 +1,22 @@
+<dialog class="modal" #dialogWindow>
+  <div class="modal-box bg-base3">
+    <h3 class="text-2xl font-bold text-primary-content">Edit Quiz Name</h3>
+    <label class="input input-bordered mt-6 flex items-center gap-2 rounded-3xl bg-base">
+      <mat-icon class="h-4 w-4 text-secondary-content opacity-70">edit</mat-icon>
+      <input
+        type="text"
+        class="grow text-primary-content placeholder-secondary-content"
+        placeholder="Quiz Name"
+        #editNameInput
+        required />
+    </label>
+    <div class="modal-action">
+      <button class="btn bg-correct text-primary-content" type="submit" (click)="onConfirmed()">
+        Save
+      </button>
+      <button class="btn bg-base2 text-primary-content" type="submit" (click)="onCancelled()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</dialog>
