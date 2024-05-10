@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Quiz } from '../models/quiz.model';
 import { QuizQuestion } from '../../question/models/question.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
+  quizListChanged = new Subject<void>();
+
   private readonly quizzes: Quiz[] = [
     new Quiz(
       'Egyptian Gods',
@@ -25,6 +28,16 @@ export class QuizService {
   ];
 
   getQuizzes() {
-    return this.quizzes;
+    return [...this.quizzes];
+  }
+
+  addEmptyQuiz() {
+    this.quizzes.push(new Quiz('No Title', []));
+    this.quizListChanged.next();
+  }
+
+  deleteQuiz(index: number) {
+    this.quizzes.splice(index, 1);
+    this.quizListChanged.next();
   }
 }

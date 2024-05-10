@@ -1,4 +1,5 @@
 <article class="flex h-80 w-52 flex-col flex-nowrap gap-4 rounded-2xl bg-base2 p-2 shadow-xl">
+  <!-- Quiz Image -->
   @if (quiz?.imagePath) {
     <figure class="overflow-hidden rounded-xl">
       <img [src]="quiz?.imagePath" alt="quiz image" />
@@ -9,11 +10,13 @@
     </div>
   }
 
+  <!-- Quiz Summary -->
   <div>
     <h1 class="text-center text-xl text-primary-content">{{ quizName }}</h1>
     <h2 class="text-center text-secondary-content">{{ questionCount }}</h2>
   </div>
 
+  <!-- Quiz Action Buttons -->
   <div class="flex justify-center gap-3">
     <button class="tooltip-base" data-tip="Run Quiz">
       <mat-icon
@@ -28,11 +31,16 @@
         >edit</mat-icon
       >
     </button>
-    <button class="tooltip-base" data-tip="Delete Quiz">
+    <button class="tooltip-base" data-tip="Delete Quiz" (click)="onDelete()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
         >delete</mat-icon
       >
     </button>
   </div>
+
+  <!-- Dialog to confirm deletion -->
+  <app-quiz-deletion-dialog
+    (closed)="onDeletionDialogClosed($event)"
+    #deletionDialog></app-quiz-deletion-dialog>
 </article>
