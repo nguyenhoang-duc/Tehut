@@ -1,0 +1,15 @@
+<div class="flex flex-wrap">
+  @for (quiz of quizzes; track $index) {
+    <app-quiz-card class="ml-8 mt-8" [quiz]="quiz"></app-quiz-card>
+  }
+
+  <button class="group">
+    <div
+      class="ml-8 mt-8 flex h-80 w-52 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow-xl group-hover:border-primary-content">
+      <span
+        class="inline-block text-center text-6xl text-secondary-content group-hover:text-primary-content"
+        >+</span
+      >
+    </div>
+  </button>
+</div>

@@ -1,0 +1,37 @@
+<article class="flex h-80 w-52 flex-col flex-nowrap gap-4 rounded-2xl bg-base2 p-2 shadow-xl">
+  @if (quiz?.imagePath) {
+    <figure class="overflow-hidden rounded-xl">
+      <img [src]="quiz?.imagePath" alt="quiz image" />
+    </figure>
+  } @else {
+    <div class="flex h-52 items-center justify-center rounded-xl bg-base">
+      <p class="inline-block text-center text-6xl text-secondary-content">?</p>
+    </div>
+  }
+
+  <div>
+    <h1 class="text-center text-xl text-primary-content">{{ quizName }}</h1>
+    <h2 class="text-center text-secondary-content">{{ questionCount }}</h2>
+  </div>
+
+  <div class="flex justify-center gap-3">
+    <button>
+      <mat-icon
+        class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
+        >play_arrow</mat-icon
+      >
+    </button>
+    <button>
+      <mat-icon
+        class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
+        >edit</mat-icon
+      >
+    </button>
+    <button>
+      <mat-icon
+        class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
+        >delete</mat-icon
+      >
+    </button>
+  </div>
+</article>
