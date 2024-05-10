@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
 import { QuizDeletionDialogComponent } from '../quiz-deletion-dialog/quiz-deletion-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-card',
@@ -18,7 +19,11 @@ export class QuizCardComponent {
   @ViewChild('deletionDialog')
   deletionDialog!: QuizDeletionDialogComponent;
 
-  constructor(private quizService: QuizService) {}
+  constructor(
+    private quizService: QuizService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   get quizName() {
     return this.quiz?.name ?? '';
@@ -31,6 +36,14 @@ export class QuizCardComponent {
       : questionCount == 1
         ? '1 Question'
         : `${questionCount} Questions`;
+  }
+
+  onRun() {
+    this.router.navigate([this.quizIndex, 'run'], { relativeTo: this.route });
+  }
+
+  onEdit() {
+    this.router.navigate([this.quizIndex, 'edit'], { relativeTo: this.route });
   }
 
   onDelete() {

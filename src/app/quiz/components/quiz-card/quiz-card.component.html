@@ -18,14 +18,14 @@
 
   <!-- Quiz Action Buttons -->
   <div class="flex justify-center gap-3">
-    <button class="tooltip-base" data-tip="Run Quiz">
+    <button class="tooltip-base" data-tip="Run Quiz" (click)="onRun()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
         >play_arrow</mat-icon
       >
     </button>
 
-    <button class="tooltip-base" data-tip="Edit Quiz">
+    <button class="tooltip-base" data-tip="Edit Quiz" (click)="onEdit()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
         >edit</mat-icon

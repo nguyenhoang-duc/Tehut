@@ -8,9 +8,11 @@ import { QuizCardComponent } from './quiz/components/quiz-card/quiz-card.compone
 
 import { MatIconModule } from '@angular/material/icon';
 import { QuizDeletionDialogComponent } from './quiz/components/quiz-deletion-dialog/quiz-deletion-dialog.component';
+import { QuizRunComponent } from './quiz/components/quiz-run/quiz-run.component';
+import { QuizEditComponent } from './quiz/components/quiz-edit/quiz-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, QuizListComponent, QuizCardComponent, QuizDeletionDialogComponent],
+  declarations: [AppComponent, QuizListComponent, QuizCardComponent, QuizDeletionDialogComponent, QuizRunComponent, QuizEditComponent],
   imports: [BrowserModule, AppRoutingModule, MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
