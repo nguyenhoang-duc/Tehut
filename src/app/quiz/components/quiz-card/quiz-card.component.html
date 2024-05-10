@@ -1,7 +1,8 @@
-<article class="flex h-80 w-52 flex-col flex-nowrap gap-4 rounded-2xl bg-base2 p-2 shadow-xl">
+<article
+  class="flex h-80 w-52 flex-col flex-nowrap justify-between rounded-2xl bg-base2 p-2 shadow-xl">
   <!-- Quiz Image -->
   @if (quiz?.imagePath) {
-    <figure class="overflow-hidden rounded-xl">
+    <figure class="h-52 overflow-hidden rounded-xl">
       <img [src]="quiz?.imagePath" alt="quiz image" />
     </figure>
   } @else {
@@ -11,13 +12,13 @@
   }
 
   <!-- Quiz Summary -->
-  <div>
+  <div class="mt-2">
     <h1 class="text-center text-xl text-primary-content">{{ quizName }}</h1>
     <h2 class="text-center text-secondary-content">{{ questionCount }}</h2>
   </div>
 
   <!-- Quiz Action Buttons -->
-  <div class="flex justify-center gap-3">
+  <div class="mt-4 flex items-baseline justify-center gap-4">
     <button class="tooltip-base" data-tip="Run Quiz" (click)="onRun()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"

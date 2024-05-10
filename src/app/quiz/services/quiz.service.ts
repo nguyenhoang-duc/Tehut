@@ -13,7 +13,13 @@ export class QuizService {
     new Quiz(
       'Egyptian Gods',
       [
-        new QuizQuestion('', '', '', '', ''),
+        new QuizQuestion(
+          'What is the name of the egyptian god of wisdom and the moon?',
+          'Anubis',
+          'Thoth',
+          'Ramses',
+          'Zeus'
+        ),
         new QuizQuestion('', '', '', '', ''),
         new QuizQuestion('', '', '', '', ''),
         new QuizQuestion('', '', '', '', ''),
@@ -29,6 +35,10 @@ export class QuizService {
 
   getQuizzes() {
     return [...this.quizzes];
+  }
+
+  getQuizById(index: number) {
+    return this.quizzes[index];
   }
 
   addEmptyQuiz() {
