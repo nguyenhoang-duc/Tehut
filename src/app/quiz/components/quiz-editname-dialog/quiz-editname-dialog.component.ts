@@ -1,11 +1,12 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-editname-dialog',
   templateUrl: './quiz-editname-dialog.component.html',
   styleUrl: './quiz-editname-dialog.component.css',
 })
-export class QuizEditnameDialogComponent {
+export class QuizEditnameDialogComponent implements OnInit {
   @Output()
   nameChanged = new EventEmitter<string>();
 
@@ -15,17 +16,23 @@ export class QuizEditnameDialogComponent {
   @ViewChild('editNameInput', { static: false })
   editNameInput!: ElementRef;
 
+  @ViewChild('editForm', { static: false })
+  editForm!: NgForm;
+
+  ngOnInit(): void {}
+
   openDialog(existingName: string | undefined) {
     if (existingName) {
-      this.editNameInput.nativeElement.value = existingName;
-      this.editNameInput.nativeElement.select();
+      this.editForm.setValue({ name: existingName });
+      //this.editNameInput.nativeElement.select();
+      console.log(this.editForm);
     }
 
     this.dialog.nativeElement.showModal();
   }
 
   onConfirmed() {
-    this.nameChanged.emit(this.editNameInput.nativeElement.value);
+    this.nameChanged.emit(this.editForm.value['name']);
     this.dialog.nativeElement.close();
   }
 
