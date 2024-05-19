@@ -13,6 +13,7 @@ import { QuizEditComponent } from './quiz/components/quiz-edit/quiz-edit.compone
 import { QuestionCardComponent } from './question/components/question-card/question-card.component';
 import { QuizEditnameDialogComponent } from './quiz/components/quiz-editname-dialog/quiz-editname-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     QuestionCardComponent,
     QuizEditnameDialogComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, MatIconModule, FormsModule, HeaderComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
