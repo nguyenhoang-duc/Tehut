@@ -5,12 +5,13 @@ import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
 import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/quiz-deletion-dialog.component';
 import { QuizEditnameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
-  imports: [MatIconModule, QuizDeletionDialogComponent, QuizEditnameDialogComponent],
+  imports: [MatIconModule, QuizDeletionDialogComponent, QuizEditnameDialogComponent, CommonModule],
 })
 export class QuizCardComponent {
   @Input()
@@ -21,6 +22,8 @@ export class QuizCardComponent {
 
   @ViewChild('deletionDialog')
   deletionDialog!: QuizDeletionDialogComponent;
+
+  showDeletionDialog = false;
 
   constructor(
     private quizService: QuizService,
@@ -53,6 +56,7 @@ export class QuizCardComponent {
     if (this.quizIndex == -1) {
       return;
     } else if ((this.quiz?.questions?.length ?? 0) > 1) {
+      this.showDeletionDialog = true;
       this.deletionDialog.openDialog();
     } else {
       this.quizService.deleteQuiz(this.quizIndex);
@@ -63,5 +67,7 @@ export class QuizCardComponent {
     if (confirmed) {
       this.quizService.deleteQuiz(this.quizIndex);
     }
+
+    this.showDeletionDialog = false;
   }
 }

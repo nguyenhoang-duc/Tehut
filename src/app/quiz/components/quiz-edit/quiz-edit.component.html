@@ -50,7 +50,10 @@
       </div>
     </button>
 
-    <app-quiz-editname-dialog (nameChanged)="onEditNameConfirmed($event)" #editNameDialog>
+    <app-quiz-editname-dialog
+      (nameChanged)="onEditNameConfirmed($event)"
+      [ngClass]="{ hidden: !showEditDialog }"
+      #editNameDialog>
     </app-quiz-editname-dialog>
   </section>
 </article>

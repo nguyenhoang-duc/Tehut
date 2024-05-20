@@ -42,6 +42,7 @@
 
   <!-- Dialog to confirm deletion -->
   <app-quiz-deletion-dialog
+    [ngClass]="{ hidden: !showDeletionDialog }"
     (closed)="onDeletionDialogClosed($event)"
     #deletionDialog></app-quiz-deletion-dialog>
 </article>

@@ -31,6 +31,8 @@ export class QuizEditComponent implements OnInit {
   quizIndex!: number;
   quiz!: Quiz;
 
+  showEditDialog = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -48,11 +50,13 @@ export class QuizEditComponent implements OnInit {
   }
 
   onEditNameQuiz() {
+    this.showEditDialog = true;
     this.editNameDialog.openDialog(this.quiz.name);
   }
 
   onEditNameConfirmed(newQuizName: string) {
     this.quiz.name = newQuizName;
+    this.showEditDialog = false;
   }
 
   onAddEmptyQuizQuestion() {
