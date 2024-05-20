@@ -1,14 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
-import { Subscription } from 'rxjs';
+import { QuizCardComponent } from '../quiz-card/quiz-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-quiz-list',
-  templateUrl: './quiz-list.component.html',
-  styleUrl: './quiz-list.component.css',
+  standalone: true,
+  selector: 'app-quiz-overview',
+  templateUrl: './quiz-overview.component.html',
+  imports: [QuizCardComponent, MatIconModule],
 })
-export class QuizListComponent implements OnInit, OnDestroy {
+export class QuizOverviewComponent implements OnInit, OnDestroy {
   quizzes: Quiz[] = [];
 
   private quizListChangedSubscription: Subscription | undefined;

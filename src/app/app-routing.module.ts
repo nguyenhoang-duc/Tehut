@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QuizListComponent } from './quiz/components/quiz-list/quiz-list.component';
+import { QuizOverviewComponent } from './quiz/components/quiz-overview/quiz-overview.component';
 import { QuizRunComponent } from './quiz/components/quiz-run/quiz-run.component';
 import { QuizEditComponent } from './quiz/components/quiz-edit/quiz-edit.component';
 
@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/quizzes', pathMatch: 'full' },
   {
     path: 'quizzes',
-    component: QuizListComponent,
+    component: QuizOverviewComponent,
   },
   {
     path: 'quizzes/:id',

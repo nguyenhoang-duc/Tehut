@@ -1,13 +1,16 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
-import { QuizDeletionDialogComponent } from '../quiz-deletion-dialog/quiz-deletion-dialog.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/quiz-deletion-dialog.component';
+import { QuizEditnameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
 
 @Component({
+  standalone: true,
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
-  styleUrl: './quiz-card.component.css',
+  imports: [MatIconModule, QuizDeletionDialogComponent, QuizEditnameDialogComponent],
 })
 export class QuizCardComponent {
   @Input()

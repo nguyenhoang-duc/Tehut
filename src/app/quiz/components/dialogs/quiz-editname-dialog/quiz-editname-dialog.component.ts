@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
+  standalone: true,
   selector: 'app-quiz-editname-dialog',
   templateUrl: './quiz-editname-dialog.component.html',
-  styleUrl: './quiz-editname-dialog.component.css',
+  imports: [MatIconModule, FormsModule, CommonModule],
 })
 export class QuizEditnameDialogComponent implements OnInit {
   @Output()

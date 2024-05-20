@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-quiz-deletion-dialog',
   templateUrl: './quiz-deletion-dialog.component.html',
-  styleUrl: './quiz-deletion-dialog.component.css',
 })
 export class QuizDeletionDialogComponent {
   @Output()
