@@ -1,14 +1,14 @@
 import { Route } from '@angular/router';
 import { QuizOverviewComponent } from './components/quiz-overview/quiz-overview.component';
 
-export const routes: Route[] = [
+export const QUIZ_ROUTES: Route[] = [
   {
     path: '',
     component: QuizOverviewComponent,
   },
   {
     path: ':id',
-    redirectTo: ':id/edit',
+    redirectTo: ':id/questions',
   },
   {
     path: ':id/run',
@@ -16,7 +16,7 @@ export const routes: Route[] = [
       import('./components/quiz-run/quiz-run.component').then((m) => m.QuizRunComponent),
   },
   {
-    path: ':id/edit',
+    path: ':id/questions',
     loadComponent: () =>
       import('./components/quiz-edit/quiz-edit.component').then((m) => m.QuizEditComponent),
   },

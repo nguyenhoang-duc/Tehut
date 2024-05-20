@@ -49,7 +49,7 @@ export class QuizCardComponent {
   }
 
   onEdit() {
-    this.router.navigate([this.quizIndex, 'edit'], { relativeTo: this.route });
+    this.router.navigate([this.quizIndex, 'questions'], { relativeTo: this.route });
   }
 
   onDelete() {

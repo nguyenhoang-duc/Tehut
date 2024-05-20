@@ -5,7 +5,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/quizzes', pathMatch: 'full' },
   {
     path: 'quizzes',
-    loadChildren: () => import('./quiz/routes').then((m) => m.routes),
+    loadChildren: () => import('./quiz/routes').then((m) => m.QUIZ_ROUTES),
+  },
+
+  {
+    path: 'quizzes/:id/questions/:questionid',
+    loadChildren: () => import('./question/routes').then((m) => m.QUESTION_ROUTES),
   },
 ];
 
