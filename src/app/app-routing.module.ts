@@ -1,31 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { QuizOverviewComponent } from './quiz/components/quiz-overview/quiz-overview.component';
-import { QuizRunComponent } from './quiz/components/quiz-run/quiz-run.component';
-import { QuizEditComponent } from './quiz/components/quiz-edit/quiz-edit.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/quizzes', pathMatch: 'full' },
   {
     path: 'quizzes',
-    component: QuizOverviewComponent,
-  },
-  {
-    path: 'quizzes/:id',
-    redirectTo: 'quizzes/:id/edit',
-  },
-  {
-    path: 'quizzes/:id/run',
-    component: QuizRunComponent,
-  },
-  {
-    path: 'quizzes/:id/edit',
-    component: QuizEditComponent,
+    loadChildren: () => import('./quiz/routes').then((m) => m.routes),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
