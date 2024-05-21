@@ -1,26 +1,47 @@
 <article class="flex flex-col gap-12">
   <!-- Header -->
   <header class="flex items-center gap-6">
+    <button
+      class="tooltip-base mt-6"
+      data-tip="Quiz Overview"
+      (click)="onNavigateBack()">
+      <mat-icon
+        class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+        >arrow_back</mat-icon
+      >
+    </button>
     <h1 class="text-7xl text-primary-content">{{ quiz.name }}</h1>
-    <label class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl bg-base">
+    <label
+      class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl bg-base">
       <input
         type="text"
         class="grow text-primary-content placeholder-secondary-content"
         placeholder="Search" />
-      <mat-icon class="h-4 w-4 text-secondary-content opacity-70">search</mat-icon>
+      <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
+        >search</mat-icon
+      >
     </label>
     <button (click)="onRunQuiz()" class="tooltip-base mt-6" data-tip="Run Quiz">
-      <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+      <mat-icon
+        class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
         >play_arrow</mat-icon
       >
     </button>
-    <button (click)="onEditNameQuiz()" class="tooltip-base mt-6" data-tip="Edit Name">
-      <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+    <button
+      (click)="onEditNameQuiz()"
+      class="tooltip-base mt-6"
+      data-tip="Edit Name">
+      <mat-icon
+        class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
         >edit</mat-icon
       >
     </button>
-    <button (click)="onAddEmptyQuizQuestion()" class="tooltip-base mt-6" data-tip="Add Question">
-      <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+    <button
+      (click)="onAddEmptyQuizQuestion()"
+      class="tooltip-base mt-6"
+      data-tip="Add Question">
+      <mat-icon
+        class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
         >add</mat-icon
       >
     </button>

@@ -62,4 +62,8 @@ export class QuizEditComponent implements OnInit {
   onAddEmptyQuizQuestion() {
     this.questionService.addEmptyQuizQuestion(this.quiz);
   }
+
+  onNavigateBack() {
+    this.router.navigate(['/quizzes']);
+  }
 }
