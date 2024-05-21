@@ -18,7 +18,8 @@ export class QuizService {
           'Anubis',
           'Thoth',
           'Ramses',
-          'Zeus'
+          'Zeus',
+          2
         ),
         new QuizQuestion('', '', '', '', ''),
         new QuizQuestion('', '', '', '', ''),

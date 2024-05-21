@@ -1,1 +1,55 @@
-<p>Question Edit Component</p>
+<form
+  (keydown.enter)="$event.preventDefault()"
+  [formGroup]="questionForm"
+  (ngSubmit)="onSubmit()">
+  <div class="flex flex-col items-stretch gap-8">
+    <div
+      class="flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow-md">
+      <label
+        class="input flex h-56 flex-1 items-center gap-4 bg-base2"
+        for="question">
+        <input
+          type="text"
+          class="h-28 flex-1 text-center text-2xl text-primary-content"
+          id="question"
+          name="question"
+          formControlName="question"
+          required />
+      </label>
+    </div>
+    <div class="mx-8 mt-8 flex gap-16 rounded-lg">
+      <app-question-answer
+        class="flex-1"
+        [index]="1"
+        [form]="questionForm"></app-question-answer>
+      <app-question-answer
+        class="flex-1"
+        [index]="2"
+        [form]="questionForm"></app-question-answer>
+    </div>
+    <div class="mx-8 flex gap-16 rounded-lg">
+      <app-question-answer
+        class="flex-1"
+        [index]="3"
+        [form]="questionForm"></app-question-answer>
+      <app-question-answer
+        class="flex-1"
+        [index]="4"
+        [form]="questionForm"></app-question-answer>
+    </div>
+    <div class="mt-14 flex justify-center gap-6">
+      <button
+        class="btn bg-correct px-8 text-primary-content"
+        type="submit"
+        [disabled]="!questionForm.valid">
+        Save
+      </button>
+      <button
+        (click)="close()"
+        class="btn bg-base2 px-8 text-primary-content"
+        type="button">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

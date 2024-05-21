@@ -38,12 +38,12 @@ export class QuizEditComponent implements OnInit {
     private router: Router,
     private quizService: QuizService,
     private questionService: QuestionService
-  ) {
-    this.quizIndex = route.snapshot.params['id'];
-    this.quiz = quizService.getQuizById(this.quizIndex);
-  }
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.quizIndex = +this.route.snapshot.params['id'];
+    this.quiz = this.quizService.getQuizById(this.quizIndex);
+  }
 
   onRunQuiz() {
     this.router.navigate(['..', 'run'], { relativeTo: this.route });
