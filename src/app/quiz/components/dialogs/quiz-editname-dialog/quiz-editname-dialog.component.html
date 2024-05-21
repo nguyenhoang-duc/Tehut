@@ -11,9 +11,14 @@
         </p>
         <label
           class="input input-bordered flex items-center gap-2 rounded-3xl bg-base"
-          [ngClass]="{ 'border-2 border-red-500': !editNameInput.valid && editNameInput.touched }"
+          [ngClass]="{
+            'border-2 border-red-500':
+              !editNameInput.valid && editNameInput.touched
+          }"
           for="name">
-          <mat-icon class="h-4 w-4 text-secondary-content opacity-70">edit</mat-icon>
+          <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
+            >edit</mat-icon
+          >
           <input
             type="text"
             class="grow text-primary-content placeholder-secondary-content"
@@ -34,7 +39,12 @@
           [disabled]="!editForm.valid">
           Save
         </button>
-        <button class="btn bg-base2 text-primary-content" (click)="onCancelled()">Cancel</button>
+        <button
+          type="button"
+          class="btn bg-base2 text-primary-content"
+          (click)="onCancelled()">
+          Cancel
+        </button>
       </div>
     </form>
   </div>
