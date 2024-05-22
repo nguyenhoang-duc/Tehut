@@ -3,19 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tehut.Backend.API", "Tehut.Backend.API\Tehut.Backend.API.csproj", "{0CB0581F-A31C-470D-8E5E-F867785D46C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tehut.Backend.API", "Tehut.Backend.API\Tehut.Backend.API.csproj", "{0CB0581F-A31C-470D-8E5E-F867785D46C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tehut.Backend.Application", "Tehut.Backend.Application\Tehut.Backend.Application.csproj", "{B152408A-A2AE-4E4A-947E-CE0C5F6CB461}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tehut.Backend.Application", "Tehut.Backend.Application\Tehut.Backend.Application.csproj", "{B152408A-A2AE-4E4A-947E-CE0C5F6CB461}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tehut.Backend.Contracts", "Tehut.Backend.Contracts\Tehut.Backend.Contracts.csproj", "{CF138251-B0AC-438F-AC1E-C0AF38876910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tehut.Backend.Contracts", "Tehut.Backend.Contracts\Tehut.Backend.Contracts.csproj", "{CF138251-B0AC-438F-AC1E-C0AF38876910}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0CB0581F-A31C-470D-8E5E-F867785D46C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +27,11 @@ Global
 		{CF138251-B0AC-438F-AC1E-C0AF38876910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF138251-B0AC-438F-AC1E-C0AF38876910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF138251-B0AC-438F-AC1E-C0AF38876910}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A427783-F220-4861-A09C-B56AD040577E}
 	EndGlobalSection
 EndGlobal
