@@ -4,7 +4,7 @@
     {
         public const string TableName = "quizzes";
 
-        public const string Id = "quizId";
+        public const string Id = "quiz_id";
 
         public const string Name = "name";
 

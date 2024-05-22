@@ -4,9 +4,9 @@
     {
         public const string TableName = "questions";
 
-        public const string Id = "questionId";
+        public const string Id = "question_id";
 
-        public const string QuizId = "quizId";
+        public const string QuizId = "quiz_id";
 
         public const string Guid = "guid"; 
 
