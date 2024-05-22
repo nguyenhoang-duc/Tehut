@@ -1,6 +1,6 @@
 ﻿namespace Tehut.Backend.Application.Questions
 {
-    internal class QuizQuestion
+    public class QuizQuestion
     {
         public int Id { get; set; }
 

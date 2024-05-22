@@ -11,8 +11,8 @@ namespace Tehut.Backend.Application
     {
         public static void AddApplication(this IServiceCollection serviceCollection, DatabaseConfig databaseConfig)
         {
-            serviceCollection.AddSingleton<IQuizzesRepository, QuizzesRespository>();   
-            serviceCollection.AddSingleton<IQuizzesService, QuizzesService>();
+            serviceCollection.AddSingleton<IQuizRepository, QuizRepository>();   
+            serviceCollection.AddSingleton<IQuizService, QuizService>();
             serviceCollection.AddSingleton<IQuestionRepository, QuestionRepository>();
             serviceCollection.AddSingleton<IQuestionService, QuestionService>();    
 

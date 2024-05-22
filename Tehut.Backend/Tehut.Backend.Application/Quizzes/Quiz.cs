@@ -2,9 +2,9 @@
 
 namespace Tehut.Backend.Application.Quizzes
 {
-    internal class Quiz
+    public class Quiz
     {
-        public int Id { get; init; }
+        public int Id { get; set; }
 
         public Guid Guid { get; set; }
 
