@@ -2,7 +2,7 @@
 
 namespace Tehut.Backend.Application.Database
 {
-    public interface IDatabaseFactory
+    internal interface IDatabaseFactory
     {
         DbConnection CreateConnection();
     }

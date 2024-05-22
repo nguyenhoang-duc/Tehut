@@ -5,9 +5,9 @@ namespace Tehut.Backend.Application.Database
 {
     internal class NpgsqlDatabaseFactory : IDatabaseFactory
     {
-        private readonly IDatabaseConfig databaseConfig;
+        private readonly DatabaseConfig databaseConfig;
 
-        public NpgsqlDatabaseFactory(IDatabaseConfig databaseConfig) 
+        public NpgsqlDatabaseFactory(DatabaseConfig databaseConfig) 
         {
             this.databaseConfig = databaseConfig;
         }
