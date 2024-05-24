@@ -1,4 +1,4 @@
-﻿namespace Tehut.Backend.Contracts.Responses
+﻿namespace Tehut.Backend.Contracts.Responses.Quizzes
 {
     public class QuizzesResponse
     {

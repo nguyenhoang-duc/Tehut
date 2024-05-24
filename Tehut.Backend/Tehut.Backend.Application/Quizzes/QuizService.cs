@@ -31,6 +31,11 @@
             return repository.GetQuizByGuid(quizGuid, cancellationToken);
         }
 
+        public Task<Quiz?> GetQuizById(int quizId, CancellationToken cancellationToken = default)
+        { 
+            return repository.GetQuizById(quizId, cancellationToken);
+        } 
+
         public Task<bool> UpdateQuiz(Quiz quiz, CancellationToken cancellationToken = default)
         {
             return repository.UpdateQuiz(quiz, cancellationToken);  

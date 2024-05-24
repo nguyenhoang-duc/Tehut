@@ -1,15 +1,7 @@
-﻿namespace Tehut.Backend.Application.Questions
+﻿namespace Tehut.Backend.Contracts.Requests.Questions
 {
-    public class QuizQuestion
+    public class CreateQuestionRequest
     {
-        public int QuestionId { get; set; }
-
-        public int QuizId { get; set; }
-
-        public Guid Guid { get; set; }
-
-        public Guid QuizGuid { get; set; }
-
         public string Question { get; set; } = string.Empty;
 
         public string Answer1 { get; set; } = string.Empty;
@@ -20,6 +12,6 @@
 
         public string Answer4 { get; set; } = string.Empty;
 
-        public int CorrectAnswer { get; set; }
+        public int CorrectAnswer { get; set; } = 0; 
     }
 }

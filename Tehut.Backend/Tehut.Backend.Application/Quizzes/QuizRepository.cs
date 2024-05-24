@@ -21,7 +21,7 @@ namespace Tehut.Backend.Application.Quizzes
                 Insert into {QuizTableSchema.TableName} ({QuizTableSchema.Guid}, {QuizTableSchema.Name}) values (@Guid, @Name) Returning {QuizTableSchema.Id};
                 """, quiz, cancellationToken: cancellationToken));
 
-            quiz.Id = quizId;
+            quiz.QuizId = quizId;
 
             return quiz;
         }
@@ -55,6 +55,17 @@ namespace Tehut.Backend.Application.Quizzes
             var quiz = await connection.QueryFirstOrDefaultAsync<Quiz>(new CommandDefinition($""" 
                 Select * from {QuizTableSchema.TableName} where {QuizTableSchema.Guid} = @quizGuid
                 """, new { quizGuid }, cancellationToken: cancellationToken));
+
+            return quiz;
+        }
+
+        public async Task<Quiz?> GetQuizById(int quizId, CancellationToken cancellationToken = default)
+        {
+            using var connection = databaseFactory.CreateConnection();
+
+            var quiz = await connection.QueryFirstOrDefaultAsync<Quiz>(new CommandDefinition($""" 
+                Select * from {QuizTableSchema.TableName} where {QuizTableSchema.Id} = @quizId
+                """, new { quizId }, cancellationToken: cancellationToken));
 
             return quiz;
         }

@@ -1,4 +1,4 @@
-﻿namespace Tehut.Backend.Contracts.Requests
+﻿namespace Tehut.Backend.Contracts.Requests.Quizzes
 {
     public class UpdateQuizRequest
     {

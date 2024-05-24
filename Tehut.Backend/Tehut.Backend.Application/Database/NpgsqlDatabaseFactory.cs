@@ -9,6 +9,8 @@ namespace Tehut.Backend.Application.Database
 
         public NpgsqlDatabaseFactory(DatabaseConfig databaseConfig) 
         {
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+         
             this.databaseConfig = databaseConfig;
         }
 

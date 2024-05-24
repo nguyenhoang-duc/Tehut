@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Tehut.Backend.API.Mapping;
 using Tehut.Backend.Application.Quizzes;
-using Tehut.Backend.Contracts.Requests;
+using Tehut.Backend.Contracts.Requests.Quizzes;
 
 [ApiController]
 public class QuizController: ControllerBase 

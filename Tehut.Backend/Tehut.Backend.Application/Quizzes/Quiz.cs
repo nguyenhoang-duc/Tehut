@@ -4,7 +4,7 @@ namespace Tehut.Backend.Application.Quizzes
 {
     public class Quiz
     {
-        public int Id { get; set; }
+        public int QuizId { get; set; }
 
         public Guid Guid { get; set; }
 
