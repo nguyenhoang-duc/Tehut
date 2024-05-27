@@ -48,6 +48,15 @@ namespace Tehut.Backend.Application.Questions
             return quizzes; 
         }
 
+        public async Task<int> GetQuestionCount(int quizId, CancellationToken cancellationToken = default)
+        {
+            using var connection = databaseFactory.CreateConnection();
+
+            return await connection.ExecuteScalarAsync<int>(new CommandDefinition($"""
+                Select count(*) from {QuizQuestionTableSchema.TableName} where {QuizQuestionTableSchema.QuizId} = @quizId;
+            """, new { quizId }, cancellationToken: cancellationToken));
+        }
+
         public async Task<QuizQuestion?> GetQuestionByGuid(Guid questionGuid, CancellationToken cancellationToken = default)
         {
             using var connection = databaseFactory.CreateConnection();

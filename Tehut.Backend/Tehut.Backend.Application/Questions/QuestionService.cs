@@ -27,6 +27,11 @@ namespace Tehut.Backend.Application.Questions
             return repository.GetAllQuestions(quizId, cancellationToken);
         }
 
+        public Task<int> GetQuestionCount(int quizId, CancellationToken cancellationToken = default) 
+        {
+            return repository.GetQuestionCount(quizId, cancellationToken);
+        }
+
         public Task<QuizQuestion?> GetQuestionByGuid(Guid questionGuid, CancellationToken cancellationToken = default)
         {
             return repository.GetQuestionByGuid(questionGuid, cancellationToken);

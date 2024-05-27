@@ -9,7 +9,5 @@ namespace Tehut.Backend.Application.Quizzes
         public Guid Guid { get; set; }
 
         public string Name { get; set; } = string.Empty;
-
-        public IEnumerable<QuizQuestion> Questions { get; set; } = [];
     }
 }

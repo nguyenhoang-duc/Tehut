@@ -1,16 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Tehut.Backend.API.Mapping;
+using Tehut.Backend.Application.Questions;
 using Tehut.Backend.Application.Quizzes;
 using Tehut.Backend.Contracts.Requests.Quizzes;
+using Tehut.Backend.Contracts.Responses.Quizzes;
 
 [ApiController]
 public class QuizController: ControllerBase 
 {
     private readonly IQuizService quizService;
+    private readonly IQuestionService questionService;
 
-    public QuizController(IQuizService quizService)
+    public QuizController(IQuizService quizService, IQuestionService questionService)
     {
         this.quizService = quizService;
+        this.questionService = questionService;
     }
 
     [HttpGet(ApiEndpoints.Quizzes.Get)]
@@ -18,15 +22,35 @@ public class QuizController: ControllerBase
     {
         var quiz = await quizService.GetQuizByGuid(quizId, cancellationToken);
 
-        return quiz is not null ? Ok(quiz.ToResponse()) : NotFound();
+        if (quiz is null)
+        {
+            return NotFound(); 
+        }
+        
+        var response = quiz.ToResponse();
+
+        response.QuestionCount = await questionService.GetQuestionCount(quiz.QuizId, cancellationToken); 
+
+        return Ok(response);
     }
 
     [HttpGet(ApiEndpoints.Quizzes.GetAll)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken = default)
     {
         var quizzes = await quizService.GetAllQuizzes(cancellationToken);
+        
+        var quizResponses = new List<QuizResponse>();
 
-        return Ok(quizzes.ToResponse()); 
+        foreach (var quiz in quizzes)
+        {
+            var response = quiz.ToResponse();
+
+            response.QuestionCount = await questionService.GetQuestionCount(quiz.QuizId, cancellationToken);
+
+            quizResponses.Add(response);
+        }
+
+        return Ok(new QuizzesResponse { Items = quizResponses }); 
     }
 
     [HttpPost(ApiEndpoints.Quizzes.Create)]
