@@ -11,7 +11,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-quiz-card',
   templateUrl: './quiz-card.component.html',
-  imports: [MatIconModule, QuizDeletionDialogComponent, QuizEditnameDialogComponent, CommonModule],
+  imports: [
+    MatIconModule,
+    QuizDeletionDialogComponent,
+    QuizEditnameDialogComponent,
+    CommonModule,
+  ],
 })
 export class QuizCardComponent {
   @Input()
@@ -36,7 +41,7 @@ export class QuizCardComponent {
   }
 
   get questionCount() {
-    const questionCount = this.quiz?.questions?.length ?? 0;
+    const questionCount = this.quiz?.questionCount ?? 0;
     return questionCount == 0
       ? 'No Questions'
       : questionCount == 1
@@ -49,7 +54,9 @@ export class QuizCardComponent {
   }
 
   onEdit() {
-    this.router.navigate([this.quizIndex, 'questions'], { relativeTo: this.route });
+    this.router.navigate([this.quizIndex, 'questions'], {
+      relativeTo: this.route,
+    });
   }
 
   onDelete() {

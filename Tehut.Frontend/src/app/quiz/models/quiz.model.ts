@@ -4,15 +4,11 @@ export class Quiz {
   id: string = '';
   name: string = '';
   imagePath: string = '';
+  questionCount: number = 0;
   questions: QuizQuestion[] = [];
 
-  constructor(
-    name: string,
-    questions: QuizQuestion[] = [],
-    imagePath: string = ''
-  ) {
+  constructor(name: string, imagePath: string = '') {
     this.name = name;
-    this.questions = questions;
     this.imagePath = imagePath;
   }
 }
