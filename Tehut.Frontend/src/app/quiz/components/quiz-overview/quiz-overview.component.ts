@@ -4,6 +4,7 @@ import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
 import { QuizCardComponent } from '../quiz-card/quiz-card.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -16,14 +17,18 @@ export class QuizOverviewComponent implements OnInit, OnDestroy {
 
   private quizListChangedSubscription: Subscription | undefined;
 
-  constructor(private quizService: QuizService) {}
+  constructor(
+    private quizService: QuizService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.quizzes = this.quizService.getQuizzes();
+    this.quizzes = this.route.snapshot.data['quizzes'];
 
-    this.quizListChangedSubscription = this.quizService.quizListChanged.subscribe(() => {
-      this.quizzes = this.quizService.getQuizzes();
-    });
+    this.quizListChangedSubscription =
+      this.quizService.quizListChanged.subscribe(() => {
+        this.quizzes = this.quizService.getQuizzes();
+      });
   }
 
   ngOnDestroy(): void {
@@ -31,6 +36,6 @@ export class QuizOverviewComponent implements OnInit, OnDestroy {
   }
 
   onAddEmptyQuiz() {
-    this.quizService.addEmptyQuiz();
+    this.quizService.createQuiz();
   }
 }

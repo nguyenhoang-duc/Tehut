@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Subject, map, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { QuizRequest } from '../models/quiz-request.model';
+import { MapResponseToQuiz, QuizResponse } from '../models/quiz-response.model';
 import { Quiz } from '../models/quiz.model';
-import { QuizQuestion } from '../../question/models/question.model';
-import { Subject } from 'rxjs';
+import { QuizzesResponse } from '../models/quizzes-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,30 +13,22 @@ import { Subject } from 'rxjs';
 export class QuizService {
   quizListChanged = new Subject<void>();
 
-  private readonly quizzes: Quiz[] = [
-    new Quiz(
-      'Egyptian Gods',
-      [
-        new QuizQuestion(
-          'What is the name of the egyptian god of wisdom and the moon?',
-          'Anubis',
-          'Thoth',
-          'Ramses',
-          'Zeus',
-          2
-        ),
-        new QuizQuestion('', '', '', '', ''),
-        new QuizQuestion('', '', '', '', ''),
-        new QuizQuestion('', '', '', '', ''),
-        new QuizQuestion('', '', '', '', ''),
-        new QuizQuestion('', '', '', '', ''),
-        new QuizQuestion('', '', '', '', ''),
-      ],
-      'https://www.worldhistory.org/img/r/p/500x600/5404.jpg?v=1636033502'
-    ),
-    new Quiz('Football', [new QuizQuestion('', '', '', '', '')]),
-    new Quiz('Airlines', []),
-  ];
+  private quizzes: Quiz[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  fetchQuizzes(): Observable<Quiz[]> {
+    return this.http
+      .get<QuizzesResponse>(environment.backendUrl + 'quizzes')
+      .pipe(
+        map((response) => {
+          return response.items.map((quizResponse) =>
+            MapResponseToQuiz(quizResponse)
+          );
+        }),
+        tap((response) => (this.quizzes = response))
+      );
+  }
 
   getQuizzes() {
     return [...this.quizzes];
@@ -42,13 +38,25 @@ export class QuizService {
     return this.quizzes[index];
   }
 
-  addEmptyQuiz() {
-    this.quizzes.push(new Quiz('No Title', []));
-    this.quizListChanged.next();
+  createQuiz() {
+    const request = new QuizRequest('No Title');
+
+    this.http
+      .post<QuizResponse>(environment.backendUrl + 'quizzes', request)
+      .subscribe((response) => {
+        this.quizzes.push(MapResponseToQuiz(response));
+        this.quizListChanged.next();
+      });
   }
 
   deleteQuiz(index: number) {
-    this.quizzes.splice(index, 1);
-    this.quizListChanged.next();
+    const quiz = this.quizzes[index];
+
+    this.http
+      .delete(environment.backendUrl + `quizzes/${quiz.id}`)
+      .subscribe((_) => {
+        this.quizzes.splice(index, 1);
+        this.quizListChanged.next();
+      });
   }
 }
