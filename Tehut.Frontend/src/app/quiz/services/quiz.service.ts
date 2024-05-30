@@ -34,8 +34,10 @@ export class QuizService {
     return [...this.quizzes];
   }
 
-  getQuizById(index: number) {
-    return this.quizzes[index];
+  getQuizById(quizId: string) {
+    return this.http
+      .get<QuizResponse>(environment.backendUrl + 'quizzes/' + quizId)
+      .pipe(map((response) => MapResponseToQuiz(response)));
   }
 
   createQuiz() {
@@ -47,6 +49,15 @@ export class QuizService {
         this.quizzes.push(MapResponseToQuiz(response));
         this.quizListChanged.next();
       });
+  }
+
+  updateQuizName(quiz: Quiz, newName: string) {
+    const request = new QuizRequest(newName);
+
+    return this.http.put<QuizResponse>(
+      environment.backendUrl + 'quizzes/' + quiz.id,
+      request
+    );
   }
 
   deleteQuiz(index: number) {

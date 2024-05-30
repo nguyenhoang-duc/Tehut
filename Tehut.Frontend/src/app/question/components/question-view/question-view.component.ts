@@ -24,14 +24,9 @@ export class QuestionViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private quizService: QuizService,
     private router: Router
   ) {
-    const quizId = +route.snapshot.params['id'];
-    const questionId = +route.snapshot.params['questionid'];
-    const quiz = quizService.getQuizById(quizId);
-
-    this.quizQuestion = quiz.questions[questionId];
+    this.quizQuestion = route.snapshot.data['question'];
   }
 
   ngOnInit(): void {

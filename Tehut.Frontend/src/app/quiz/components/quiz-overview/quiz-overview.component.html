@@ -2,16 +2,20 @@
   <!-- Header -->
   <header class="flex items-center gap-6">
     <h1 class="text-7xl text-primary-content">Home</h1>
-    <label class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl bg-base">
+    <label
+      class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl bg-base">
       <input
         type="text"
         class="grow text-primary-content placeholder-secondary-content"
         placeholder="Search" />
-      <mat-icon class="h-4 w-4 text-secondary-content opacity-70">search</mat-icon>
+      <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
+        >search</mat-icon
+      >
     </label>
     <div class="tooltip-base mt-6" data-tip="Add Quiz">
       <button (click)="onAddEmptyQuiz()">
-        <mat-icon class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+        <mat-icon
+          class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
           >add</mat-icon
         >
       </button>
@@ -21,11 +25,14 @@
   <!-- Quiz List -->
   <section class="flex flex-wrap">
     @for (quiz of quizzes; track $index) {
-      <app-quiz-card class="mb-8 mr-8" [quiz]="quiz" [quizIndex]="$index"></app-quiz-card>
+      <app-quiz-card class="mb-8 mr-8" [quiz]="quiz"></app-quiz-card>
     }
 
     <!-- Quiz Add Button  -->
-    <button class="tooltip-base group mb-8 mr-8" data-tip="Add Quiz" (click)="onAddEmptyQuiz()">
+    <button
+      class="tooltip-base group mb-8 mr-8"
+      data-tip="Add Quiz"
+      (click)="onAddEmptyQuiz()">
       <div
         class="flex h-80 w-52 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow-xl group-hover:border-primary-content">
         <span

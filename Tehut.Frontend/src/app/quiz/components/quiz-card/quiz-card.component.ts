@@ -20,10 +20,7 @@ import { CommonModule } from '@angular/common';
 })
 export class QuizCardComponent {
   @Input()
-  quiz: Quiz | undefined;
-
-  @Input()
-  quizIndex: number = 0;
+  quiz!: Quiz;
 
   @ViewChild('deletionDialog')
   deletionDialog!: QuizDeletionDialogComponent;
@@ -31,14 +28,9 @@ export class QuizCardComponent {
   showDeletionDialog = false;
 
   constructor(
-    private quizService: QuizService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
-  get quizName() {
-    return this.quiz?.name ?? '';
-  }
 
   get questionCount() {
     const questionCount = this.quiz?.questionCount ?? 0;
@@ -50,29 +42,29 @@ export class QuizCardComponent {
   }
 
   onRun() {
-    this.router.navigate([this.quizIndex, 'run'], { relativeTo: this.route });
+    this.router.navigate([this.quiz.id, 'run'], { relativeTo: this.route });
   }
 
   onEdit() {
-    this.router.navigate([this.quizIndex, 'questions'], {
+    this.router.navigate([this.quiz.id, 'questions'], {
       relativeTo: this.route,
     });
   }
 
   onDelete() {
-    if (this.quizIndex == -1) {
+    if (this.quiz.id == '') {
       return;
     } else if ((this.quiz?.questions?.length ?? 0) > 1) {
       this.showDeletionDialog = true;
       this.deletionDialog.openDialog();
     } else {
-      this.quizService.deleteQuiz(this.quizIndex);
+      // this.quizService.deleteQuiz(this.quiz.id);
     }
   }
 
   onDeletionDialogClosed(confirmed: boolean) {
     if (confirmed) {
-      this.quizService.deleteQuiz(this.quizIndex);
+      // this.quizService.deleteQuiz(this.quizId);
     }
 
     this.showDeletionDialog = false;

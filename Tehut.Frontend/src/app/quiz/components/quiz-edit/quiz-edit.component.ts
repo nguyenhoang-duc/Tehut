@@ -11,6 +11,7 @@ import {
   QuizEditnameDialogComponent as QuizEditNameDialogComponent,
   QuizEditnameDialogComponent,
 } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
+import { QuizQuestion } from '../../../question/models/question.model';
 
 @Component({
   standalone: true,
@@ -28,21 +29,25 @@ export class QuizEditComponent implements OnInit {
   @ViewChild('editNameDialog', { static: false })
   editNameDialog!: QuizEditNameDialogComponent;
 
-  quizIndex!: number;
   quiz!: Quiz;
+  questions: QuizQuestion[] = [];
 
   showEditDialog = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private quizService: QuizService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private quizService: QuizService
   ) {}
 
   ngOnInit(): void {
-    this.quizIndex = +this.route.snapshot.params['id'];
-    this.quiz = this.quizService.getQuizById(this.quizIndex);
+    this.quiz = this.route.snapshot.data['quiz'];
+    this.questions = this.route.snapshot.data['questions'];
+
+    this.questionService.questionListChanged.subscribe(() => {
+      this.questions = this.questionService.getQuestions();
+    });
   }
 
   onRunQuiz() {
@@ -55,12 +60,14 @@ export class QuizEditComponent implements OnInit {
   }
 
   onEditNameConfirmed(newQuizName: string) {
-    this.quiz.name = newQuizName;
+    this.quizService.updateQuizName(this.quiz, newQuizName).subscribe(() => {
+      this.quiz.name = newQuizName;
+    });
     this.showEditDialog = false;
   }
 
   onAddEmptyQuizQuestion() {
-    this.questionService.addEmptyQuizQuestion(this.quiz);
+    this.questionService.createQuestion(this.quiz.id);
   }
 
   onNavigateBack() {

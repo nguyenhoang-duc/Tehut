@@ -7,7 +7,7 @@ import {
 import { QuizService } from './quiz.service';
 import { Quiz } from '../models/quiz.model';
 
-export const resolveQuizFn: ResolveFn<Quiz[]> = (
+export const resolveQuizzesFn: ResolveFn<Quiz[]> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
