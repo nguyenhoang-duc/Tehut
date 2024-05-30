@@ -10,6 +10,7 @@ import {
   NgForm,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { QuestionService } from '../../services/question.service';
 
 @Component({
   standalone: true,
@@ -24,7 +25,8 @@ export class QuestionViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private questionService: QuestionService
   ) {
     this.quizQuestion = route.snapshot.data['question'];
   }
@@ -49,7 +51,9 @@ export class QuestionViewComponent implements OnInit {
     this.quizQuestion.correctAnswerIndex =
       this.questionForm.value['correctAnswerIndex'];
 
-    this.close();
+    this.questionService
+      .updateQuizQuestion(this.quizQuestion.id, this.quizQuestion)
+      .subscribe(() => this.close());
   }
 
   close() {

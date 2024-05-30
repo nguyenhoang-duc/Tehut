@@ -10,6 +10,7 @@ import {
   QuestionResponse,
 } from '../models/question-response.model';
 import { CreateQuestionRequest } from '../models/create-question-request.model';
+import { MapQuestionToUpdateRequest } from '../models/update-question-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,10 +70,10 @@ export class QuestionService {
       });
   }
 
-  updateQuizQuestion(question: QuizQuestion) {
+  updateQuizQuestion(questionId: string, question: QuizQuestion) {
     return this.http.put(
-      environment.backendUrl + `questions/${question.id}.json`,
-      question
+      environment.backendUrl + 'questions/' + questionId,
+      MapQuestionToUpdateRequest(question)
     );
   }
 
