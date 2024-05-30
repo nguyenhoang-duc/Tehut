@@ -1,9 +1,9 @@
 <article
-  class="flex h-80 w-52 flex-col flex-nowrap justify-between rounded-2xl bg-base2 p-2 shadow-xl">
+  class="flex h-80 w-56 flex-col flex-nowrap justify-between rounded-2xl bg-base2 p-2 shadow-xl">
   <!-- Quiz Image -->
-  @if (quiz?.imagePath) {
+  @if (quiz.imagePath) {
     <figure class="h-52 overflow-hidden rounded-xl">
-      <img [src]="quiz?.imagePath" alt="quiz image" />
+      <img [src]="quiz.imagePath" alt="quiz image" />
     </figure>
   } @else {
     <div class="flex h-52 items-center justify-center rounded-xl bg-base">
