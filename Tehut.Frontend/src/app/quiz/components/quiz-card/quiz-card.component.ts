@@ -29,7 +29,8 @@ export class QuizCardComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private quizService: QuizService
   ) {}
 
   get questionCount() {
@@ -54,17 +55,17 @@ export class QuizCardComponent {
   onDelete() {
     if (this.quiz.id == '') {
       return;
-    } else if ((this.quiz?.questions?.length ?? 0) > 1) {
+    } else if (this.quiz.questionCount > 1) {
       this.showDeletionDialog = true;
       this.deletionDialog.openDialog();
     } else {
-      // this.quizService.deleteQuiz(this.quiz.id);
+      this.quizService.deleteQuiz(this.quiz.id);
     }
   }
 
   onDeletionDialogClosed(confirmed: boolean) {
     if (confirmed) {
-      // this.quizService.deleteQuiz(this.quizId);
+      this.quizService.deleteQuiz(this.quiz.id);
     }
 
     this.showDeletionDialog = false;

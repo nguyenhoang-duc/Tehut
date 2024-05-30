@@ -60,14 +60,16 @@ export class QuizService {
     );
   }
 
-  deleteQuiz(index: number) {
-    const quiz = this.quizzes[index];
-
+  deleteQuiz(quizId: string) {
     this.http
-      .delete(environment.backendUrl + `quizzes/${quiz.id}`)
+      .delete(environment.backendUrl + `quizzes/${quizId}`)
       .subscribe((_) => {
-        this.quizzes.splice(index, 1);
-        this.quizListChanged.next();
+        const index = this.quizzes.findIndex((q) => q.id == quizId);
+
+        if (index > 0) {
+          this.quizzes.splice(index, 1);
+          this.quizListChanged.next();
+        }
       });
   }
 }
