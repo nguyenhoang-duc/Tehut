@@ -1,26 +1,47 @@
 <article
-  class="flex h-80 w-52 flex-col flex-nowrap justify-between rounded-2xl bg-base2 p-6 shadow-xl">
+  class="flex h-[22rem] w-52 flex-col flex-nowrap justify-between gap-4 rounded-2xl bg-base2 p-4 shadow-xl">
   <!-- Question Overview -->
-  <div>
-    <h1 class="text-xl text-primary-content">{{ quizQuestion.question }}</h1>
-    <hr class="my-3" />
+  <div class="">
+    <h1 class="line-clamp-2 truncate text-balance text-xl text-primary-content">
+      {{ quizQuestion.question }}
+    </h1>
+    <hr class="my-2" />
     <ol class="ml-4 list-decimal text-primary-content">
-      <li>{{ quizQuestion.answer1 }}</li>
-      <li>{{ quizQuestion.answer2 }}</li>
-      <li>{{ quizQuestion.answer3 }}</li>
-      <li>{{ quizQuestion.answer4 }}</li>
+      <li>
+        <div class="line-clamp-2 truncate text-wrap">
+          {{ quizQuestion.answer1 }}
+        </div>
+      </li>
+      <li>
+        <div class="line-clamp-2 truncate text-wrap">
+          {{ quizQuestion.answer2 }}
+        </div>
+      </li>
+      <li>
+        <div class="line-clamp-2 truncate text-wrap">
+          {{ quizQuestion.answer3 }}
+        </div>
+      </li>
+      <li>
+        <div class="line-clamp-2 truncate text-wrap">
+          {{ quizQuestion.answer4 }}
+        </div>
+      </li>
     </ol>
   </div>
 
   <!-- Quiz Question Action Buttons -->
-  <div class="mt-4 flex items-baseline justify-center gap-4">
+  <div class="flex items-baseline justify-center gap-4">
     <button class="tooltip-base" data-tip="Edit Question" (click)="onEdit()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
         >edit</mat-icon
       >
     </button>
-    <button class="tooltip-base" data-tip="Delete Question" (click)="onDelete()">
+    <button
+      class="tooltip-base"
+      data-tip="Delete Question"
+      (click)="onDelete()">
       <mat-icon
         class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
         >delete</mat-icon
