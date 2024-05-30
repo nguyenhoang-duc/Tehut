@@ -1,11 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { QuizQuestion } from '../../models/question.model';
-import { QuestionService } from '../../services/question.service';
-import { Quiz } from '../../../quiz/models/quiz.model';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../../../shared/pipes/truncate.pipe';
+import { QuizQuestion } from '../../models/question.model';
+import { QuestionService } from '../../services/question.service';
 
 @Component({
   standalone: true,
@@ -19,7 +18,8 @@ export class QuestionCardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private questionService: QuestionService
   ) {}
 
   ngOnInit(): void {}
@@ -28,5 +28,7 @@ export class QuestionCardComponent implements OnInit {
     this.router.navigate([this.quizQuestion.id], { relativeTo: this.route });
   }
 
-  onDelete() {}
+  onDelete() {
+    this.questionService.deleteQuizQuestion(this.quizQuestion.id);
+  }
 }
