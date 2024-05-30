@@ -26,13 +26,17 @@ namespace Tehut.Backend.Application.Quizzes
             return quiz;
         }
 
-        public async Task<bool> DeleteQuiz(Guid quizGuid, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteQuiz(int quizId, CancellationToken cancellationToken = default)
         {
             using var connection = databaseFactory.CreateConnection();
 
+            await connection.ExecuteAsync(new CommandDefinition($"""
+                Delete from {QuizQuestionTableSchema.TableName} where {QuizQuestionTableSchema.QuizId} = @quizId
+                """, new { quizId }, cancellationToken: cancellationToken));
+
             var affectedRows = await connection.ExecuteAsync(new CommandDefinition($""" 
-                Delete from {QuizTableSchema.TableName} where {QuizTableSchema.Guid} = @quizGuid;
-                """, new { quizGuid }, cancellationToken: cancellationToken));
+                Delete from {QuizTableSchema.TableName} where {QuizTableSchema.Id} = @quizId;
+                """, new { quizId }, cancellationToken: cancellationToken));
 
             return affectedRows > 0;
         }

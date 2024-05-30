@@ -16,9 +16,16 @@
             return await repository.CreateQuiz(quiz, cancellationToken);
         }
 
-        public Task<bool> DeleteQuiz(Guid quizGuid, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteQuiz(Guid quizGuid, CancellationToken cancellationToken = default)
         {
-            return repository.DeleteQuiz(quizGuid, cancellationToken);  
+            var quiz = await repository.GetQuizByGuid(quizGuid, cancellationToken);
+
+            if (quiz is null)
+            {
+                return false; 
+            }
+
+            return await repository.DeleteQuiz(quiz.QuizId, cancellationToken);  
         }
 
         public Task<IEnumerable<Quiz>> GetAllQuizzes(CancellationToken cancellationToken = default)

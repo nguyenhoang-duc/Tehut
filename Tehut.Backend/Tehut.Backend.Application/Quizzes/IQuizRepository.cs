@@ -4,7 +4,7 @@
     {
         Task<Quiz> CreateQuiz(Quiz quiz, CancellationToken cancellationToken = default);
 
-        Task<bool> DeleteQuiz(Guid quizGuid, CancellationToken cancellationToken = default);
+        Task<bool> DeleteQuiz(int quizId, CancellationToken cancellationToken = default);
 
         Task<IEnumerable<Quiz>> GetAllQuizzes(CancellationToken cancellationToken = default);
         
