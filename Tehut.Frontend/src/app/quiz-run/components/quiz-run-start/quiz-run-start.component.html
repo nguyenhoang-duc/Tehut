@@ -1,0 +1,24 @@
+<main class="flex h-full items-center justify-center">
+  <div class="flex flex-col gap-5">
+    <div
+      class="flex h-72 w-72 items-center justify-center rounded-xl border-2 border-base2 bg-base3 shadow-xl">
+      <p class="inline-block text-center text-6xl text-secondary-content">?</p>
+    </div>
+    <h1 class="text-center text-4xl text-primary-content">{{ quiz.name }}</h1>
+    <h2 class="text-center text-secondary-content">
+      {{ quiz.questionCount }} Questions
+    </h2>
+    <div class="mt-8 flex justify-center gap-6">
+      <button
+        class="btn w-24 bg-correct text-primary-content"
+        (click)="onStartQuizRun()">
+        Start
+      </button>
+      <button
+        class="btn w-24 bg-base2 text-primary-content"
+        (click)="onNavigateBack()">
+        Back
+      </button>
+    </div>
+  </div>
+</main>

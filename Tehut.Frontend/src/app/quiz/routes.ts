@@ -15,13 +15,6 @@ export const QUIZ_ROUTES: Route[] = [
     redirectTo: ':id/questions',
   },
   {
-    path: ':id/run',
-    loadComponent: () =>
-      import('./components/quiz-run/quiz-run.component').then(
-        (m) => m.QuizRunComponent
-      ),
-  },
-  {
     path: ':id/questions',
     loadComponent: () =>
       import('./components/quiz-edit/quiz-edit.component').then(
