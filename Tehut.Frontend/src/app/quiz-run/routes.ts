@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { resolveQuizFn } from '../quiz/services/quiz-resolver.service';
+import { canActivateQuizRun } from './services/quiz-run-start.guard';
 
 export const QUIZ_RUN_ROUTES: Route[] = [
   {
@@ -16,5 +17,6 @@ export const QUIZ_RUN_ROUTES: Route[] = [
       import('./components/quiz-run/quiz-run.component').then(
         (m) => m.QuizRunComponent
       ),
+    canActivate: [canActivateQuizRun],
   },
 ];

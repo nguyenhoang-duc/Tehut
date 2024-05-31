@@ -18,10 +18,6 @@ export class QuizRunComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('quizSession') === null) {
-      this.router.navigate(['start'], { relativeTo: this.route });
-    }
-
     this.quiz = this.route.snapshot.data['quiz'];
   }
 }

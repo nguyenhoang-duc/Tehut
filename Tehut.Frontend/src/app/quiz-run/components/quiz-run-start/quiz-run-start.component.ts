@@ -30,5 +30,7 @@ export class QuizRunStartComponent implements OnInit {
     const newQuizRunSession = new QuizRunSession(new Date());
 
     localStorage.setItem('quizRunSession', JSON.stringify(newQuizRunSession));
+
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 }
