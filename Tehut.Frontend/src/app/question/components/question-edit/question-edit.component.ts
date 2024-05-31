@@ -1,24 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { QuestionAnswerComponent } from '../question-answer/question-answer.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { QuizQuestion } from '../../models/question.model';
-import { QuizService } from '../../../quiz/services/quiz.service';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
-  NgForm,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuizQuestion } from '../../models/question.model';
 import { QuestionService } from '../../services/question.service';
+import { QuestionAnswerComponent } from '../question-answer/question-answer.component';
 
 @Component({
   standalone: true,
-  selector: 'app-question-view',
-  templateUrl: './question-view.component.html',
+  selector: 'app-question-edit',
+  templateUrl: './question-edit.component.html',
   imports: [QuestionAnswerComponent, FormsModule, ReactiveFormsModule],
 })
-export class QuestionViewComponent implements OnInit {
+export class QuestionEditComponent implements OnInit {
   private quizQuestion!: QuizQuestion;
 
   questionForm!: FormGroup;

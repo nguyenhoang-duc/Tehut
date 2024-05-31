@@ -1,0 +1,19 @@
+<button
+  (click)="onClick()"
+  [disabled]="disabled"
+  [ngClass]="{
+    'hover:outline-none': !disabled,
+    'hover:outline-secondary-content': !disabled,
+    'outline-none': selected,
+    'outline-secondary-content': selected
+  }"
+  class="flex h-28 w-full items-center rounded-lg bg-base2 pl-8 text-primary-content shadow-md">
+  <p
+    [ngClass]="{ 'text-secondary-content': !correct && disabled }"
+    class="mr-4 text-xl text-primary-content">
+    {{ index + "." }}
+  </p>
+  <span [ngClass]="{ 'text-secondary-content': !correct && disabled }">{{
+    answer
+  }}</span>
+</button>

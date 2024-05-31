@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunSession } from '../../models/quiz-run-session.model';
+import { QuizQuestion } from '../../../question/models/question.model';
 
 @Component({
   standalone: true,
@@ -12,6 +13,7 @@ import { QuizRunSession } from '../../models/quiz-run-session.model';
 })
 export class QuizRunStartComponent implements OnInit {
   quiz!: Quiz;
+  questions: QuizQuestion[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +22,7 @@ export class QuizRunStartComponent implements OnInit {
 
   ngOnInit(): void {
     this.quiz = this.route.snapshot.data['quiz'];
+    this.questions = this.route.snapshot.data['questions'];
   }
 
   onNavigateBack() {
@@ -27,7 +30,11 @@ export class QuizRunStartComponent implements OnInit {
   }
 
   onStartQuizRun() {
-    const newQuizRunSession = new QuizRunSession(new Date());
+    const newQuizRunSession = new QuizRunSession(
+      this.quiz,
+      this.questions,
+      new Date()
+    );
 
     localStorage.setItem('quizRunSession', JSON.stringify(newQuizRunSession));
 

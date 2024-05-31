@@ -5,8 +5,8 @@ export const QUESTION_ROUTES: Route[] = [
   {
     path: '',
     loadComponent: () =>
-      import('./components/question-view/question-view.component').then(
-        (m) => m.QuestionViewComponent
+      import('./components/question-edit/question-edit.component').then(
+        (m) => m.QuestionEditComponent
       ),
     resolve: { question: resolveQuestionFn },
   },
