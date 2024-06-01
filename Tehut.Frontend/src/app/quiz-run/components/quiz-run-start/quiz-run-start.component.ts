@@ -43,6 +43,6 @@ export class QuizRunStartComponent implements OnInit {
 
   onStartQuizRun() {
     this.quizRunService.startQuizRun(this.quiz, this.questions);
-    this.quizRunService.navigateToNextQuestion();
+    this.quizRunService.navigateToNext();
   }
 }

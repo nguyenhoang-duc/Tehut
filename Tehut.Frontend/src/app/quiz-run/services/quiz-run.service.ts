@@ -30,7 +30,7 @@ export class QuizRunService {
     this.quizRunSession = undefined;
   }
 
-  fetchQuizRunSession() {
+  private fetchQuizRunSession() {
     if (localStorage.getItem('quizRunSession') === null) {
       this.quizRunSession = undefined;
     } else {
@@ -59,6 +59,14 @@ export class QuizRunService {
     }
   }
 
+  isQuizRunFinished() {
+    if (this.quizRunSession === undefined) {
+      this.fetchQuizRunSession();
+    }
+
+    return this.quizRunSession?.selectedAnswers.every((a) => a >= 0);
+  }
+
   getQuestion(questionIndex: number) {
     if (!this.quizRunSession) {
       this.fetchQuizRunSession();
@@ -68,6 +76,10 @@ export class QuizRunService {
   }
 
   getSelectedAnswer(questionIndex: number) {
+    if (!this.quizRunSession) {
+      this.fetchQuizRunSession();
+    }
+
     return this.quizRunSession?.selectedAnswers[questionIndex] ?? null;
   }
 
@@ -87,7 +99,7 @@ export class QuizRunService {
     return this.quizRunSession?.selectedAnswers.findIndex((s) => s === -1);
   }
 
-  navigateToNextQuestion() {
+  navigateToNext() {
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
 
     this.router.navigate(['quizzes', this.quizRunSession?.quiz.id, 'run'], {

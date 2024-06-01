@@ -15,15 +15,25 @@ export const canActivateQuizRun: CanActivateFn = (
   const router = inject(Router);
   const quizRunService = inject(QuizRunService);
 
+  const quizId = route.params['id'];
+
+  const startUrl = router.createUrlTree(['quizzes', quizId, 'run', 'start']);
+  const endUrl = router.createUrlTree(['quizzes', quizId, 'run', 'end']);
+
   if (!localStorage.getItem('quizRunSession')) {
-    return router.createUrlTree([state.url + '/start']);
-  } else {
-    const sessionData: QuizRunSession = JSON.parse(
-      localStorage.getItem('quizRunSession')!
-    );
-    if (sessionData.quiz.id !== route.params['id']) {
-      return router.createUrlTree([state.url + '/start']);
-    }
+    return startUrl;
+  }
+
+  const sessionData: QuizRunSession = JSON.parse(
+    localStorage.getItem('quizRunSession')!
+  );
+
+  if (sessionData.quiz.id !== route.params['id']) {
+    return startUrl;
+  }
+
+  if (quizRunService.isQuizRunFinished()) {
+    return endUrl;
   }
 
   if (!route.queryParams['current']) {

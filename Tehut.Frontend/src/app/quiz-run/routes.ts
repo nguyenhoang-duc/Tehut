@@ -13,6 +13,14 @@ export const QUIZ_RUN_ROUTES: Route[] = [
     resolve: { quiz: resolveQuizFn, questions: resolveQuestionsFn },
   },
   {
+    path: 'end',
+    loadComponent: () =>
+      import('./components/quiz-run-end/quiz-run-end.component').then(
+        (m) => m.QuizRunEndComponent
+      ),
+    resolve: { quiz: resolveQuizFn, questions: resolveQuestionsFn },
+  },
+  {
     path: '',
     loadComponent: () =>
       import('./components/quiz-run/quiz-run.component').then(

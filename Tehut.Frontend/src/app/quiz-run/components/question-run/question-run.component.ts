@@ -51,7 +51,7 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
   }
 
   onNextQuestion() {
-    this.quizRunService.navigateToNextQuestion();
+    this.quizRunService.navigateToNext();
   }
 
   updateQuestion(questionIndex: number) {
