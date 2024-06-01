@@ -3,10 +3,16 @@ import { QuizQuestion } from '../../question/models/question.model';
 import { Quiz } from '../../quiz/models/quiz.model';
 import { QuizRunSession } from '../models/quiz-run-session.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class QuizRunService {
   private quizRunSession: QuizRunSession | undefined;
+
+  answerChanged = new Subject<{
+    questionIndex: number;
+    selectedAnswer: number;
+  }>();
 
   constructor(
     private router: Router,
@@ -46,6 +52,11 @@ export class QuizRunService {
     if (this.quizRunSession) {
       this.quizRunSession.selectedAnswers[questionIndex] = answer;
       this.saveQuizRunSession();
+
+      this.answerChanged.next({
+        questionIndex: questionIndex,
+        selectedAnswer: answer,
+      });
     }
   }
 

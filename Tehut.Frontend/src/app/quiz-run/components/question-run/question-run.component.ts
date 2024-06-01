@@ -30,16 +30,14 @@ export class QuestionRunComponent implements OnInit {
     this.route.queryParams.subscribe((q) => {
       this.updateQuestion(+q['current'] - 1);
     });
+
+    this.quizRunService.answerChanged.subscribe((a) =>
+      this.onAnswerChanged(a.questionIndex, a.selectedAnswer)
+    );
   }
 
   onAnswerClicked(index: number) {
-    this.answersRevealed = true;
-    this.selectedAnswer = index;
-
-    this.quizRunService.setAnswer(
-      this.currentQuestionIndex,
-      this.selectedAnswer
-    );
+    this.quizRunService.setAnswer(this.currentQuestionIndex, index);
   }
 
   onNextQuestion() {
@@ -58,5 +56,14 @@ export class QuestionRunComponent implements OnInit {
       this.answersRevealed = false;
       this.selectedAnswer = 0;
     }
+  }
+
+  onAnswerChanged(questionIndex: number, selectedAnswer: number) {
+    if (questionIndex !== this.currentQuestionIndex) {
+      return;
+    }
+
+    this.answersRevealed = true;
+    this.selectedAnswer = selectedAnswer;
   }
 }

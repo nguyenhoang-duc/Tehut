@@ -42,4 +42,8 @@ export class QuizRunComponent implements OnInit {
     this.quizRunService.stopQuizRun();
     this.router.navigate(['/quizzes']);
   }
+
+  onRevealAnswer() {
+    this.quizRunService.setAnswer(this.currentQuestionIndex, 0);
+  }
 }

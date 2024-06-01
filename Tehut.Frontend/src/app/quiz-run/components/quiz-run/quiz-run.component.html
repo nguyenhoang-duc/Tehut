@@ -1,8 +1,16 @@
 <main class="flex flex-col gap-20">
-  <header class="flex items-center gap-12">
-    <h1 class="text-7xl text-primary-content">
+  <header class="flex items-center gap-6">
+    <h1 class="mr-10 text-7xl text-primary-content">
       {{ quizHeader }}
     </h1>
+    <div class="tooltip-base mt-6" data-tip="Reveal Answer">
+      <button (click)="onRevealAnswer()">
+        <mat-icon
+          class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+          >remove_red_eye</mat-icon
+        >
+      </button>
+    </div>
     <div class="tooltip-base mt-6" data-tip="Leave Quiz">
       <button (click)="onLeaveQuiz()">
         <mat-icon
