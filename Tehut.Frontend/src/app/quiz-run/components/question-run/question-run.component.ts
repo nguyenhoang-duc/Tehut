@@ -20,6 +20,7 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   answersRevealed = false;
   selectedAnswer: number = 0;
+  quizRunFinished = false;
 
   private currentQuestionSubscription: Subscription | undefined;
   private answerChangedSubscription: Subscription | undefined;
@@ -48,10 +49,20 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   onAnswerClicked(index: number) {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
+    this.quizRunFinished = this.quizRunService.isQuizRunFinished();
   }
 
   onNextQuestion() {
-    this.quizRunService.navigateToNext();
+    this.quizRunService.navigateToNextQuestion();
+  }
+
+  onFinishQuiz() {
+    this.router.navigate([
+      'quizzes',
+      this.route.snapshot.params['id'],
+      'run',
+      'end',
+    ]);
   }
 
   updateQuestion(questionIndex: number) {

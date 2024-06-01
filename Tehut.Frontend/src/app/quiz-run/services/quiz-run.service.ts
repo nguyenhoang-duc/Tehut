@@ -64,7 +64,7 @@ export class QuizRunService {
       this.fetchQuizRunSession();
     }
 
-    return this.quizRunSession?.selectedAnswers.every((a) => a >= 0);
+    return this.quizRunSession?.selectedAnswers.every((a) => a >= 0) ?? false;
   }
 
   getQuestion(questionIndex: number) {
@@ -99,7 +99,7 @@ export class QuizRunService {
     return this.quizRunSession?.selectedAnswers.findIndex((s) => s === -1);
   }
 
-  navigateToNext() {
+  navigateToNextQuestion() {
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
 
     this.router.navigate(['quizzes', this.quizRunSession?.quiz.id, 'run'], {
