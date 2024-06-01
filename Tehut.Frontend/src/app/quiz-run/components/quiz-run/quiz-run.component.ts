@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { QuestionRunComponent } from '../question-run/question-run.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -12,11 +13,13 @@ import { QuestionRunComponent } from '../question-run/question-run.component';
   templateUrl: './quiz-run.component.html',
   imports: [MatIconModule, QuestionRunComponent],
 })
-export class QuizRunComponent implements OnInit {
+export class QuizRunComponent implements OnInit, OnDestroy {
   quiz: Quiz | undefined;
   question!: QuizQuestion;
 
   currentQuestionIndex: number = 0;
+
+  private currentQuestionSubscription: Subscription | undefined;
 
   get quizHeader() {
     return `${this.quiz?.name} (${this.currentQuestionIndex + 1}/${this.quiz?.questionCount ?? 0})`;
@@ -31,11 +34,15 @@ export class QuizRunComponent implements OnInit {
   ngOnInit(): void {
     this.currentQuestionIndex = +this.route.snapshot.queryParams['current'] - 1;
 
-    this.route.queryParams.subscribe(
+    this.currentQuestionSubscription = this.route.queryParams.subscribe(
       (q) => (this.currentQuestionIndex = q['current'] - 1)
     );
 
     this.quiz = this.quizRunService.getQuiz();
+  }
+
+  ngOnDestroy(): void {
+    this.currentQuestionSubscription?.unsubscribe();
   }
 
   onLeaveQuiz() {

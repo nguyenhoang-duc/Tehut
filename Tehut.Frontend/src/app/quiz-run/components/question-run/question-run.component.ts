@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { QuestionRunAnswerComponent } from '../question-run-answer/question-run-answer.component';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-question-run',
@@ -11,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [QuestionRunAnswerComponent, MatIconModule],
 })
-export class QuestionRunComponent implements OnInit {
+export class QuestionRunComponent implements OnInit, OnDestroy {
   @Input()
   currentQuestionIndex = 0;
 
@@ -20,6 +21,9 @@ export class QuestionRunComponent implements OnInit {
   answersRevealed = false;
   selectedAnswer: number = 0;
 
+  private currentQuestionSubscription: Subscription | undefined;
+  private answerChangedSubscription: Subscription | undefined;
+
   constructor(
     private quizRunService: QuizRunService,
     private router: Router,
@@ -27,13 +31,19 @@ export class QuestionRunComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((q) => {
+    this.currentQuestionSubscription = this.route.queryParams.subscribe((q) => {
       this.updateQuestion(+q['current'] - 1);
     });
 
-    this.quizRunService.answerChanged.subscribe((a) =>
-      this.onAnswerChanged(a.questionIndex, a.selectedAnswer)
-    );
+    this.answerChangedSubscription =
+      this.quizRunService.answerChanged.subscribe((a) =>
+        this.onAnswerChanged(a.questionIndex, a.selectedAnswer)
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.currentQuestionSubscription?.unsubscribe();
+    this.answerChangedSubscription?.unsubscribe();
   }
 
   onAnswerClicked(index: number) {
