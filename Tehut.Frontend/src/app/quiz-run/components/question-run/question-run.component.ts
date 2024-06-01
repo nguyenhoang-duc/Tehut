@@ -33,7 +33,7 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentQuestionSubscription = this.route.queryParams.subscribe((q) => {
-      this.updateQuestion(+q['current'] - 1);
+      this.updateView(+q['current'] - 1);
     });
 
     this.answerChangedSubscription =
@@ -65,7 +65,8 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
     ]);
   }
 
-  updateQuestion(questionIndex: number) {
+  updateView(questionIndex: number) {
+    this.quizRunFinished = this.quizRunService.isQuizRunFinished();
     this.question = this.quizRunService.getQuestion(questionIndex);
 
     const selectedAnswer =

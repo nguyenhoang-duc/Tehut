@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { resolveQuizFn } from '../quiz/services/quiz-resolver.service';
-import { canActivateQuizRun } from './services/quiz-run-start.guard';
+import { canActivateQuizRun } from './services/quiz-run.guard';
 import { resolveQuestionsFn } from '../question/services/questions-resolver.service';
 
 export const QUIZ_RUN_ROUTES: Route[] = [
