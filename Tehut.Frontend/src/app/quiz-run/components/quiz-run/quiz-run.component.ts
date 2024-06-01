@@ -5,6 +5,7 @@ import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunSession } from '../../models/quiz-run-session.model';
 import { QuestionRunComponent } from '../question-run/question-run.component';
 import { QuizQuestion } from '../../../question/models/question.model';
+import { QuizRunService } from '../../services/quiz-run.service';
 
 @Component({
   standalone: true,
@@ -13,22 +14,24 @@ import { QuizQuestion } from '../../../question/models/question.model';
   imports: [MatIconModule, QuestionRunComponent],
 })
 export class QuizRunComponent implements OnInit {
-  quiz!: Quiz;
+  quiz: Quiz | undefined;
   question!: QuizQuestion;
 
   currentQuestionIndex: number = 0;
 
-  private session!: QuizRunSession;
-
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private quizRunService: QuizRunService
   ) {}
 
   ngOnInit(): void {
-    this.session = JSON.parse(localStorage.getItem('quizRunSession')!);
+    this.currentQuestionIndex = +this.route.snapshot.queryParams['current'] - 1;
 
-    this.quiz = this.session.quiz;
-    this.question = this.session.questions[this.session.currentQuestionIndex];
+    this.route.queryParams.subscribe(
+      (q) => (this.currentQuestionIndex = q['current'] - 1)
+    );
+
+    this.quiz = this.quizRunService.getQuiz();
   }
 }

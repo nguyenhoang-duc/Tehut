@@ -2,15 +2,16 @@
   <header class="flex items-center gap-6">
     <h1 class="text-7xl text-primary-content">
       {{
-        quiz.name +
+        quiz?.name +
           " (" +
           (currentQuestionIndex + 1) +
           "/" +
-          quiz.questionCount +
+          quiz?.questionCount +
           ")"
       }}
     </h1>
   </header>
 
-  <app-question-run [question]="question"></app-question-run>
+  <app-question-run
+    [currentQuestionIndex]="currentQuestionIndex"></app-question-run>
 </main>

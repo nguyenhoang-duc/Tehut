@@ -2,52 +2,59 @@
   <div
     class="flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow-md">
     <span class="text-center text-2xl text-primary-content">{{
-      question.question
+      question?.question ?? ""
     }}</span>
   </div>
   <div class="mx-8 mt-8 flex gap-16 rounded-lg">
     <app-question-run-answer
       class="flex-1"
       [index]="1"
-      [answer]="question.answer1"
+      [answer]="question?.answer1 ?? ''"
       [disabled]="answersRevealed"
-      [selected]="selectedAnswer == 1"
-      [correct]="question.correctAnswerIndex == 1"
+      [selected]="selectedAnswer === 1"
+      [correct]="question?.correctAnswerIndex === 1"
       (clicked)="onAnswerClicked($event)"></app-question-run-answer>
     <app-question-run-answer
       class="flex-1"
       [index]="2"
-      [answer]="question.answer2"
+      [answer]="question?.answer2 ?? ''"
       [disabled]="answersRevealed"
-      [selected]="selectedAnswer == 2"
-      [correct]="question.correctAnswerIndex == 2"
+      [selected]="selectedAnswer === 2"
+      [correct]="question?.correctAnswerIndex === 2"
       (clicked)="onAnswerClicked($event)"></app-question-run-answer>
   </div>
   <div class="mx-8 flex gap-16 rounded-lg">
     <app-question-run-answer
       class="flex-1"
       [index]="3"
-      [answer]="question.answer3"
+      [answer]="question?.answer3 ?? ''"
       [disabled]="answersRevealed"
-      [selected]="selectedAnswer == 3"
-      [correct]="question.correctAnswerIndex == 3"
+      [selected]="selectedAnswer === 3"
+      [correct]="question?.correctAnswerIndex === 3"
       (clicked)="onAnswerClicked($event)"></app-question-run-answer>
     <app-question-run-answer
       class="flex-1"
       [index]="4"
-      [answer]="question.answer4"
+      [answer]="question?.answer4 ?? ''"
       [disabled]="answersRevealed"
       [selected]="selectedAnswer == 4"
-      [correct]="question.correctAnswerIndex == 4"
+      [correct]="question?.correctAnswerIndex === 4"
       (clicked)="onAnswerClicked($event)"></app-question-run-answer>
   </div>
 
   @if (answersRevealed) {
     <div class="mt-14 flex justify-center gap-6">
-      <button class="btn bg-base2 px-8 text-primary-content" type="button">
-        Go Back
+      <button
+        class="btn bg-base2 px-8 text-primary-content"
+        type="button"
+        (click)="onLeaveQuizRun()">
+        Leave
       </button>
-      <button class="btn bg-correct px-8 text-primary-content">Continue</button>
+      <button
+        class="btn bg-correct px-8 text-primary-content"
+        (click)="onNextQuestion()">
+        Continue
+      </button>
     </div>
   }
 </div>
