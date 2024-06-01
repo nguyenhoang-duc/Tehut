@@ -10,6 +10,6 @@ export class QuizRunSession {
     public questions: QuizQuestion[],
     public startTime: Date
   ) {
-    this.selectedAnswers = new Array<number>(quiz.questionCount);
+    this.selectedAnswers = new Array<number>(quiz.questionCount).fill(-1);
   }
 }

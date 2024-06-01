@@ -1,9 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { QuizQuestion } from '../../question/models/question.model';
 import { Quiz } from '../../quiz/models/quiz.model';
 import { QuizRunSession } from '../models/quiz-run-session.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class QuizRunService {
@@ -14,16 +14,15 @@ export class QuizRunService {
     selectedAnswer: number;
   }>();
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private router: Router) {}
 
   startQuizRun(quiz: Quiz, questions: QuizQuestion[]) {
-    if (localStorage.getItem('quizRunSession') === null) {
-      this.quizRunSession = new QuizRunSession(quiz, questions, new Date());
-      this.saveQuizRunSession();
+    if (localStorage.getItem('quizRunSession') !== null) {
+      this.stopQuizRun();
     }
+
+    this.quizRunSession = new QuizRunSession(quiz, questions, new Date());
+    this.saveQuizRunSession();
   }
 
   stopQuizRun() {
@@ -85,13 +84,13 @@ export class QuizRunService {
       this.fetchQuizRunSession();
     }
 
-    return this.quizRunSession?.selectedAnswers.findIndex((s) => s === null);
+    return this.quizRunSession?.selectedAnswers.findIndex((s) => s === -1);
   }
 
-  navigateToNextQuestion(route: ActivatedRoute) {
+  navigateToNextQuestion() {
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
-    this.router.navigate([], {
-      relativeTo: route,
+
+    this.router.navigate(['quizzes', this.quizRunSession?.quiz.id, 'run'], {
       queryParams: {
         current: nextQuestionIndex + 1,
       },

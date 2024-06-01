@@ -51,15 +51,16 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
   }
 
   onNextQuestion() {
-    this.quizRunService.navigateToNextQuestion(this.route);
+    this.quizRunService.navigateToNextQuestion();
   }
 
   updateQuestion(questionIndex: number) {
     this.question = this.quizRunService.getQuestion(questionIndex);
 
-    const selectedAnswer = this.quizRunService.getSelectedAnswer(questionIndex);
+    const selectedAnswer =
+      this.quizRunService.getSelectedAnswer(questionIndex) ?? -1;
 
-    if (selectedAnswer !== null) {
+    if (selectedAnswer !== -1) {
       this.answersRevealed = true;
       this.selectedAnswer = selectedAnswer;
     } else {

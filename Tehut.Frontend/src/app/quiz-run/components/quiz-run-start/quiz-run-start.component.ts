@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunSession } from '../../models/quiz-run-session.model';
 import { QuizQuestion } from '../../../question/models/question.model';
+import { QuizRunService } from '../../services/quiz-run.service';
 
 @Component({
   standalone: true,
@@ -15,14 +16,25 @@ export class QuizRunStartComponent implements OnInit {
   quiz!: Quiz;
   questions: QuizQuestion[] = [];
 
+  showLeaveQuizRunWarning = false;
+  leaveQuizWarning = '';
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private quizRunService: QuizRunService
   ) {}
 
   ngOnInit(): void {
     this.quiz = this.route.snapshot.data['quiz'];
     this.questions = this.route.snapshot.data['questions'];
+
+    const potentialRunningQuiz = this.quizRunService.getQuiz();
+
+    if (potentialRunningQuiz && potentialRunningQuiz.id !== this.quiz.id) {
+      this.showLeaveQuizRunWarning = true;
+      this.leaveQuizWarning = `Starting the quiz will cancel the current run for "${potentialRunningQuiz.name}"`;
+    }
   }
 
   onNavigateBack() {
@@ -30,14 +42,7 @@ export class QuizRunStartComponent implements OnInit {
   }
 
   onStartQuizRun() {
-    const newQuizRunSession = new QuizRunSession(
-      this.quiz,
-      this.questions,
-      new Date()
-    );
-
-    localStorage.setItem('quizRunSession', JSON.stringify(newQuizRunSession));
-
-    this.router.navigate(['..'], { relativeTo: this.route });
+    this.quizRunService.startQuizRun(this.quiz, this.questions);
+    this.quizRunService.navigateToNextQuestion();
   }
 }

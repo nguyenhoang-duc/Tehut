@@ -1,5 +1,12 @@
 <main class="flex h-full items-center justify-center">
   <div class="flex flex-col gap-5">
+    @if (showLeaveQuizRunWarning) {
+      <div class="mb-8 flex justify-center">
+        <p class="w-60 text-balance text-center text-wrong">
+          {{ leaveQuizWarning }}
+        </p>
+      </div>
+    }
     <div
       class="flex h-72 w-72 items-center justify-center rounded-xl border-2 border-base2 bg-base3 shadow-xl">
       <p class="inline-block text-center text-6xl text-secondary-content">?</p>

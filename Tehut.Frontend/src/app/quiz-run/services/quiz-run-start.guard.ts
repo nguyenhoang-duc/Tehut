@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { QuizRunService } from './quiz-run.service';
+import { QuizRunSession } from '../models/quiz-run-session.model';
 
 export const canActivateQuizRun: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -14,8 +15,15 @@ export const canActivateQuizRun: CanActivateFn = (
   const router = inject(Router);
   const quizRunService = inject(QuizRunService);
 
-  if (localStorage.getItem('quizRunSession') === null) {
+  if (!localStorage.getItem('quizRunSession')) {
     return router.createUrlTree([state.url + '/start']);
+  } else {
+    const sessionData: QuizRunSession = JSON.parse(
+      localStorage.getItem('quizRunSession')!
+    );
+    if (sessionData.quiz.id !== route.params['id']) {
+      return router.createUrlTree([state.url + '/start']);
+    }
   }
 
   if (!route.queryParams['current']) {
