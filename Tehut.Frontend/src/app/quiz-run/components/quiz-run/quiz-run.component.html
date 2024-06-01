@@ -1,15 +1,16 @@
 <main class="flex flex-col gap-20">
-  <header class="flex items-center gap-6">
+  <header class="flex items-center gap-12">
     <h1 class="text-7xl text-primary-content">
-      {{
-        quiz?.name +
-          " (" +
-          (currentQuestionIndex + 1) +
-          "/" +
-          quiz?.questionCount +
-          ")"
-      }}
+      {{ quizHeader }}
     </h1>
+    <div class="tooltip-base mt-6" data-tip="Leave Quiz">
+      <button (click)="onLeaveQuiz()">
+        <mat-icon
+          class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
+          >exit_to_app</mat-icon
+        >
+      </button>
+    </div>
   </header>
 
   <app-question-run

@@ -43,17 +43,12 @@
   </div>
 
   @if (answersRevealed) {
-    <div class="mt-14 flex justify-center gap-6">
+    <div class="mt-10 flex justify-center">
       <button
-        class="btn bg-base2 px-8 text-primary-content"
-        type="button"
-        (click)="onLeaveQuizRun()">
-        Leave
-      </button>
-      <button
-        class="btn bg-correct px-8 text-primary-content"
+        class="tooltip-base flex h-14 w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
+        data-tip="Next Question"
         (click)="onNextQuestion()">
-        Continue
+        <mat-icon class="scale-150">arrow_forward</mat-icon>
       </button>
     </div>
   }

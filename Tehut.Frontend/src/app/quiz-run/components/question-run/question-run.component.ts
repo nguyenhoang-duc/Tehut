@@ -3,12 +3,13 @@ import { QuizQuestion } from '../../../question/models/question.model';
 import { QuestionRunAnswerComponent } from '../question-run-answer/question-run-answer.component';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-question-run',
   templateUrl: './question-run.component.html',
   standalone: true,
-  imports: [QuestionRunAnswerComponent],
+  imports: [QuestionRunAnswerComponent, MatIconModule],
 })
 export class QuestionRunComponent implements OnInit {
   @Input()
@@ -45,15 +46,11 @@ export class QuestionRunComponent implements OnInit {
     this.quizRunService.navigateToNextQuestion(this.route);
   }
 
-  onLeaveQuizRun() {
-    this.quizRunService.stopQuizRun();
-    this.router.navigate(['/quizzes']);
-  }
-
   updateQuestion(questionIndex: number) {
     this.question = this.quizRunService.getQuestion(questionIndex);
 
     const selectedAnswer = this.quizRunService.getSelectedAnswer(questionIndex);
+
     if (selectedAnswer !== null) {
       this.answersRevealed = true;
       this.selectedAnswer = selectedAnswer;

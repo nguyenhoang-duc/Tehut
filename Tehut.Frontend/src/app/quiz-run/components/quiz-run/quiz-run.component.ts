@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quiz } from '../../../quiz/models/quiz.model';
-import { QuizRunSession } from '../../models/quiz-run-session.model';
-import { QuestionRunComponent } from '../question-run/question-run.component';
 import { QuizQuestion } from '../../../question/models/question.model';
+import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunService } from '../../services/quiz-run.service';
+import { QuestionRunComponent } from '../question-run/question-run.component';
 
 @Component({
   standalone: true,
@@ -18,6 +17,10 @@ export class QuizRunComponent implements OnInit {
   question!: QuizQuestion;
 
   currentQuestionIndex: number = 0;
+
+  get quizHeader() {
+    return `${this.quiz?.name} (${this.currentQuestionIndex + 1}/${this.quiz?.questionCount ?? 0})`;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -33,5 +36,10 @@ export class QuizRunComponent implements OnInit {
     );
 
     this.quiz = this.quizRunService.getQuiz();
+  }
+
+  onLeaveQuiz() {
+    this.quizRunService.stopQuizRun();
+    this.router.navigate(['/quizzes']);
   }
 }
