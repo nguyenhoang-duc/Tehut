@@ -18,7 +18,7 @@ namespace Tehut.Backend.Application.Quizzes
             using var connection = databaseFactory.CreateConnection();
 
             var quizId = await connection.ExecuteScalarAsync<int>(new CommandDefinition($"""
-                Insert into {QuizTableSchema.TableName} ({QuizTableSchema.Guid}, {QuizTableSchema.Name}) values (@Guid, @Name) Returning {QuizTableSchema.Id};
+                Insert into {QuizTableSchema.TableName} ({QuizTableSchema.Guid}, {QuizTableSchema.Name}, {QuizTableSchema.ImageUrl}) values (@Guid, @Name, @ImageUrl) Returning {QuizTableSchema.Id};
                 """, quiz, cancellationToken: cancellationToken));
 
             quiz.QuizId = quizId;
@@ -80,9 +80,9 @@ namespace Tehut.Backend.Application.Quizzes
 
             var affectedRows = await connection.ExecuteAsync(new CommandDefinition($"""
                 Update {QuizTableSchema.TableName}
-                Set {QuizTableSchema.Name} = @Name
+                Set {QuizTableSchema.Name} = @Name, {QuizTableSchema.ImageUrl} = @ImageUrl
                 Where {QuizTableSchema.Guid} = @Guid
-                """, new { quiz.Name, quiz.Guid }, cancellationToken: cancellationToken)); 
+                """, new { quiz.Name, quiz.Guid, quiz.ImageUrl }, cancellationToken: cancellationToken)); 
 
             return affectedRows > 0;
         }

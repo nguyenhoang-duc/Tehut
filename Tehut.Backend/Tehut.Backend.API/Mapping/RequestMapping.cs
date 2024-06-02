@@ -14,7 +14,7 @@ namespace Tehut.Backend.API.Mapping
 
         public static Quiz ToQuiz(this UpdateQuizRequest request, Quiz existingQuiz)
         {
-            return new Quiz { Name = request.Name, Guid = existingQuiz.Guid }; 
+            return new Quiz { Name = request.Name ?? existingQuiz.Name, ImageUrl = request.ImageUrl ?? existingQuiz.ImageUrl, Guid = existingQuiz.Guid }; 
         }
 
         public static QuizQuestion ToQuestion(this CreateQuestionRequest request)

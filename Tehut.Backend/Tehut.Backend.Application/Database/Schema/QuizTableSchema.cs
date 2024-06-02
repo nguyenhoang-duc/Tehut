@@ -8,6 +8,8 @@
 
         public const string Name = "name";
 
+        public const string ImageUrl = "image_url";
+
         public const string Guid = "guid"; 
     }
 }

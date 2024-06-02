@@ -13,6 +13,7 @@ namespace Tehut.Backend.API.Mapping
             {
                 Guid = quiz.Guid,
                 Name = quiz.Name,
+                ImageUrl = quiz.ImageUrl,
             };
         }
 

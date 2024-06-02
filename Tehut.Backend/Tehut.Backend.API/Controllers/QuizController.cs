@@ -66,7 +66,7 @@ public class QuizController: ControllerBase
     [HttpPut(ApiEndpoints.Quizzes.Update)]
     public async Task<IActionResult> Update([FromRoute]Guid quizId, [FromBody]UpdateQuizRequest request, CancellationToken cancellationToken)
     {
-        var existingQuiz = await quizService.GetQuizByGuid(quizId);
+        var existingQuiz = await quizService.GetQuizByGuid(quizId, cancellationToken);
 
         if (existingQuiz is null)
         {
