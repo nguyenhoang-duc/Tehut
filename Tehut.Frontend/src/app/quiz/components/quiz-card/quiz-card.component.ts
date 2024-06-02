@@ -55,7 +55,7 @@ export class QuizCardComponent {
   onDelete() {
     if (this.quiz.id == '') {
       return;
-    } else if (this.quiz.questionCount > 1) {
+    } else if (this.quiz.questionCount > 0) {
       this.showDeletionDialog = true;
       this.deletionDialog.openDialog();
     } else {
