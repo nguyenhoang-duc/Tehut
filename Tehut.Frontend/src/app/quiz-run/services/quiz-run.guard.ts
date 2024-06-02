@@ -18,6 +18,7 @@ export const canActivateQuizRun: CanActivateFn = (
   const quizId = route.params['id'];
 
   const startUrl = router.createUrlTree(['quizzes', quizId, 'run', 'start']);
+  const endUrl = router.createUrlTree(['quizzes', quizId, 'run', 'end']);
 
   if (!localStorage.getItem('quizRunSession')) {
     return startUrl;
@@ -32,6 +33,10 @@ export const canActivateQuizRun: CanActivateFn = (
   }
 
   if (!route.queryParams['current']) {
+    if (quizRunService.isQuizRunFinished()) {
+      return endUrl;
+    }
+
     const nextQuestionIndex = quizRunService.getNextQuestionIndex() ?? 0;
 
     return router.createUrlTree(['quizzes', quizId, 'run'], {

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { QuizQuestion } from '../../question/models/question.model';
 import { Quiz } from '../../quiz/models/quiz.model';
 import { QuizRunSession } from '../models/quiz-run-session.model';
+import { QuestionStatus } from '../models/question-status.model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizRunService {
@@ -106,6 +107,24 @@ export class QuizRunService {
       queryParams: {
         current: nextQuestionIndex + 1,
       },
+    });
+  }
+
+  getQuestionStatuses() {
+    if (this.quizRunSession === undefined) {
+      this.fetchQuizRunSession();
+    }
+
+    return this.quizRunSession!.selectedAnswers.map((answer, index) => {
+      if (answer === -1) {
+        return QuestionStatus.NotAnswered;
+      } else if (answer === 0) {
+        return QuestionStatus.Skipped;
+      } else if (answer === this.getQuestion(index)?.correctAnswerIndex) {
+        return QuestionStatus.Correct;
+      } else {
+        return QuestionStatus.Wrong;
+      }
     });
   }
 }

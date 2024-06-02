@@ -5,6 +5,6 @@
 
 @layer components {
   .tooltip-base {
-    @apply tooltip tooltip-bottom before:border-[1px] before:border-base2 before:bg-base3 before:text-primary-content before:hover:delay-1000 after:hover:delay-1000;
+    @apply tooltip tooltip-bottom before:border-[1px] before:border-base2 before:bg-base3 before:text-primary-content before:hover:delay-[1500ms] after:hover:delay-[1500ms];
   }
 }
