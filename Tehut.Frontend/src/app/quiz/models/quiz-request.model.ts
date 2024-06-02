@@ -1,3 +1,6 @@
 export class QuizRequest {
-  constructor(public name: string) {}
+  constructor(
+    public name: string,
+    public imageUrl: string
+  ) {}
 }

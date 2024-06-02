@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
 import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/quiz-deletion-dialog.component';
-import { QuizEditnameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
+import { QuizEditnameDialogComponent as QuizEditNameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
 import { CommonModule } from '@angular/common';
+import { QuizEditImageDialogComponent } from '../dialogs/quiz-editimage-dialog/quiz-editimage-dialog.component';
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     MatIconModule,
     QuizDeletionDialogComponent,
-    QuizEditnameDialogComponent,
+    QuizEditImageDialogComponent,
     CommonModule,
   ],
 })
@@ -25,7 +26,11 @@ export class QuizCardComponent {
   @ViewChild('deletionDialog')
   deletionDialog!: QuizDeletionDialogComponent;
 
+  @ViewChild('editImageDialog')
+  editImageDialog!: QuizEditImageDialogComponent;
+
   showDeletionDialog = false;
+  showEditImageDialog = false;
 
   constructor(
     private router: Router,
@@ -63,11 +68,26 @@ export class QuizCardComponent {
     }
   }
 
+  onEditImageUrl() {
+    this.showEditImageDialog = true;
+    this.editImageDialog.openDialog(this.quiz.imagePath);
+  }
+
   onDeletionDialogClosed(confirmed: boolean) {
     if (confirmed) {
       this.quizService.deleteQuiz(this.quiz.id);
     }
 
     this.showDeletionDialog = false;
+  }
+
+  onEditImageDialogClosed(event: { confirmed: boolean; imageUrl: string }) {
+    if (event.confirmed) {
+      this.quizService
+        .updateQuizImageUrl(this.quiz, event.imageUrl)
+        .subscribe(() => (this.quiz.imagePath = event.imageUrl));
+    }
+
+    this.showEditImageDialog = false;
   }
 }

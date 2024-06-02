@@ -41,7 +41,7 @@ export class QuizService {
   }
 
   createQuiz() {
-    const request = new QuizRequest('No Title');
+    const request = new QuizRequest('No Title', '');
 
     this.http
       .post<QuizResponse>(environment.backendUrl + 'quizzes', request)
@@ -52,7 +52,16 @@ export class QuizService {
   }
 
   updateQuizName(quiz: Quiz, newName: string) {
-    const request = new QuizRequest(newName);
+    const request = new QuizRequest(newName, quiz.imagePath);
+
+    return this.http.put<QuizResponse>(
+      environment.backendUrl + 'quizzes/' + quiz.id,
+      request
+    );
+  }
+
+  updateQuizImageUrl(quiz: Quiz, newImageUrl: string) {
+    const request = new QuizRequest(quiz.name, newImageUrl);
 
     return this.http.put<QuizResponse>(
       environment.backendUrl + 'quizzes/' + quiz.id,

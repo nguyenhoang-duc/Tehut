@@ -1,15 +1,18 @@
 <article
   class="flex h-80 w-56 flex-col flex-nowrap justify-between rounded-2xl bg-base2 p-2 shadow-xl">
   <!-- Quiz Image -->
-  @if (quiz.imagePath) {
-    <figure class="h-52 overflow-hidden rounded-xl">
-      <img [src]="quiz.imagePath" alt="quiz image" />
-    </figure>
-  } @else {
-    <div class="flex h-52 items-center justify-center rounded-xl bg-base">
-      <p class="inline-block text-center text-6xl text-secondary-content">?</p>
-    </div>
-  }
+  <button
+    data-tip="Upload Image"
+    class="tooltip-base group flex h-52 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat hover:outline-none hover:outline-secondary-content"
+    [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
+    (click)="onEditImageUrl()">
+    @if (!quiz.imagePath) {
+      <p
+        class="it ems-center flex justify-center text-center text-6xl text-secondary-content">
+        ?
+      </p>
+    }
+  </button>
 
   <!-- Quiz Summary -->
   <div class="mt-2">
@@ -45,4 +48,10 @@
     [ngClass]="{ hidden: !showDeletionDialog }"
     (closed)="onDeletionDialogClosed($event)"
     #deletionDialog></app-quiz-deletion-dialog>
+
+  <!-- Dialog to edit the image url -->
+  <app-quiz-editimage-dialog
+    [ngClass]="{ hidden: !showEditImageDialog }"
+    (closed)="onEditImageDialogClosed($event)"
+    #editImageDialog></app-quiz-editimage-dialog>
 </article>
