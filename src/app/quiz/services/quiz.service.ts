@@ -1,11 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { QuizRequest } from '../models/quiz-request.model';
-import { MapResponseToQuiz, QuizResponse } from '../models/quiz-response.model';
+import { Subject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QuizzesResponse } from '../models/quizzes-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,72 +8,79 @@ import { QuizzesResponse } from '../models/quizzes-response.model';
 export class QuizService {
   quizListChanged = new Subject<void>();
 
-  private quizzes: Quiz[] = [];
+  getQuizzes(): Quiz[] {
+    const quizIds: string[] = localStorage.getItem('quizzes')?.split(',') ?? [];
 
-  constructor(private http: HttpClient) {}
+    if (quizIds.length === 0) {
+      return [];
+    }
 
-  fetchQuizzes(): Observable<Quiz[]> {
-    return this.http
-      .get<QuizzesResponse>(environment.backendUrl + 'quizzes')
-      .pipe(
-        map((response) => {
-          return response.items.map((quizResponse) =>
-            MapResponseToQuiz(quizResponse)
-          );
-        }),
-        tap((response) => (this.quizzes = response))
-      );
+    const quizzes = quizIds
+      .map((id) => this.getQuizById(id))
+      .filter((quiz) => quiz?.id !== undefined) as Quiz[];
+
+    return quizzes;
   }
 
-  getQuizzes() {
-    return [...this.quizzes];
-  }
+  getQuizById(quizId: string): Quiz | undefined {
+    const quizString = localStorage.getItem(`quizzes/${quizId}`) ?? '';
 
-  getQuizById(quizId: string) {
-    return this.http
-      .get<QuizResponse>(environment.backendUrl + 'quizzes/' + quizId)
-      .pipe(map((response) => MapResponseToQuiz(response)));
+    try {
+      const quiz = JSON.parse(quizString) as Quiz;
+      return quiz;
+    } catch {
+      return undefined;
+    }
   }
 
   createQuiz() {
-    const request = new QuizRequest('No Title', '');
+    const newQuiz = new Quiz('No Title', '');
+    newQuiz.id = crypto.randomUUID();
 
-    this.http
-      .post<QuizResponse>(environment.backendUrl + 'quizzes', request)
-      .subscribe((response) => {
-        this.quizzes.push(MapResponseToQuiz(response));
-        this.quizListChanged.next();
-      });
+    const quizIds = localStorage.getItem('quizzes')?.split(',') ?? [];
+    quizIds.push(newQuiz.id);
+
+    localStorage.setItem('quizzes', quizIds.join(','));
+    localStorage.setItem(`quizzes/${newQuiz.id}`, JSON.stringify(newQuiz));
+
+    this.quizListChanged.next();
   }
 
   updateQuizName(quiz: Quiz, newName: string) {
-    const request = new QuizRequest(newName, quiz.imagePath);
+    const updatedQuiz = new Quiz(newName, quiz.imagePath);
+    updatedQuiz.id = quiz.id;
 
-    return this.http.put<QuizResponse>(
-      environment.backendUrl + 'quizzes/' + quiz.id,
-      request
-    );
+    localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
   }
 
   updateQuizImageUrl(quiz: Quiz, newImageUrl: string) {
-    const request = new QuizRequest(quiz.name, newImageUrl);
+    const updatedQuiz = new Quiz(quiz.name, newImageUrl);
+    updatedQuiz.id = quiz.id;
 
-    return this.http.put<QuizResponse>(
-      environment.backendUrl + 'quizzes/' + quiz.id,
-      request
-    );
+    localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
   }
 
   deleteQuiz(quizId: string) {
-    this.http
-      .delete(environment.backendUrl + `quizzes/${quizId}`)
-      .subscribe((_) => {
-        const index = this.quizzes.findIndex((q) => q.id == quizId);
+    localStorage.removeItem(`quizzes/${quizId}`);
 
-        if (index > 0) {
-          this.quizzes.splice(index, 1);
-          this.quizListChanged.next();
-        }
-      });
+    const quizIds: string[] = localStorage.getItem('quizzes')?.split(',') ?? [];
+    const quizIndex = quizIds.indexOf(quizId);
+
+    if (quizIndex >= 0) {
+      quizIds.splice(quizIndex, 1);
+      localStorage.setItem('quizzes', quizIds.join(','));
+      this.quizListChanged.next();
+    }
+  }
+
+  updateQuestionCount(quizId: string) {
+    const quiz = this.getQuizById(quizId);
+
+    if (quiz) {
+      quiz.questionCount =
+        localStorage.getItem(`quizzes/${quizId}/questions`)?.split(',')
+          .length ?? 0;
+      localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(quiz));
+    }
   }
 }

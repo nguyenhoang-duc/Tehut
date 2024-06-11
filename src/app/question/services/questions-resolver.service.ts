@@ -15,5 +15,5 @@ export const resolveQuestionsFn: ResolveFn<QuizQuestion[]> = (
 
   const questionService = inject(QuestionService);
 
-  return questionService.fetchQuestions(quizId);
+  return questionService.getQuestions(quizId);
 };

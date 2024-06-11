@@ -14,7 +14,7 @@ export class QuizQuestion {
     answer2: string,
     answer3: string,
     answer4: string,
-    correctAnswerIndex = 0
+    correctAnswerIndex = 1
   ) {
     this.question = question;
     this.answer1 = answer1;

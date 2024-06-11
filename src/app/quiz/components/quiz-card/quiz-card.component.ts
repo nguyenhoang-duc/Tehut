@@ -83,9 +83,8 @@ export class QuizCardComponent {
 
   onEditImageDialogClosed(event: { confirmed: boolean; imageUrl: string }) {
     if (event.confirmed) {
-      this.quizService
-        .updateQuizImageUrl(this.quiz, event.imageUrl)
-        .subscribe(() => (this.quiz.imagePath = event.imageUrl));
+      this.quizService.updateQuizImageUrl(this.quiz, event.imageUrl);
+      this.quiz.imagePath = event.imageUrl;
     }
 
     this.showEditImageDialog = false;

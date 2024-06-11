@@ -49,9 +49,11 @@ export class QuestionEditComponent implements OnInit {
     this.quizQuestion.correctAnswerIndex =
       this.questionForm.value['correctAnswerIndex'];
 
-    this.questionService
-      .updateQuizQuestion(this.quizQuestion.id, this.quizQuestion)
-      .subscribe(() => this.close());
+    this.questionService.updateQuizQuestion(
+      this.quizQuestion.id,
+      this.quizQuestion
+    );
+    this.close();
   }
 
   close() {

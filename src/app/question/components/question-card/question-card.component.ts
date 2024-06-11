@@ -29,6 +29,6 @@ export class QuestionCardComponent implements OnInit {
   }
 
   onDelete() {
-    this.questionService.deleteQuizQuestion(this.quizQuestion.id);
+    this.questionService.deleteQuizQuestion(this.quizQuestion);
   }
 }

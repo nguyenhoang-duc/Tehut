@@ -46,7 +46,7 @@ export class QuizEditComponent implements OnInit {
     this.questions = this.route.snapshot.data['questions'];
 
     this.questionService.questionListChanged.subscribe(() => {
-      this.questions = this.questionService.getQuestions();
+      this.questions = this.questionService.getQuestions(this.quiz.id);
     });
   }
 
@@ -60,9 +60,8 @@ export class QuizEditComponent implements OnInit {
   }
 
   onEditNameConfirmed(newQuizName: string) {
-    this.quizService.updateQuizName(this.quiz, newQuizName).subscribe(() => {
-      this.quiz.name = newQuizName;
-    });
+    this.quizService.updateQuizName(this.quiz, newQuizName);
+    this.quiz.name = newQuizName;
     this.showEditDialog = false;
   }
 

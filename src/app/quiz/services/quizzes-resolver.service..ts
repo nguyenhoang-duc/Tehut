@@ -13,5 +13,5 @@ export const resolveQuizzesFn: ResolveFn<Quiz[]> = (
 ) => {
   const quizService = inject(QuizService);
 
-  return quizService.fetchQuizzes();
+  return quizService.getQuizzes();
 };
