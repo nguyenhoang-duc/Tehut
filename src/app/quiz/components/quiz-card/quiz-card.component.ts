@@ -7,6 +7,7 @@ import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/qui
 import { QuizEditnameDialogComponent as QuizEditNameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
 import { CommonModule } from '@angular/common';
 import { QuizEditImageDialogComponent } from '../dialogs/quiz-editimage-dialog/quiz-editimage-dialog.component';
+import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { QuizEditImageDialogComponent } from '../dialogs/quiz-editimage-dialog/q
     QuizDeletionDialogComponent,
     QuizEditImageDialogComponent,
     CommonModule,
+    CardIconButtonComponent,
   ],
 })
 export class QuizCardComponent {

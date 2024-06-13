@@ -22,26 +22,19 @@
 
   <!-- Quiz Action Buttons -->
   <div class="mt-4 flex items-baseline justify-center gap-4">
-    <button
-      class="enabled:tooltip-base disabled:text-base2_disabled enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content"
-      data-tip="Run Quiz"
+    <app-card-icon-button
+      iconType="play_arrow"
       (click)="onRun()"
-      [disabled]="quiz.questionCount === 0">
-      <mat-icon>play_arrow</mat-icon>
-    </button>
-
-    <button
-      class="enabled:tooltip-base disabled:text-base2_disabled enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content"
-      data-tip="Edit Quiz"
-      (click)="onEdit()">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button
-      class="enabled:tooltip-base disabled:text-base2_disabled enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content"
-      data-tip="Delete Quiz"
-      (click)="onDelete()">
-      <mat-icon>delete</mat-icon>
-    </button>
+      tooltip="Run Quiz"
+      [disabled]="quiz.questionCount === 0" />
+    <app-card-icon-button
+      tooltip="Edit Quiz"
+      (click)="onEdit()"
+      iconType="edit" />
+    <app-card-icon-button
+      tooltip="Delete Quiz"
+      (click)="onDelete()"
+      iconType="delete" />
   </div>
 
   <!-- Dialog to confirm deletion -->

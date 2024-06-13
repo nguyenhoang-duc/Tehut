@@ -33,20 +33,13 @@
 
   <!-- Quiz Question Action Buttons -->
   <div class="flex items-baseline justify-center gap-4">
-    <button class="tooltip-base" data-tip="Edit Question" (click)="onEdit()">
-      <mat-icon
-        class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
-        >edit</mat-icon
-      >
-    </button>
-    <button
-      class="tooltip-base"
-      data-tip="Delete Question"
-      (click)="onDelete()">
-      <mat-icon
-        class="inline-block text-secondary-content hover:cursor-pointer hover:text-primary-content"
-        >delete</mat-icon
-      >
-    </button>
+    <app-card-icon-button
+      tooltip="Edit Question"
+      (click)="onEdit()"
+      iconType="edit" />
+    <app-card-icon-button
+      tooltip="Delete Question"
+      (click)="onDelete()"
+      iconType="delete" />
   </div>
 </article>
