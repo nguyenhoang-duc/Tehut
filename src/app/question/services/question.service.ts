@@ -12,8 +12,7 @@ export class QuestionService {
   constructor(private quizService: QuizService) {}
 
   getQuestions(quizId: string): QuizQuestion[] {
-    const questionIds: string[] =
-      localStorage.getItem(`quizzes/${quizId}/questions`)?.split(',') ?? [];
+    const questionIds: string[] = this.getQuestionIds(quizId);
 
     return questionIds
       .map((id) => this.getQuestionById(id))
@@ -46,8 +45,7 @@ export class QuestionService {
 
     localStorage.setItem(`questions/${question.id}`, JSON.stringify(question));
 
-    const questionIds: string[] =
-      localStorage.getItem(`quizzes/${quizId}/questions`)?.split(',') ?? [];
+    const questionIds: string[] = this.getQuestionIds(quizId);
 
     questionIds.push(question.id);
     localStorage.setItem(`quizzes/${quizId}/questions`, questionIds.join(','));
@@ -63,11 +61,7 @@ export class QuestionService {
   deleteQuizQuestion(question: QuizQuestion) {
     localStorage.removeItem(`questions/${question.id}`);
 
-    const questionIds: string[] =
-      localStorage
-        .getItem(`quizzes/${question.quizid}/questions`)
-        ?.split(',') ?? [];
-
+    const questionIds = this.getQuestionIds(question.quizid);
     const questionIndex = questionIds.indexOf(question.id);
 
     if (questionIndex >= 0) {
@@ -80,5 +74,12 @@ export class QuestionService {
       this.quizService.updateQuestionCount(question.quizid);
       this.questionListChanged.next();
     }
+  }
+
+  private getQuestionIds(quizId: string) {
+    const questionIdsString =
+      localStorage.getItem(`quizzes/${quizId}/questions`) ?? '';
+
+    return questionIdsString ? questionIdsString.split(',') : [];
   }
 }

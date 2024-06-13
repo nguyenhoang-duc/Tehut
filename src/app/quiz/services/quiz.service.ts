@@ -77,9 +77,11 @@ export class QuizService {
     const quiz = this.getQuizById(quizId);
 
     if (quiz) {
-      quiz.questionCount =
-        localStorage.getItem(`quizzes/${quizId}/questions`)?.split(',')
-          .length ?? 0;
+      const questionIds =
+        localStorage.getItem(`quizzes/${quiz.id}/questions`) ?? '';
+
+      quiz.questionCount = questionIds ? questionIds.split(',').length : 0;
+
       localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(quiz));
     }
   }
