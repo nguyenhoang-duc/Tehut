@@ -49,7 +49,6 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   onAnswerClicked(index: number) {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
-    this.quizRunFinished = this.quizRunService.isQuizRunFinished();
   }
 
   onNextQuestion() {
@@ -88,5 +87,6 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
     this.answersRevealed = true;
     this.selectedAnswer = selectedAnswer;
+    this.quizRunFinished = this.quizRunService.isQuizRunFinished();
   }
 }
