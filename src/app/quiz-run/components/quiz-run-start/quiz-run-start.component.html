@@ -15,8 +15,11 @@
       </div>
     }
     <div
-      class="flex h-72 w-72 items-center justify-center rounded-xl border-2 border-base2 bg-base3 shadow-xl">
-      <p class="inline-block text-center text-6xl text-secondary-content">?</p>
+      class="flex h-72 w-72 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat shadow-xl outline-none outline-base2"
+      [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }">
+      @if (!quiz.imagePath) {
+        <p class="select-none text-center text-6xl text-secondary-content">?</p>
+      }
     </div>
     <h1 class="text-center text-4xl text-primary-content">{{ quiz.name }}</h1>
     <h2 class="text-center text-secondary-content">

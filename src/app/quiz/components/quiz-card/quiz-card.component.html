@@ -7,10 +7,7 @@
     [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
     (click)="onEditImageUrl()">
     @if (!quiz.imagePath) {
-      <p
-        class="it ems-center flex justify-center text-center text-6xl text-secondary-content">
-        ?
-      </p>
+      <p class="select-none text-center text-6xl text-secondary-content">?</p>
     }
   </button>
 

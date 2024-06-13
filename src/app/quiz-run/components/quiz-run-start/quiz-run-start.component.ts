@@ -5,12 +5,13 @@ import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunSession } from '../../models/quiz-run-session.model';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { QuizRunService } from '../../services/quiz-run.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-run-start',
   templateUrl: './quiz-run-start.component.html',
-  imports: [MatIconModule],
+  imports: [MatIconModule, CommonModule],
 })
 export class QuizRunStartComponent implements OnInit {
   quiz!: Quiz;
