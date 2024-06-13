@@ -19,6 +19,8 @@ export class QuizRunStartComponent implements OnInit {
   showLeaveQuizRunWarning = false;
   leaveQuizWarning = '';
 
+  quizHasNoQuestions = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -34,6 +36,10 @@ export class QuizRunStartComponent implements OnInit {
     if (potentialRunningQuiz && potentialRunningQuiz.id !== this.quiz.id) {
       this.showLeaveQuizRunWarning = true;
       this.leaveQuizWarning = `Starting the quiz will cancel the current run for "${potentialRunningQuiz.name}"`;
+    }
+
+    if (this.questions.length === 0) {
+      this.quizHasNoQuestions = true;
     }
   }
 
