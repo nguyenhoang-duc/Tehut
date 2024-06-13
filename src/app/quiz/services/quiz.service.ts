@@ -47,15 +47,15 @@ export class QuizService {
   }
 
   updateQuizName(quiz: Quiz, newName: string) {
-    const updatedQuiz = new Quiz(newName, quiz.imagePath);
-    updatedQuiz.id = quiz.id;
+    const updatedQuiz = Object.assign({}, quiz);
+    updatedQuiz.name = newName;
 
     localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
   }
 
   updateQuizImageUrl(quiz: Quiz, newImageUrl: string) {
-    const updatedQuiz = new Quiz(quiz.name, newImageUrl);
-    updatedQuiz.id = quiz.id;
+    const updatedQuiz = Object.assign({}, quiz);
+    updatedQuiz.imagePath = newImageUrl;
 
     localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
   }
