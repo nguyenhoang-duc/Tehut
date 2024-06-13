@@ -4,9 +4,8 @@ import {
   ResolveFn,
   RouterStateSnapshot,
 } from '@angular/router';
-import { QuestionService } from '../../question/services/question.service';
-import { QuizService } from './quiz.service';
 import { Quiz } from '../models/quiz.model';
+import { QuizService } from './quiz.service';
 
 export const resolveQuizFn: ResolveFn<Quiz | undefined> = (
   route: ActivatedRouteSnapshot,

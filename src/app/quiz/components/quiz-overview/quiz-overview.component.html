@@ -12,13 +12,11 @@
         >search</mat-icon
       >
     </label>
-    <div class="tooltip-base mt-6" data-tip="Add Quiz">
-      <button (click)="onAddEmptyQuiz()">
-        <mat-icon
-          class="min-h-9 min-w-9 text-4xl text-secondary-content hover:text-primary-content"
-          >add</mat-icon
-        >
-      </button>
+    <div class="mt-6">
+      <app-header-icon-button
+        (click)="onAddEmptyQuiz()"
+        tooltip="Add Quiz"
+        iconType="add" />
     </div>
   </header>
 

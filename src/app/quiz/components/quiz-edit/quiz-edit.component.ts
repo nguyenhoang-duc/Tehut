@@ -13,6 +13,7 @@ import {
 } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
+import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { CardIconButtonComponent } from '../../../shared/components/card-icon-bu
     QuizDeletionDialogComponent,
     QuizEditnameDialogComponent,
     CardIconButtonComponent,
+    HeaderIconButtonComponent,
   ],
 })
 export class QuizEditComponent implements OnInit {

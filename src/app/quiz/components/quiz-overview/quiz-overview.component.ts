@@ -5,12 +5,13 @@ import { QuizService } from '../../services/quiz.service';
 import { QuizCardComponent } from '../quiz-card/quiz-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
+import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-overview',
   templateUrl: './quiz-overview.component.html',
-  imports: [QuizCardComponent, MatIconModule],
+  imports: [QuizCardComponent, MatIconModule, HeaderIconButtonComponent],
 })
 export class QuizOverviewComponent implements OnInit, OnDestroy {
   quizzes: Quiz[] = [];
