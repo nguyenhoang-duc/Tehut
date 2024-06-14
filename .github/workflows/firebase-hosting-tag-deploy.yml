@@ -36,6 +36,9 @@ jobs:
       - name: Clean up distribution directory
         run: npm run clean
 
+      - name: Set new app version
+        run: npm run setversion -- -appVersion="${{ github.ref_name }}"
+
       - name: Build application
         run: npm run build
 

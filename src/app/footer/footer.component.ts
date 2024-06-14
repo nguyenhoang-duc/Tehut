@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import appInfo from '../app-info.json';
 
 @Component({
   standalone: true,
@@ -7,4 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './footer.component.html',
   imports: [MatIconModule],
 })
-export class FooterComponent {}
+export class FooterComponent {
+  appVersion: string = '';
+
+  constructor() {
+    this.appVersion = JSON.parse(JSON.stringify(appInfo)).version;
+  }
+}
