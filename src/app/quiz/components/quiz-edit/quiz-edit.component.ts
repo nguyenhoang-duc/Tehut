@@ -64,7 +64,7 @@ export class QuizEditComponent implements OnInit {
   }
 
   onEditNameConfirmed(newQuizName: string) {
-    this.quizService.updateQuizName(this.quiz, newQuizName);
+    this.quizService.updateQuizName(this.quiz.id, newQuizName);
     this.quiz.name = newQuizName;
     this.showEditDialog = false;
   }

@@ -1,13 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 import { Quiz } from '../../models/quiz.model';
 import { QuizService } from '../../services/quiz.service';
 import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/quiz-deletion-dialog.component';
-import { QuizEditnameDialogComponent as QuizEditNameDialogComponent } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
-import { CommonModule } from '@angular/common';
 import { QuizEditImageDialogComponent } from '../dialogs/quiz-editimage-dialog/quiz-editimage-dialog.component';
-import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 
 @Component({
   standalone: true,
@@ -85,7 +84,7 @@ export class QuizCardComponent {
 
   onEditImageDialogClosed(event: { confirmed: boolean; imageUrl: string }) {
     if (event.confirmed) {
-      this.quizService.updateQuizImageUrl(this.quiz, event.imageUrl);
+      this.quizService.updateQuizImageUrl(this.quiz.id, event.imageUrl);
       this.quiz.imagePath = event.imageUrl;
     }
 

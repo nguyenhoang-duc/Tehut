@@ -46,18 +46,20 @@ export class QuizService {
     this.quizListChanged.next();
   }
 
-  updateQuizName(quiz: Quiz, newName: string) {
-    const updatedQuiz = Object.assign({}, quiz);
-    updatedQuiz.name = newName;
-
-    localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
+  updateQuizName(quizId: string, newName: string) {
+    const quiz = this.getQuizById(quizId);
+    if (quiz) {
+      quiz.name = newName;
+      localStorage.setItem(`quizzes/${quizId}`, JSON.stringify(quiz));
+    }
   }
 
-  updateQuizImageUrl(quiz: Quiz, newImageUrl: string) {
-    const updatedQuiz = Object.assign({}, quiz);
-    updatedQuiz.imagePath = newImageUrl;
-
-    localStorage.setItem(`quizzes/${quiz.id}`, JSON.stringify(updatedQuiz));
+  updateQuizImageUrl(quizId: string, newImageUrl: string) {
+    const quiz = this.getQuizById(quizId);
+    if (quiz) {
+      quiz.imagePath = newImageUrl;
+      localStorage.setItem(`quizzes/${quizId}`, JSON.stringify(quiz));
+    }
   }
 
   deleteQuiz(quizId: string) {
