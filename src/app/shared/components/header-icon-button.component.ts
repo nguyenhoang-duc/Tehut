@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
   template: `
     <button
       class="enabled:tooltip-base enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2"
-      (click)="click.emit($event)"
       [disabled]="disabled"
       [attr.data-tip]="tooltip">
       <mat-icon class="min-h-9 min-w-9 text-4xl">{{ iconType }}</mat-icon>
@@ -25,7 +24,4 @@ export class HeaderIconButtonComponent {
 
   @Input()
   tooltip: string = '';
-
-  @Output()
-  click = new EventEmitter<MouseEvent>();
 }

@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
   template: `
     <button
       class="enabled:tooltip-base enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2_disabled"
-      (click)="click.emit($event)"
       [disabled]="disabled"
       [attr.data-tip]="tooltip"
       #iconButton>
@@ -26,7 +25,4 @@ export class CardIconButtonComponent {
 
   @Input()
   tooltip: string = '';
-
-  @Output()
-  click = new EventEmitter<MouseEvent>();
 }
