@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
+import { v4 as uuid } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class QuizService {
 
   createQuiz() {
     const newQuiz = new Quiz('No Title', '');
-    newQuiz.id = crypto.randomUUID();
+    newQuiz.id = uuid();
 
     const quizIds = localStorage.getItem('quizzes')?.split(',') ?? [];
     quizIds.push(newQuiz.id);
