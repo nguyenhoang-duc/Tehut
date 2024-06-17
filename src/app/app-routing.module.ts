@@ -17,6 +17,17 @@ const routes: Routes = [
     path: 'quizzes',
     loadChildren: () => import('./quiz/routes').then((m) => m.QUIZ_ROUTES),
   },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./shared/components/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
+  },
 ];
 
 @NgModule({
