@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuestionStatus } from '../../models/question-status.model';
@@ -17,7 +17,7 @@ import { QuestionHistorySquareComponent } from '../question-history-square/quest
     MatIconModule,
   ],
 })
-export class QuizRunEndComponent implements OnInit {
+export class QuizRunEndComponent implements OnInit, OnDestroy {
   questionStatuses: QuestionStatus[] = [];
 
   correctAnswerCount = 0;
@@ -46,13 +46,15 @@ export class QuizRunEndComponent implements OnInit {
     this.totalAnwerCount = this.questionStatuses.length;
   }
 
-  onGoHome() {
+  ngOnDestroy(): void {
     this.quizRunService.stopQuizRun();
+  }
+
+  onGoHome() {
     this.router.navigate(['quizzes']);
   }
 
   onRestartQuiz() {
-    this.quizRunService.stopQuizRun();
     this.router.navigate(['..', 'start'], { relativeTo: this.route });
   }
 }
