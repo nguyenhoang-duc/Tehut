@@ -43,6 +43,15 @@ export const canActivateQuizRun: CanActivateFn = (
       queryParamsHandling: 'merge',
       queryParams: { current: nextQuestionIndex + 1 },
     });
+  } else {
+    const currentQuestionIndex = +route.queryParams['current'];
+
+    if (
+      currentQuestionIndex < 1 ||
+      currentQuestionIndex > quizRunService.getQuestionCount()
+    ) {
+      return router.createUrlTree(['not-found']);
+    }
   }
 
   return true;

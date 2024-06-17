@@ -25,11 +25,13 @@ export class QuestionEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private questionService: QuestionService
-  ) {
-    this.quizQuestion = route.snapshot.data['question'];
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.quizQuestion = this.questionService.getQuestionById(
+      this.route.snapshot.params['questionid']
+    )!;
+
     this.questionForm = new FormGroup({
       question: new FormControl(this.quizQuestion.question),
       answer1: new FormControl(this.quizQuestion.answer1),

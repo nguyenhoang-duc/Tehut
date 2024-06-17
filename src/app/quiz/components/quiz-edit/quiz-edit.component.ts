@@ -46,8 +46,8 @@ export class QuizEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.quiz = this.route.snapshot.data['quiz'];
-    this.questions = this.route.snapshot.data['questions'];
+    this.quiz = this.quizService.getQuizById(this.route.snapshot.params['id'])!;
+    this.questions = this.questionService.getQuestions(this.quiz.id);
 
     this.questionService.questionListChanged.subscribe(() => {
       this.questions = this.questionService.getQuestions(this.quiz.id);

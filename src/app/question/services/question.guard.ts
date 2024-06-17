@@ -1,19 +1,22 @@
 import { inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  ResolveFn,
+  CanActivateFn,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { QuizQuestion } from '../models/question.model';
 import { QuestionService } from './question.service';
 
-export const resolveQuestionsFn: ResolveFn<QuizQuestion[]> = (
+export const canActivateQuestion: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const quizId = route.params['id'];
-
   const questionService = inject(QuestionService);
+  const router = inject(Router);
 
-  return questionService.getQuestions(quizId);
+  if (questionService.getQuestionById(route.params['questionid'])) {
+    return true;
+  }
+
+  return router.createUrlTree(['not-found']);
 };

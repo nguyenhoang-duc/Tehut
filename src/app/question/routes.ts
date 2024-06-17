@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { resolveQuestionFn } from './services/question-resolver.service';
+import { canActivateQuestion } from './services/question.guard';
 
 export const QUESTION_ROUTES: Route[] = [
   {
@@ -8,6 +8,6 @@ export const QUESTION_ROUTES: Route[] = [
       import('./components/question-edit/question-edit.component').then(
         (m) => m.QuestionEditComponent
       ),
-    resolve: { question: resolveQuestionFn },
+    canActivate: [canActivateQuestion],
   },
 ];

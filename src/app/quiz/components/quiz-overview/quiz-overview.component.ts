@@ -24,7 +24,7 @@ export class QuizOverviewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.quizzes = this.route.snapshot.data['quizzes'];
+    this.quizzes = this.quizService.getQuizzes();
 
     this.quizListChangedSubscription =
       this.quizService.quizListChanged.subscribe(() => {

@@ -76,6 +76,14 @@ export class QuizRunService {
     return this.quizRunSession?.questions[questionIndex];
   }
 
+  getQuestionCount() {
+    if (!this.quizRunSession) {
+      this.fetchQuizRunSession();
+    }
+
+    return this.quizRunSession?.questions.length ?? 0;
+  }
+
   getSelectedAnswer(questionIndex: number) {
     if (!this.quizRunSession) {
       this.fetchQuizRunSession();

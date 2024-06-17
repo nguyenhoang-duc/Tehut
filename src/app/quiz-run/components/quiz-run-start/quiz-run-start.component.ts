@@ -6,6 +6,8 @@ import { QuizRunSession } from '../../models/quiz-run-session.model';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { CommonModule } from '@angular/common';
+import { QuizService } from '../../../quiz/services/quiz.service';
+import { QuestionService } from '../../../question/services/question.service';
 
 @Component({
   standalone: true,
@@ -25,12 +27,14 @@ export class QuizRunStartComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private quizRunService: QuizRunService
+    private quizRunService: QuizRunService,
+    private quizService: QuizService,
+    private questionService: QuestionService
   ) {}
 
   ngOnInit(): void {
-    this.quiz = this.route.snapshot.data['quiz'];
-    this.questions = this.route.snapshot.data['questions'];
+    this.quiz = this.quizService.getQuizById(this.route.snapshot.params['id'])!;
+    this.questions = this.questionService.getQuestions(this.quiz.id);
 
     const potentialRunningQuiz = this.quizRunService.getQuiz();
 

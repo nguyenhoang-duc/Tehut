@@ -1,14 +1,11 @@
 import { Route } from '@angular/router';
 import { QuizOverviewComponent } from './components/quiz-overview/quiz-overview.component';
-import { resolveQuizzesFn } from './services/quizzes-resolver.service.';
-import { resolveQuizFn } from './services/quiz-resolver.service';
-import { resolveQuestionsFn } from '../question/services/questions-resolver.service';
+import { canActivateQuizFn as canActivateQuiz } from './services/quiz.guard';
 
 export const QUIZ_ROUTES: Route[] = [
   {
     path: '',
     component: QuizOverviewComponent,
-    resolve: { quizzes: resolveQuizzesFn },
   },
   {
     path: ':id',
@@ -20,6 +17,6 @@ export const QUIZ_ROUTES: Route[] = [
       import('./components/quiz-edit/quiz-edit.component').then(
         (m) => m.QuizEditComponent
       ),
-    resolve: { quiz: resolveQuizFn, questions: resolveQuestionsFn },
+    canActivate: [canActivateQuiz],
   },
 ];
