@@ -42,22 +42,15 @@
       (clicked)="onAnswerClicked($event)"></app-question-run-answer>
   </div>
 
-  @if (answersRevealed && !quizRunFinished) {
+  @if (answersRevealed) {
     <div class="mt-10 flex justify-center">
       <button
         class="tooltip-base flex h-14 w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
-        data-tip="Next Question"
+        [attr.data-tip]="!quizRunFinished ? 'Next Question' : 'Finish Quiz'"
         (click)="onNextQuestion()">
-        <mat-icon class="scale-150">arrow_forward</mat-icon>
-      </button>
-    </div>
-  } @else if (answersRevealed && quizRunFinished) {
-    <div class="mt-10 flex justify-center">
-      <button
-        class="tooltip-base flex h-14 w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
-        data-tip="Go To Statistics"
-        (click)="onFinishQuiz()">
-        <mat-icon class="scale-150">keyboard_double_arrow_right</mat-icon>
+        <mat-icon class="scale-150">{{
+          !quizRunFinished ? "arrow_forward" : "keyboard_double_arrow_right"
+        }}</mat-icon>
       </button>
     </div>
   }

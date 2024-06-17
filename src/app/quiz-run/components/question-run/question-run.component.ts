@@ -5,6 +5,7 @@ import { QuizRunService } from '../../services/quiz-run.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
+import { KeyInteractionService } from '../../../shared/services/key-interaction.service';
 
 @Component({
   selector: 'app-question-run',
@@ -28,8 +29,13 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
   constructor(
     private quizRunService: QuizRunService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private keyIntersectionService: KeyInteractionService
+  ) {
+    keyIntersectionService.keyUp.subscribe((key: string) => {
+      this.onKeyPressed(key);
+    });
+  }
 
   ngOnInit(): void {
     this.currentQuestionSubscription = this.route.queryParams.subscribe((q) => {
@@ -51,17 +57,20 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
   }
 
-  onNextQuestion() {
-    this.quizRunService.navigateToNextQuestion();
+  onKeyPressed(key: string) {
+    if (!this.answersRevealed) {
+      if (key === '1' || key === '2' || key === '3' || key === '4') {
+        this.quizRunService.setAnswer(this.currentQuestionIndex, +key);
+      }
+    } else {
+      if (key === 'Tab') {
+        this.quizRunService.navigateToNextQuestion();
+      }
+    }
   }
 
-  onFinishQuiz() {
-    this.router.navigate([
-      'quizzes',
-      this.route.snapshot.params['id'],
-      'run',
-      'end',
-    ]);
+  onNextQuestion() {
+    this.quizRunService.navigateToNextQuestion();
   }
 
   updateView(questionIndex: number) {

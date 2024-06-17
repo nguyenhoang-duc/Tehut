@@ -101,6 +101,16 @@ export class QuizRunService {
   }
 
   navigateToNextQuestion() {
+    if (this.isQuizRunFinished()) {
+      this.router.navigate([
+        'quizzes',
+        this.quizRunSession?.quiz.id,
+        'run',
+        'end',
+      ]);
+      return;
+    }
+
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
 
     this.router.navigate(['quizzes', this.quizRunSession?.quiz.id, 'run'], {
