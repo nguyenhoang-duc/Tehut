@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { QuizQuestion } from '../../question/models/question.model';
 import { Quiz } from '../../quiz/models/quiz.model';
-import { QuizRunSession } from '../models/quiz-run-session.model';
 import { QuestionStatus } from '../models/question-status.model';
+import { QuizRunSession } from '../models/quiz-run-session.model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizRunService {
-  private quizRunSession: QuizRunSession | undefined;
-
   answerChanged = new Subject<{
     questionIndex: number;
     selectedAnswer: number;
@@ -22,97 +20,76 @@ export class QuizRunService {
       this.stopQuizRun();
     }
 
-    this.quizRunSession = new QuizRunSession(quiz, questions, new Date());
-    this.saveQuizRunSession();
+    const quizRunSession = new QuizRunSession(quiz, questions, new Date());
+    this.saveQuizRunSession(quizRunSession);
   }
 
   stopQuizRun() {
     localStorage.removeItem('quizRunSession');
-    this.quizRunSession = undefined;
   }
 
-  private fetchQuizRunSession() {
+  private getQuizRunSession(): QuizRunSession | undefined {
     if (localStorage.getItem('quizRunSession') === null) {
-      this.quizRunSession = undefined;
+      return undefined;
     } else {
-      this.quizRunSession = JSON.parse(localStorage.getItem('quizRunSession')!);
+      return JSON.parse(localStorage.getItem('quizRunSession')!);
     }
   }
 
-  saveQuizRunSession() {
-    if (this.quizRunSession) {
-      localStorage.setItem(
-        'quizRunSession',
-        JSON.stringify(this.quizRunSession)
-      );
+  saveQuizRunSession(quizRunSession: QuizRunSession) {
+    if (quizRunSession) {
+      localStorage.setItem('quizRunSession', JSON.stringify(quizRunSession));
     }
   }
 
   setAnswer(questionIndex: number, answer: number) {
-    if (this.quizRunSession) {
-      this.quizRunSession.selectedAnswers[questionIndex] = answer;
-      this.saveQuizRunSession();
+    let quizRunSession = this.getQuizRunSession();
 
-      this.answerChanged.next({
-        questionIndex: questionIndex,
-        selectedAnswer: answer,
-      });
+    if (!quizRunSession) {
+      return;
     }
+
+    quizRunSession.selectedAnswers[questionIndex] = answer;
+
+    this.saveQuizRunSession(quizRunSession);
+
+    this.answerChanged.next({
+      questionIndex: questionIndex,
+      selectedAnswer: answer,
+    });
   }
 
   isQuizRunFinished() {
-    if (this.quizRunSession === undefined) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.selectedAnswers.every((a) => a >= 0) ?? false;
+    return (
+      this.getQuizRunSession()?.selectedAnswers.every((a) => a > 0) ?? false
+    );
   }
 
   getQuestion(questionIndex: number) {
-    if (!this.quizRunSession) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.questions[questionIndex];
+    return this.getQuizRunSession()?.questions[questionIndex];
   }
 
   getQuestionCount() {
-    if (!this.quizRunSession) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.questions.length ?? 0;
+    return this.getQuizRunSession()?.questions.length ?? 0;
   }
 
   getSelectedAnswer(questionIndex: number) {
-    if (!this.quizRunSession) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.selectedAnswers[questionIndex] ?? null;
+    return this.getQuizRunSession()?.selectedAnswers[questionIndex] ?? null;
   }
 
   getQuiz() {
-    if (!this.quizRunSession) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.quiz;
+    return this.getQuizRunSession()?.quiz;
   }
 
   getNextQuestionIndex() {
-    if (!this.quizRunSession) {
-      this.fetchQuizRunSession();
-    }
-
-    return this.quizRunSession?.selectedAnswers.findIndex((s) => s === -1);
+    return this.getQuizRunSession()?.selectedAnswers.findIndex((s) => s === -1);
   }
 
   navigateToNextQuestion() {
     if (this.isQuizRunFinished()) {
       this.router.navigate([
         'quizzes',
-        this.quizRunSession?.quiz.id,
+        this.getQuizRunSession()?.quiz.id,
         'run',
         'end',
       ]);
@@ -121,19 +98,24 @@ export class QuizRunService {
 
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
 
-    this.router.navigate(['quizzes', this.quizRunSession?.quiz.id, 'run'], {
-      queryParams: {
-        current: nextQuestionIndex + 1,
-      },
-    });
+    this.router.navigate(
+      ['quizzes', this.getQuizRunSession()?.quiz.id, 'run'],
+      {
+        queryParams: {
+          current: nextQuestionIndex + 1,
+        },
+      }
+    );
   }
 
   getQuestionStatuses() {
-    if (this.quizRunSession === undefined) {
-      this.fetchQuizRunSession();
+    const quizRunSession = this.getQuizRunSession();
+
+    if (!quizRunSession) {
+      return [];
     }
 
-    return this.quizRunSession!.selectedAnswers.map((answer, index) => {
+    return quizRunSession.selectedAnswers.map((answer, index) => {
       if (answer === -1) {
         return QuestionStatus.NotAnswered;
       } else if (answer === 0) {
