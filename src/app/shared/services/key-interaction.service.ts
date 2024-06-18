@@ -5,9 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class KeyInteractionService {
-  keyUp = new Subject<string>();
+  keyUp = new Subject<KeyboardEvent>();
 
   onKeyUp(event: KeyboardEvent) {
-    this.keyUp.next(event.key);
+    this.keyUp.next(event);
   }
 }

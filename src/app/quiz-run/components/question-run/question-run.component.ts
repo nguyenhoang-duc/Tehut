@@ -32,8 +32,8 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private keyIntersectionService: KeyInteractionService
   ) {
-    keyIntersectionService.keyUp.subscribe((key: string) => {
-      this.onKeyPressed(key);
+    keyIntersectionService.keyUp.subscribe((event: KeyboardEvent) => {
+      this.onKeyPressed(event);
     });
   }
 
@@ -57,13 +57,19 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
   }
 
-  onKeyPressed(key: string) {
+  onKeyPressed(event: KeyboardEvent) {
     if (!this.answersRevealed) {
-      if (key === '1' || key === '2' || key === '3' || key === '4') {
-        this.quizRunService.setAnswer(this.currentQuestionIndex, +key);
+      if (
+        event.key === '1' ||
+        event.key === '2' ||
+        event.key === '3' ||
+        event.key === '4'
+      ) {
+        this.quizRunService.setAnswer(this.currentQuestionIndex, +event.key);
       }
     } else {
-      if (key === 'Tab') {
+      if (event.key === 'Tab') {
+        event.preventDefault();
         this.quizRunService.navigateToNextQuestion();
       }
     }
