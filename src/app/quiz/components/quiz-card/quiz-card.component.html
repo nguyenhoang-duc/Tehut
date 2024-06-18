@@ -13,8 +13,15 @@
 
   <!-- Quiz Summary -->
   <div class="mt-2">
-    <h1 class="text-center text-xl text-primary-content">{{ quiz.name }}</h1>
-    <h2 class="text-center text-secondary-content">{{ questionCount }}</h2>
+    <h3
+      class="line-clamp-1 overflow-y-auto rounded-xl text-center text-xl text-primary-content focus:outline-none focus:outline-secondary-content"
+      contenteditable="true"
+      (blur)="onEditQuizName(quizNameLabel)"
+      (keydown)="onKeyDown($event, quizNameLabel)"
+      #quizNameLabel>
+      {{ quiz.name }}
+    </h3>
+    <h4 class="text-center text-secondary-content">{{ questionCount }}</h4>
   </div>
 
   <!-- Quiz Action Buttons -->

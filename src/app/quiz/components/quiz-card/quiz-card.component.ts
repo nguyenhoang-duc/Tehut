@@ -74,6 +74,23 @@ export class QuizCardComponent {
     this.editImageDialog.openDialog(this.quiz.imagePath);
   }
 
+  onEditQuizName(element: HTMLElement) {
+    if (element.innerText) {
+      this.quizService.updateQuizName(this.quiz.id, element.innerText);
+    } else {
+      element.innerText = this.quiz.name;
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent, element: HTMLElement) {
+    if (event.key === 'Enter') {
+      this.onEditQuizName(element);
+      element.blur();
+    } else if (event.key == 'Escape') {
+      element.blur();
+    }
+  }
+
   onDeletionDialogClosed(confirmed: boolean) {
     if (confirmed) {
       this.quizService.deleteQuiz(this.quiz.id);
