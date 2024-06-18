@@ -26,17 +26,15 @@
       {{ quiz.questionCount }} Questions
     </h2>
     <div class="mt-8 flex justify-center gap-6">
-      <button
-        class="btn w-24 bg-correct text-primary-content"
+      <app-text-button
+        bg="bg-correct"
         (click)="onStartQuizRun()"
-        [disabled]="quizHasNoQuestions">
-        Start
-      </button>
-      <button
-        class="btn w-24 bg-base2 text-primary-content"
-        (click)="onNavigateBack()">
-        Back
-      </button>
+        [disabled]="quizHasNoQuestions"
+        >Start</app-text-button
+      >
+      <app-text-button bg="bg-base2" (click)="onNavigateBack()"
+        >Back</app-text-button
+      >
     </div>
   </div>
 </main>

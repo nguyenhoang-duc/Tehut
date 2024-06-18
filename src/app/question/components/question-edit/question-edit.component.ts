@@ -9,12 +9,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuizQuestion } from '../../models/question.model';
 import { QuestionService } from '../../services/question.service';
 import { QuestionAnswerComponent } from '../question-answer/question-answer.component';
+import { TextButtonComponent } from '../../../shared/components/text-button.component';
 
 @Component({
   standalone: true,
   selector: 'app-question-edit',
   templateUrl: './question-edit.component.html',
-  imports: [QuestionAnswerComponent, FormsModule, ReactiveFormsModule],
+  imports: [
+    QuestionAnswerComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    TextButtonComponent,
+  ],
 })
 export class QuestionEditComponent implements OnInit {
   private quizQuestion!: QuizQuestion;

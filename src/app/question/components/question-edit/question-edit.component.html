@@ -38,18 +38,13 @@
         [form]="questionForm"></app-question-answer>
     </div>
     <div class="mt-14 flex justify-center gap-6">
-      <button
-        class="btn bg-correct px-8 text-primary-content"
+      <app-text-button
         type="submit"
-        [disabled]="!questionForm.valid">
+        [disabled]="!questionForm.valid"
+        bg="bg-correct">
         Save
-      </button>
-      <button
-        (click)="close()"
-        class="btn bg-base2 px-8 text-primary-content"
-        type="button">
-        Cancel
-      </button>
+      </app-text-button>
+      <app-text-button bg="bg-base2" (click)="close()">Cancel</app-text-button>
     </div>
   </div>
 </form>

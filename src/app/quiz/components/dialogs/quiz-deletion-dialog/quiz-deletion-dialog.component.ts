@@ -1,9 +1,17 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { TextButtonComponent } from '../../../../shared/components/text-button.component';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-deletion-dialog',
   templateUrl: './quiz-deletion-dialog.component.html',
+  imports: [TextButtonComponent],
 })
 export class QuizDeletionDialogComponent {
   @Output()

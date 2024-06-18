@@ -8,12 +8,13 @@ import { QuizRunService } from '../../services/quiz-run.service';
 import { CommonModule } from '@angular/common';
 import { QuizService } from '../../../quiz/services/quiz.service';
 import { QuestionService } from '../../../question/services/question.service';
+import { TextButtonComponent } from '../../../shared/components/text-button.component';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-run-start',
   templateUrl: './quiz-run-start.component.html',
-  imports: [MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule, TextButtonComponent],
 })
 export class QuizRunStartComponent implements OnInit {
   quiz!: Quiz;

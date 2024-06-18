@@ -9,12 +9,13 @@ import {
 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { TextButtonComponent } from '../../../../shared/components/text-button.component';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-editname-dialog',
   templateUrl: './quiz-editname-dialog.component.html',
-  imports: [MatIconModule, FormsModule, CommonModule],
+  imports: [MatIconModule, FormsModule, CommonModule, TextButtonComponent],
 })
 export class QuizEditnameDialogComponent implements OnInit {
   @Output()

@@ -32,19 +32,16 @@
         </label>
       </div>
 
-      <div class="modal-action">
-        <button
-          class="btn bg-correct text-primary-content"
+      <div class="modal-action flex gap-2">
+        <app-text-button
+          bg="bg-correct"
           type="submit"
           [disabled]="!editForm.valid">
           Save
-        </button>
-        <button
-          type="button"
-          class="btn bg-base2 text-primary-content"
-          (click)="onCancelled()">
+        </app-text-button>
+        <app-text-button bg="bg-base2" (click)="onCancelled()">
           Cancel
-        </button>
+        </app-text-button>
       </div>
     </form>
   </div>
