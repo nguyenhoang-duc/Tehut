@@ -98,11 +98,15 @@ export class QuizRunService {
 
     const nextQuestionIndex = this.getNextQuestionIndex() ?? 0;
 
+    this.navigateToQuestion(nextQuestionIndex);
+  }
+
+  navigateToQuestion(questionIndex: number) {
     this.router.navigate(
       ['quizzes', this.getQuizRunSession()?.quiz.id, 'run'],
       {
         queryParams: {
-          current: nextQuestionIndex + 1,
+          current: questionIndex + 1,
         },
       }
     );

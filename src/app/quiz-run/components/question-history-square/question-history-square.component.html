@@ -1,22 +1,22 @@
 <div class="flex flex-col items-center gap-3">
   @if (isWrong) {
     <div
-      class="flex h-12 w-12 items-center justify-center rounded bg-wrong text-base3 shadow hover:outline-none hover:outline-secondary-content">
+      class="box-border flex h-12 w-12 items-center justify-center rounded-lg bg-wrong text-base3 shadow hover:outline-none hover:outline-secondary-content">
       <mat-icon class="font-bold">close</mat-icon>
     </div>
   } @else if (isCorrect) {
     <div
-      class="flex h-12 w-12 items-center justify-center rounded bg-correct text-base3 shadow hover:outline-none hover:outline-secondary-content">
+      class="box-border flex h-12 w-12 items-center justify-center rounded-lg bg-correct text-base3 shadow hover:outline-none hover:outline-secondary-content">
       <mat-icon class="font-bold">check</mat-icon>
     </div>
   } @else if (isSkipped) {
     <div
-      class="flex h-12 w-12 items-center justify-center rounded bg-base2 text-base3 shadow hover:outline-none hover:outline-secondary-content">
+      class="box-border flex h-12 w-12 items-center justify-center rounded-lg bg-base2 text-base3 shadow hover:outline-none hover:outline-secondary-content">
       <mat-icon class="font-bold">panorama_fisheye</mat-icon>
     </div>
   } @else if (isNotAnswered) {
     <div
-      class="flex h-12 w-12 items-center justify-center rounded outline-none outline-base2 hover:outline-none hover:outline-secondary-content"></div>
+      class="box-border flex h-12 w-12 items-center justify-center rounded-lg border-2 border-base2 hover:outline-none hover:outline-secondary-content"></div>
   }
   <div class="text-center text-secondary-content">
     {{ questionindex }}

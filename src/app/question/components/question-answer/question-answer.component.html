@@ -1,15 +1,15 @@
 <div
   [formGroup]="form"
-  class="flex h-28 items-center rounded-lg bg-base2 shadow-md">
+  class="flex h-24 items-center rounded-lg bg-base2 shadow-md">
   <input
     type="radio"
     name="correctAnswerIndex"
     [id]="index"
     [value]="index"
-    class="z-10 h-28 w-4 appearance-none rounded-bl-lg rounded-tl-lg bg-wrong checked:border-correct checked:bg-correct checked:text-correct hover:cursor-pointer"
+    class="z-10 h-24 w-4 appearance-none rounded-bl-lg rounded-tl-lg bg-wrong checked:border-correct checked:bg-correct checked:text-correct hover:cursor-pointer"
     formControlName="correctAnswerIndex" />
   <label
-    class="input flex h-28 flex-1 items-center gap-4 bg-base2"
+    class="input flex h-24 flex-1 items-center gap-4 bg-base2"
     [for]="'answer' + index">
     <p class="text-xl text-primary-content">{{ index }}.</p>
     <input

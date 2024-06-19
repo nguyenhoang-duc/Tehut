@@ -1,18 +1,35 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { Quiz } from '../../../quiz/models/quiz.model';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { QuestionRunComponent } from '../question-run/question-run.component';
 import { Subscription } from 'rxjs';
 import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
+import { QuestionStatus } from '../../models/question-status.model';
+import { QuestionHistorySquareComponent } from '../question-history-square/question-history-square.component';
+import { CommonModule } from '@angular/common';
+import { QuizRunNavigationComponent } from '../quiz-run-navigation/quiz-run-navigation.component';
 
 @Component({
   standalone: true,
   selector: 'app-quiz-run',
   templateUrl: './quiz-run.component.html',
-  imports: [MatIconModule, QuestionRunComponent, HeaderIconButtonComponent],
+  imports: [
+    MatIconModule,
+    QuestionRunComponent,
+    HeaderIconButtonComponent,
+    QuizRunNavigationComponent,
+    RouterModule,
+    CommonModule,
+  ],
 })
 export class QuizRunComponent implements OnInit, OnDestroy {
   quiz: Quiz | undefined;
@@ -20,8 +37,14 @@ export class QuizRunComponent implements OnInit, OnDestroy {
 
   currentQuestionIndex: number = 0;
   questionAnswered = false;
+  quizRunFinished = false;
+
+  questionStatuses: QuestionStatus[] = [];
 
   private currentQuestionSubscription: Subscription | undefined;
+
+  @ViewChild('quizRunNavigation')
+  quizRunNavigation: QuizRunNavigationComponent | undefined;
 
   get quizHeader() {
     return `${this.quiz?.name} (${this.currentQuestionIndex + 1}/${this.quiz?.questionCount ?? 0})`;
@@ -38,6 +61,11 @@ export class QuizRunComponent implements OnInit, OnDestroy {
 
     this.currentQuestionSubscription = this.route.queryParams.subscribe((q) => {
       this.currentQuestionIndex = q['current'] - 1;
+
+      setTimeout(() => {
+        this.quizRunNavigation?.scrollToHighlight();
+      }, 100);
+
       this.updateView();
     });
 
@@ -58,9 +86,19 @@ export class QuizRunComponent implements OnInit, OnDestroy {
     this.quizRunService.setAnswer(this.currentQuestionIndex, 0);
   }
 
+  onNextQuestion() {
+    this.quizRunService.navigateToNextQuestion();
+  }
+
+  onNavigateQuestion(index: number) {
+    this.quizRunService.navigateToQuestion(index);
+  }
+
   private updateView() {
+    this.quizRunFinished = this.quizRunService.isQuizRunFinished();
     this.questionAnswered =
       (this.quizRunService.getSelectedAnswer(this.currentQuestionIndex) ??
         -1) !== -1;
+    this.questionStatuses = this.quizRunService.getQuestionStatuses();
   }
 }

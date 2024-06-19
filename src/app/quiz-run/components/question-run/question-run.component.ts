@@ -28,9 +28,8 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   constructor(
     private quizRunService: QuizRunService,
-    private router: Router,
     private route: ActivatedRoute,
-    private keyIntersectionService: KeyInteractionService
+    keyIntersectionService: KeyInteractionService
   ) {
     keyIntersectionService.keyUp.subscribe((event: KeyboardEvent) => {
       this.onKeyPressed(event);
@@ -73,10 +72,6 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
         this.quizRunService.navigateToNextQuestion();
       }
     }
-  }
-
-  onNextQuestion() {
-    this.quizRunService.navigateToNextQuestion();
   }
 
   updateView(questionIndex: number) {

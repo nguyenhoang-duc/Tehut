@@ -1,5 +1,5 @@
-<main class="flex flex-col gap-20">
-  <header class="flex items-center gap-6">
+<main class="flex flex-col gap-7">
+  <header class="mb-7 flex items-center gap-6">
     <h1 class="mr-10 text-7xl text-primary-content">
       {{ quizHeader }}
     </h1>
@@ -18,6 +18,26 @@
     </div>
   </header>
 
-  <app-question-run
-    [currentQuestionIndex]="currentQuestionIndex"></app-question-run>
+  <app-question-run [currentQuestionIndex]="currentQuestionIndex" />
+
+  <div class="flex h-14 justify-center">
+    @if (questionAnswered) {
+      <button
+        class="tooltip-base flex w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
+        [attr.data-tip]="!quizRunFinished ? 'Next Question' : 'Finish Quiz'"
+        (click)="onNextQuestion()">
+        <mat-icon class="scale-150">{{
+          !quizRunFinished ? "arrow_forward" : "keyboard_double_arrow_right"
+        }}</mat-icon>
+      </button>
+    }
+  </div>
+
+  <div class="flex w-full items-center justify-center">
+    <app-quiz-run-navigation
+      [questionStatuses]="questionStatuses"
+      [highlightedIndex]="currentQuestionIndex"
+      (navigateTo)="onNavigateQuestion($event)"
+      #quizRunNavigation />
+  </div>
 </main>
