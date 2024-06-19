@@ -61,7 +61,7 @@ export class QuizRunService {
 
   isQuizRunFinished() {
     return (
-      this.getQuizRunSession()?.selectedAnswers.every((a) => a > 0) ?? false
+      this.getQuizRunSession()?.selectedAnswers.every((a) => a > -1) ?? false
     );
   }
 
