@@ -14,6 +14,8 @@ import {
 import { QuizQuestion } from '../../../question/models/question.model';
 import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
+import { SearchBarComponent } from '../../../shared/components/search-bar.component';
+import { FilterQuestionPipe } from '../../services/filter-question.pipe';
 
 @Component({
   standalone: true,
@@ -27,6 +29,8 @@ import { HeaderIconButtonComponent } from '../../../shared/components/header-ico
     QuizEditnameDialogComponent,
     CardIconButtonComponent,
     HeaderIconButtonComponent,
+    SearchBarComponent,
+    FilterQuestionPipe,
   ],
 })
 export class QuizEditComponent implements OnInit {
@@ -37,6 +41,8 @@ export class QuizEditComponent implements OnInit {
   questions: QuizQuestion[] = [];
 
   showEditDialog = false;
+
+  searchText: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -75,5 +81,9 @@ export class QuizEditComponent implements OnInit {
 
   onNavigateBack() {
     this.router.navigate(['/quizzes']);
+  }
+
+  onSearch(searchText: string) {
+    this.searchText = searchText;
   }
 }

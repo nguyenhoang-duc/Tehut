@@ -7,16 +7,7 @@
       tooltip="Quiz Overview"
       iconType="arrow_back" />
     <h1 class="text-7xl text-primary-content">{{ quiz.name }}</h1>
-    <label
-      class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl bg-base">
-      <input
-        type="text"
-        class="grow text-primary-content placeholder-secondary-content"
-        placeholder="Search" />
-      <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
-        >search</mat-icon
-      >
-    </label>
+    <app-search-bar (search)="onSearch($event)" />
     <app-header-icon-button
       class="mt-6"
       (click)="onRunQuiz()"
@@ -36,7 +27,7 @@
 
   <!-- Quiz Question List -->
   <section class="flex flex-wrap">
-    @for (question of questions; track $index) {
+    @for (question of questions | filterquestion: searchText; track $index) {
       <app-question-card
         class="mb-8 mr-8"
         [quizQuestion]="question"></app-question-card>

@@ -6,16 +6,15 @@ import { Quiz } from '../models/quiz.model';
   standalone: true,
 })
 export class FilterQuizPipe implements PipeTransform {
-  transform(value: Quiz[], filterText: string, ...args: any[]) {
+  transform(quizzes: Quiz[], filterText: string, ...args: any[]) {
     if (!filterText) {
-      return value;
+      return quizzes;
     }
 
-    const unifiedFilterText = filterText.toLowerCase().trim();
+    const filter = filterText.toLowerCase().trim();
 
-    return value.filter(
-      (value) =>
-        value.name.toLowerCase().trim().indexOf(unifiedFilterText) !== -1
+    return quizzes.filter(
+      (quiz) => quiz.name.toLowerCase().trim().indexOf(filter) !== -1
     );
   }
 }
