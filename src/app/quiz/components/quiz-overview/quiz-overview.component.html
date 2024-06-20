@@ -2,16 +2,7 @@
   <!-- Header -->
   <header class="flex items-center gap-6">
     <h1 class="text-7xl text-primary-content">Home</h1>
-    <label
-      class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
-      <input
-        type="text"
-        class="grow text-primary-content placeholder-secondary-content"
-        placeholder="Search" />
-      <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
-        >search</mat-icon
-      >
-    </label>
+    <app-search-bar (search)="onSearchQuiz($event)" />
     <div class="mt-6">
       <app-header-icon-button
         (click)="onAddEmptyQuiz()"
@@ -22,7 +13,7 @@
 
   <!-- Quiz List -->
   <section class="flex flex-wrap">
-    @for (quiz of quizzes; track $index) {
+    @for (quiz of quizzes | filterquiz: searchText; track $index) {
       <app-quiz-card class="mb-8 mr-8" [quiz]="quiz"></app-quiz-card>
     }
 

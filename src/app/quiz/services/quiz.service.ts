@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 })
 export class QuizService {
   quizListChanged = new Subject<void>();
+  quizNameChanged = new Subject<Quiz>();
 
   getQuizzes(): Quiz[] {
     const quizIds: string[] = localStorage.getItem('quizzes')?.split(',') ?? [];
@@ -52,6 +53,7 @@ export class QuizService {
     if (quiz) {
       quiz.name = newName;
       localStorage.setItem(`quizzes/${quizId}`, JSON.stringify(quiz));
+      this.quizNameChanged.next(quiz);
     }
   }
 

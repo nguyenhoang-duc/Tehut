@@ -6,9 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-card-icon-button',
   template: `
     <button
-      class="enabled:tooltip-base enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2_disabled"
+      class="flex items-center enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2_disabled"
       [disabled]="disabled"
       [attr.data-tip]="tooltip"
+      [ngClass]="{ 'tooltip-base': !disabled }"
       #iconButton>
       <mat-icon>{{ iconType }}</mat-icon>
     </button>
