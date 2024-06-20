@@ -1,14 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Quiz } from '../../../quiz/models/quiz.model';
-import { QuizRunSession } from '../../models/quiz-run-session.model';
 import { QuizQuestion } from '../../../question/models/question.model';
-import { QuizRunService } from '../../services/quiz-run.service';
-import { CommonModule } from '@angular/common';
-import { QuizService } from '../../../quiz/services/quiz.service';
 import { QuestionService } from '../../../question/services/question.service';
+import { Quiz } from '../../../quiz/models/quiz.model';
+import { QuizService } from '../../../quiz/services/quiz.service';
 import { TextButtonComponent } from '../../../shared/components/text-button.component';
+import { QuizRunService } from '../../services/quiz-run.service';
 
 @Component({
   standalone: true,
@@ -39,7 +38,11 @@ export class QuizRunStartComponent implements OnInit {
 
     const potentialRunningQuiz = this.quizRunService.getQuiz();
 
-    if (potentialRunningQuiz && potentialRunningQuiz.id !== this.quiz.id) {
+    if (
+      potentialRunningQuiz &&
+      potentialRunningQuiz.id !== this.quiz.id &&
+      !this.quizRunService.isQuizRunFinished()
+    ) {
       this.showLeaveQuizRunWarning = true;
       this.leaveQuizWarning = `Starting the quiz will cancel the current run for "${potentialRunningQuiz.name}"`;
     }

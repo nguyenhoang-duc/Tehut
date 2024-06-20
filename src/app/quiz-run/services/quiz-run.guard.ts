@@ -18,7 +18,6 @@ export const canActivateQuizRun: CanActivateFn = (
   const quizId = route.params['id'];
 
   const startUrl = router.createUrlTree(['quizzes', quizId, 'run', 'start']);
-  const endUrl = router.createUrlTree(['quizzes', quizId, 'run', 'end']);
 
   if (!localStorage.getItem('quizRunSession')) {
     return startUrl;
@@ -34,7 +33,8 @@ export const canActivateQuizRun: CanActivateFn = (
 
   if (!route.queryParams['current']) {
     if (quizRunService.isQuizRunFinished()) {
-      return endUrl;
+      quizRunService.stopQuizRun();
+      return startUrl;
     }
 
     const nextQuestionIndex = quizRunService.getNextQuestionIndex() ?? 0;
@@ -43,15 +43,15 @@ export const canActivateQuizRun: CanActivateFn = (
       queryParamsHandling: 'merge',
       queryParams: { current: nextQuestionIndex + 1 },
     });
-  } else {
-    const currentQuestionIndex = +route.queryParams['current'];
+  }
 
-    if (
-      currentQuestionIndex < 1 ||
-      currentQuestionIndex > quizRunService.getQuestionCount()
-    ) {
-      return router.createUrlTree(['not-found']);
-    }
+  const currentQuestionIndex = +route.queryParams['current'];
+
+  if (
+    currentQuestionIndex < 1 ||
+    currentQuestionIndex > quizRunService.getQuestionCount()
+  ) {
+    return router.createUrlTree(['not-found']);
   }
 
   return true;

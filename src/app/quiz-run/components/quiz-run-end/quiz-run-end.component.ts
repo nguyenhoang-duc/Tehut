@@ -17,7 +17,7 @@ import { QuestionHistorySquareComponent } from '../question-history-square/quest
     MatIconModule,
   ],
 })
-export class QuizRunEndComponent implements OnInit, OnDestroy {
+export class QuizRunEndComponent implements OnInit {
   questionStatuses: QuestionStatus[] = [];
 
   correctAnswerCount = 0;
@@ -44,10 +44,6 @@ export class QuizRunEndComponent implements OnInit, OnDestroy {
       (v) => v === QuestionStatus.Skipped
     ).length;
     this.totalAnwerCount = this.questionStatuses.length;
-  }
-
-  ngOnDestroy(): void {
-    this.quizRunService.stopQuizRun();
   }
 
   onGoHome() {
