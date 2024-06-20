@@ -9,4 +9,16 @@
       </h1>
     </div>
   </a>
+  @if (showRunningQuiz) {
+    <div class="flex h-full items-center gap-4">
+      <p class="text-secondary-content">
+        {{ '"' + runningQuizName + '"' + " running..." }}
+      </p>
+      <button
+        class="h-8 rounded-lg bg-base2 px-3 py-1 text-primary-content hover:outline-none hover:outline-secondary-content"
+        (click)="onNavigateToQuizRun()">
+        Take me there
+      </button>
+    </div>
+  }
 </div>

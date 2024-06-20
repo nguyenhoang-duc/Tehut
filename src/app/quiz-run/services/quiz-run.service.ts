@@ -28,6 +28,10 @@ export class QuizRunService {
     localStorage.removeItem('quizRunSession');
   }
 
+  isQuizRunning() {
+    return this.getQuizRunSession();
+  }
+
   private getQuizRunSession(): QuizRunSession | undefined {
     if (localStorage.getItem('quizRunSession') === null) {
       return undefined;
