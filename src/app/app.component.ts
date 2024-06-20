@@ -1,8 +1,7 @@
-import { Component, HostListener } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { KeyInteractionService } from './shared/services/key-interaction.service';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   standalone: true,
@@ -12,16 +11,4 @@ import { KeyInteractionService } from './shared/services/key-interaction.service
 })
 export class AppComponent {
   title = 'Tehut';
-
-  constructor(private keyInteractionService: KeyInteractionService) {}
-
-  @HostListener('window:keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent) {
-    this.keyInteractionService.onKeyUp(event);
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent) {
-    this.keyInteractionService.onKeyDown(event);
-  }
 }

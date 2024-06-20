@@ -1,11 +1,16 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { QuizQuestion } from '../../../question/models/question.model';
-import { QuestionRunAnswerComponent } from '../question-run-answer/question-run-answer.component';
-import { QuizRunService } from '../../services/quiz-run.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { KeyInteractionService } from '../../../shared/services/key-interaction.service';
+import { QuizQuestion } from '../../../question/models/question.model';
+import { QuizRunService } from '../../services/quiz-run.service';
+import { QuestionRunAnswerComponent } from '../question-run-answer/question-run-answer.component';
 
 @Component({
   selector: 'app-question-run',
@@ -30,16 +35,8 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   constructor(
     private quizRunService: QuizRunService,
-    private route: ActivatedRoute,
-    keyInteractionService: KeyInteractionService
-  ) {
-    this.keyUpSubscription = keyInteractionService.keyUp.subscribe((e) =>
-      this.onKeyUp(e)
-    );
-    this.keyDownSubscription = keyInteractionService.keyDown.subscribe((e) =>
-      this.onKeyDown(e)
-    );
-  }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.currentQuestionSubscription = this.route.queryParams.subscribe((q) => {
@@ -63,7 +60,13 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
   }
 
-  onKeyUp(event: KeyboardEvent) {
+  @HostListener('body:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      this.quizRunService.navigateToNextQuestion();
+    }
+
     if (!this.answersRevealed) {
       if (
         event.key === '1' ||
@@ -73,13 +76,6 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
       ) {
         this.quizRunService.setAnswer(this.currentQuestionIndex, +event.key);
       }
-    }
-  }
-
-  onKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      this.quizRunService.navigateToNextQuestion();
     }
   }
 
