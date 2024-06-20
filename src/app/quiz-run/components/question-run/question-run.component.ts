@@ -25,15 +25,20 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
 
   private currentQuestionSubscription: Subscription | undefined;
   private answerChangedSubscription: Subscription | undefined;
+  private keyUpSubscription: Subscription | undefined;
+  private keyDownSubscription: Subscription | undefined;
 
   constructor(
     private quizRunService: QuizRunService,
     private route: ActivatedRoute,
-    keyIntersectionService: KeyInteractionService
+    keyInteractionService: KeyInteractionService
   ) {
-    keyIntersectionService.keyUp.subscribe((event: KeyboardEvent) => {
-      this.onKeyPressed(event);
-    });
+    this.keyUpSubscription = keyInteractionService.keyUp.subscribe((e) =>
+      this.onKeyUp(e)
+    );
+    this.keyDownSubscription = keyInteractionService.keyDown.subscribe((e) =>
+      this.onKeyDown(e)
+    );
   }
 
   ngOnInit(): void {
@@ -50,13 +55,15 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.currentQuestionSubscription?.unsubscribe();
     this.answerChangedSubscription?.unsubscribe();
+    this.keyDownSubscription?.unsubscribe();
+    this.keyUpSubscription?.unsubscribe();
   }
 
   onAnswerClicked(index: number) {
     this.quizRunService.setAnswer(this.currentQuestionIndex, index);
   }
 
-  onKeyPressed(event: KeyboardEvent) {
+  onKeyUp(event: KeyboardEvent) {
     if (!this.answersRevealed) {
       if (
         event.key === '1' ||
@@ -66,11 +73,13 @@ export class QuestionRunComponent implements OnInit, OnDestroy {
       ) {
         this.quizRunService.setAnswer(this.currentQuestionIndex, +event.key);
       }
-    } else {
-      if (event.key === 'Tab') {
-        event.preventDefault();
-        this.quizRunService.navigateToNextQuestion();
-      }
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      this.quizRunService.navigateToNextQuestion();
     }
   }
 

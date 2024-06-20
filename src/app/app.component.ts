@@ -13,10 +13,15 @@ import { KeyInteractionService } from './shared/services/key-interaction.service
 export class AppComponent {
   title = 'Tehut';
 
-  constructor(private keyIntersectionService: KeyInteractionService) {}
+  constructor(private keyInteractionService: KeyInteractionService) {}
 
   @HostListener('window:keyup', ['$event'])
   onKeyUp(event: KeyboardEvent) {
-    this.keyIntersectionService.onKeyUp(event);
+    this.keyInteractionService.onKeyUp(event);
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    this.keyInteractionService.onKeyDown(event);
   }
 }

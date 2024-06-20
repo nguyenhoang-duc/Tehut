@@ -18,11 +18,12 @@
     </div>
   </header>
 
-  <app-question-run [currentQuestionIndex]="currentQuestionIndex" />
+  <app-question-run autofocus [currentQuestionIndex]="currentQuestionIndex" />
 
   <div class="flex h-14 justify-center">
     @if (questionAnswered) {
       <button
+        tabindex="1"
         class="tooltip-base flex w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
         [attr.data-tip]="!quizRunFinished ? 'Next Question' : 'Finish Quiz'"
         (click)="onNextQuestion()">

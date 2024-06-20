@@ -5,10 +5,11 @@
     [disabled]="highlightedIndex === 0"
     (click)="onNavigateBack()"
     class="mb-10" />
-  <div class="carousel box-border flex h-28 w-[28rem] items-center rounded-box">
+  <div
+    class="carousel box-border flex h-28 max-w-[28rem] items-center rounded-box">
     @for (questionStatus of questionStatuses; track $index) {
       <div
-        class="carousel-item flex w-1/6 justify-center"
+        class="carousel-item flex w-16 justify-center"
         [id]="'question' + ($index + 1)">
         <a routerLink="." [queryParams]="{ current: $index + 1 }">
           <div
