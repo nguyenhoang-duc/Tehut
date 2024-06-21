@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject, map, startWith, timer } from 'rxjs';
 import { QuizQuestion } from '../../question/models/question.model';
 import { Quiz } from '../../quiz/models/quiz.model';
 import { QuestionStatus } from '../models/question-status.model';
 import { QuizRunSession } from '../models/quiz-run-session.model';
+import { QuizRunTime } from '../models/quiz-run-time.model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizRunService {
@@ -13,23 +14,54 @@ export class QuizRunService {
     selectedAnswer: number;
   }>();
 
+  quizRunStarted = new Subject<void>();
+  quizRunStopped = new Subject<void>();
+
   constructor(private router: Router) {}
 
   startQuizRun(quiz: Quiz, questions: QuizQuestion[]) {
     if (localStorage.getItem('quizRunSession') !== null) {
-      this.stopQuizRun();
+      this.clearQuizRun();
     }
 
-    const quizRunSession = new QuizRunSession(quiz, questions, new Date());
+    const quizRunSession = new QuizRunSession(
+      quiz,
+      questions,
+      new Date().toString()
+    );
     this.saveQuizRunSession(quizRunSession);
+    this.quizRunStarted.next();
   }
 
   stopQuizRun() {
-    localStorage.removeItem('quizRunSession');
+    const quizRunSession = this.getQuizRunSession();
+
+    if (!quizRunSession) {
+      return;
+    }
+
+    quizRunSession.stopTimeString = new Date().toString();
+    this.saveQuizRunSession(quizRunSession);
+    this.quizRunStopped.next();
+  }
+
+  clearQuizRun() {
+    const quizRunSession = this.getQuizRunSession();
+
+    if (quizRunSession) {
+      localStorage.removeItem('quizRunSession');
+      this.quizRunStopped.next();
+    }
   }
 
   isQuizRunning() {
-    return this.getQuizRunSession();
+    const quizRunSession = this.getQuizRunSession();
+
+    if (!quizRunSession) {
+      return false;
+    }
+
+    return !quizRunSession.stopTimeString;
   }
 
   private getQuizRunSession(): QuizRunSession | undefined {
@@ -56,6 +88,10 @@ export class QuizRunService {
     quizRunSession.selectedAnswers[questionIndex] = answer;
 
     this.saveQuizRunSession(quizRunSession);
+
+    if (this.isQuizRunFinished()) {
+      this.stopQuizRun();
+    }
 
     this.answerChanged.next({
       questionIndex: questionIndex,
@@ -87,6 +123,30 @@ export class QuizRunService {
 
   getNextQuestionIndex() {
     return this.getQuizRunSession()?.selectedAnswers.findIndex((s) => s === -1);
+  }
+
+  getTimer(): Observable<QuizRunTime> | undefined {
+    const quizRunSession = this.getQuizRunSession();
+
+    if (!quizRunSession || this.isQuizRunFinished()) {
+      return;
+    }
+
+    let initialDelay = Date.now() - Date.parse(quizRunSession.startTimeString);
+    initialDelay = initialDelay % 1000;
+
+    return timer(initialDelay, 1000).pipe(
+      map<number, QuizRunTime>((time: number, index: number) =>
+        QuizRunTime.getCurrentQuizRunTime(
+          Date.parse(quizRunSession.startTimeString)
+        )
+      ),
+      startWith(
+        QuizRunTime.getCurrentQuizRunTime(
+          Date.parse(quizRunSession.startTimeString)
+        )
+      )
+    );
   }
 
   navigateToNextQuestion() {

@@ -33,7 +33,7 @@ export const canActivateQuizRun: CanActivateFn = (
 
   if (!route.queryParams['current']) {
     if (quizRunService.isQuizRunFinished()) {
-      quizRunService.stopQuizRun();
+      quizRunService.clearQuizRun();
       return startUrl;
     }
 

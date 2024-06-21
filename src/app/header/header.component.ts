@@ -8,12 +8,13 @@ import {
 } from '@angular/router';
 import { QuizRunService } from '../quiz-run/services/quiz-run.service';
 import { TextButtonComponent } from '../shared/components/text-button.component';
+import { QuizRunClockComponent } from '../quiz-run/components/quiz-run-clock/quiz-run-clock.component';
 
 @Component({
   standalone: true,
   selector: 'app-header',
   templateUrl: './header.component.html',
-  imports: [RouterModule, TextButtonComponent],
+  imports: [RouterModule, TextButtonComponent, QuizRunClockComponent],
 })
 export class HeaderComponent implements OnInit {
   runningQuizName = '';
@@ -21,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private quizRunService: QuizRunService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -43,10 +43,7 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    if (
-      this.quizRunService.isQuizRunning() &&
-      !this.quizRunService.isQuizRunFinished()
-    ) {
+    if (this.quizRunService.isQuizRunning()) {
       this.runningQuizName = this.quizRunService.getQuiz()?.name ?? '';
       this.showRunningQuiz = true;
     }

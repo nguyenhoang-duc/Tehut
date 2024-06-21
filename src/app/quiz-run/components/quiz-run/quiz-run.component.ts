@@ -17,6 +17,7 @@ import { QuestionStatus } from '../../models/question-status.model';
 import { QuestionHistorySquareComponent } from '../question-history-square/question-history-square.component';
 import { CommonModule } from '@angular/common';
 import { QuizRunNavigationComponent } from '../quiz-run-navigation/quiz-run-navigation.component';
+import { QuizRunClockComponent } from '../quiz-run-clock/quiz-run-clock.component';
 
 @Component({
   standalone: true,
@@ -29,6 +30,7 @@ import { QuizRunNavigationComponent } from '../quiz-run-navigation/quiz-run-navi
     QuizRunNavigationComponent,
     RouterModule,
     CommonModule,
+    QuizRunClockComponent,
   ],
 })
 export class QuizRunComponent implements OnInit, OnDestroy {
@@ -78,7 +80,7 @@ export class QuizRunComponent implements OnInit, OnDestroy {
   }
 
   onLeaveQuiz() {
-    this.quizRunService.stopQuizRun();
+    this.quizRunService.clearQuizRun();
     this.router.navigate(['/quizzes']);
   }
 

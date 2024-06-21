@@ -9,8 +9,8 @@
       </h1>
     </div>
   </a>
-  @if (showRunningQuiz) {
-    <div class="flex h-full items-center gap-4">
+  <div class="flex h-full items-center gap-4">
+    @if (showRunningQuiz) {
       <p class="text-secondary-content">
         {{ '"' + runningQuizName + '"' + " running..." }}
       </p>
@@ -19,6 +19,7 @@
         (click)="onNavigateToQuizRun()">
         Take me there
       </button>
-    </div>
-  }
+    }
+    <app-quiz-run-clock />
+  </div>
 </div>

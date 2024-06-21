@@ -5,10 +5,12 @@ export class QuizRunSession {
   public currentQuestionIndex = 0;
   public selectedAnswers: number[];
 
+  public stopTimeString: string = '';
+
   constructor(
     public quiz: Quiz,
     public questions: QuizQuestion[],
-    public startTime: Date
+    public startTimeString: string
   ) {
     this.selectedAnswers = new Array<number>(quiz.questionCount).fill(-1);
   }
