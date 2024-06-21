@@ -9,7 +9,8 @@
       </a>
     }
   </div>
-  <div class="shadow-baseshadow stats my-10 bg-base3 shadow">
+  <div
+    class="stats my-10 bg-base3 text-secondary-content shadow shadow-baseshadow">
     <div class="stat">
       <div class="stat-figure">
         <svg
@@ -21,7 +22,7 @@
         </svg>
       </div>
       <div class="stat-title">Wrong</div>
-      <div class="stat-value">
+      <div class="stat-value text-primary-content">
         {{ wrongCount }}
       </div>
       <div class="stat-desc">Percentage: {{ wrongPercentage }}%</div>
@@ -34,10 +35,10 @@
         </svg>
       </div>
       <div class="stat-title">Correct</div>
-      <div class="stat-value">
+      <div class="stat-value text-primary-content">
         {{ correctCount }}
       </div>
-      <div class="stat-desc">Percentage: {{ correctPercentage }}%</div>
+      <div class="stat-desc">Percentage: {{ correctPercentage }} %</div>
     </div>
     <div class="stat">
       <div class="stat-figure">
@@ -49,7 +50,7 @@
         </svg>
       </div>
       <div class="stat-title">Skipped</div>
-      <div class="stat-value">
+      <div class="stat-value text-primary-content">
         {{ skippedCount }}
       </div>
       <div class="stat-desc">Percentage: {{ skippedPercentage }}%</div>
@@ -64,7 +65,7 @@
         </svg>
       </div>
       <div class="stat-title">Completed in</div>
-      <div class="stat-value">
+      <div class="stat-value text-primary-content">
         {{ quizRunTime }}
       </div>
       <div class="stat-desc">{{ secondsPerQuestion }}s per Question</div>
