@@ -1,9 +1,9 @@
 <div class="flex flex-col items-stretch gap-8" (keydown)="onKeyDown($event)">
   <div
-    class="flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow-md">
-    <span class="text-center text-2xl text-primary-content">{{
-      question?.question ?? ""
-    }}</span>
+    class="shadow-baseshadow flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow">
+    <span class="text-center text-2xl text-primary-content">
+      {{ question?.question ?? "" }}
+    </span>
   </div>
   <div class="mx-8 flex gap-16 rounded-lg">
     <app-question-run-answer

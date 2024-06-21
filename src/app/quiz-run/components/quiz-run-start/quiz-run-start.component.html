@@ -15,8 +15,12 @@
       </div>
     }
     <div
-      class="flex h-72 w-72 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat shadow-xl outline-none outline-base2"
-      [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }">
+      class="shadow-baseshadow flex h-72 w-72 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat shadow-md outline-base2"
+      [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
+      [ngClass]="{
+        'border-2': !quiz.imagePath,
+        'border-base2': !quiz.imagePath
+      }">
       @if (!quiz.imagePath) {
         <p class="select-none text-center text-6xl text-secondary-content">?</p>
       }
@@ -29,12 +33,12 @@
       <app-text-button
         bg="bg-correct"
         (click)="onStartQuizRun()"
-        [disabled]="quizHasNoQuestions"
-        >Start</app-text-button
-      >
-      <app-text-button bg="bg-base2" (click)="onNavigateBack()"
-        >Back</app-text-button
-      >
+        [disabled]="quizHasNoQuestions">
+        Start
+      </app-text-button>
+      <app-text-button bg="bg-base2" (click)="onNavigateBack()">
+        Back
+      </app-text-button>
     </div>
   </div>
 </main>

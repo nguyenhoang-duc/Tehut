@@ -8,6 +8,7 @@ module.exports = {
         base2: "#333235",
         base2_disabled: "#434145",
         base3: "#1B1B1D",
+        baseshadow: "#131313",
         primary: "#EDB525",
         accent: "#E4440F",
         "primary-content": "#FBF7F5",

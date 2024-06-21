@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-search-bar',
   template: `
     <label
-      class="input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
+      class=" input input-bordered ml-14 mt-6 flex items-center gap-2 rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
       <input
         type="text"
         class="grow text-primary-content placeholder-secondary-content"
