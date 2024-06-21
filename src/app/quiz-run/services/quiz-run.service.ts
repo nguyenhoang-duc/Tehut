@@ -137,11 +137,9 @@ export class QuizRunService {
 
     return timer(initialDelay, 1000).pipe(
       map<number, QuizRunTime>((time: number, index: number) =>
-        QuizRunTime.getElapsedTime(Date.parse(quizRunSession.startTimeString))
+        QuizRunTime.getElapsedTime(quizRunSession)
       ),
-      startWith(
-        QuizRunTime.getElapsedTime(Date.parse(quizRunSession.startTimeString))
-      )
+      startWith(QuizRunTime.getElapsedTime(quizRunSession))
     );
   }
 
@@ -152,10 +150,7 @@ export class QuizRunService {
       return;
     }
 
-    return QuizRunTime.getElapsedTime(
-      Date.parse(quizRunSession.startTimeString),
-      Date.parse(quizRunSession.stopTimeString)
-    );
+    return QuizRunTime.getElapsedTime(quizRunSession);
   }
 
   navigateToNextQuestion() {
