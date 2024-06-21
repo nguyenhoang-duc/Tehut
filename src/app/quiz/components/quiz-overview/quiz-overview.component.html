@@ -1,9 +1,9 @@
-<article class="flex flex-col gap-12">
+<main class="flex flex-col gap-12">
   <!-- Header -->
-  <header class="flex items-center gap-6">
-    <h1 class="text-7xl text-primary-content">Home</h1>
-    <app-search-bar (search)="onSearchQuiz($event)" />
-    <div class="mt-6">
+  <header class="bg-read flex items-end gap-4">
+    <h1 class="mb-1 text-6xl text-primary-content">Home</h1>
+    <app-search-bar class="ml-10" (search)="onSearchQuiz($event)" />
+    <div class="mb-1">
       <app-header-icon-button
         (click)="onAddEmptyQuiz()"
         tooltip="Add Quiz"
@@ -23,12 +23,12 @@
       data-tip="Add Quiz"
       (click)="onAddEmptyQuiz()">
       <div
-        class="shadow-baseshadow flex h-80 w-56 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow group-hover:border-primary-content">
+        class="flex h-80 w-56 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow shadow-baseshadow group-hover:border-primary-content">
         <span
-          class="inline-block text-center text-6xl text-secondary-content group-hover:text-primary-content"
-          >+</span
-        >
+          class="inline-block text-center text-6xl text-secondary-content group-hover:text-primary-content">
+          +
+        </span>
       </div>
     </button>
   </section>
-</article>
+</main>
