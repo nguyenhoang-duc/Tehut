@@ -2,11 +2,9 @@
   class="flex h-16 items-center justify-between border-b-[1px] border-[#2a2a2a] bg-base3 px-4">
   <a routerLink="/" class="group">
     <div class="flex items-center gap-3">
-      <img src="../../assets/icon.svg" />
-      <h1
-        class="font-sans font-semibold text-secondary-content group-hover:text-primary-content">
-        Tehut
-      </h1>
+      <img
+        class="mt-2 border-b-2 border-transparent pb-1 hover:border-secondary-content"
+        src="../../assets/icon.svg" />
     </div>
   </a>
   <div class="flex h-full items-center gap-4">
@@ -15,7 +13,7 @@
         {{ '"' + runningQuizName + '"' + " running..." }}
       </p>
       <button
-        class="shadow-baseshadow h-8 rounded-lg bg-base2 px-3 py-1 text-primary-content shadow hover:outline-none hover:outline-secondary-content"
+        class="h-8 rounded-lg bg-base2 px-3 py-1 text-primary-content shadow shadow-baseshadow hover:outline-none hover:outline-secondary-content"
         (click)="onNavigateToQuizRun()">
         Take me there
       </button>
