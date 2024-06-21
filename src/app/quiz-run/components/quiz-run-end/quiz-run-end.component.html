@@ -9,38 +9,65 @@
       </a>
     }
   </div>
-  <div class="my-10 flex items-center gap-10">
-    <div class="flex flex-col items-center gap-4">
-      <div
-        data-tip="Wrong Answer Amount"
-        class="tooltip-base flex h-16 w-16 items-center justify-center rounded-xl bg-wrong text-base3 shadow">
-        <mat-icon class="scale-150 font-bold">close</mat-icon>
+  <div class="shadow-baseshadow stats my-10 bg-base3 shadow">
+    <div class="stat">
+      <div class="stat-figure">
+        <svg
+          class="h-10 w-10 fill-wrong"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24">
+          <path
+            d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+        </svg>
       </div>
-      <p class="text-xl text-secondary-content">{{ wrongAnswerCount }}</p>
+      <div class="stat-title">Wrong</div>
+      <div class="stat-value">
+        {{ wrongCount }}
+      </div>
+      <div class="stat-desc">Percentage: {{ wrongPercentage }}%</div>
     </div>
-    <div class="flex flex-col items-center gap-4">
-      <div
-        data-tip="Correct Answer Amount"
-        class="tooltip-base flex h-16 w-16 items-center justify-center rounded-xl bg-correct text-base3 shadow">
-        <mat-icon class="scale-150 font-bold">check</mat-icon>
+    <div class="stat">
+      <div class="stat-figure">
+        <svg class="h-10 w-10 fill-correct" viewBox="0 0 24 24">
+          <path
+            d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M16.59 7.58L10 14.17L7.41 11.59L6 13L10 17L18 9L16.59 7.58Z" />
+        </svg>
       </div>
-      <p class="text-xl text-secondary-content">{{ correctAnswerCount }}</p>
+      <div class="stat-title">Correct</div>
+      <div class="stat-value">
+        {{ correctCount }}
+      </div>
+      <div class="stat-desc">Percentage: {{ correctPercentage }}%</div>
     </div>
-    <div class="flex flex-col items-center gap-4">
-      <div
-        data-tip="Skipped Answer Amount"
-        class="tooltip-base flex h-16 w-16 items-center justify-center rounded-xl bg-base2 text-base3 shadow">
-        <mat-icon class="scale-150 font-bold">panorama_fisheye</mat-icon>
+    <div class="stat">
+      <div class="stat-figure">
+        <svg
+          class="inline-block h-10 w-10 fill-secondary-content"
+          viewBox="0 0 24 24">
+          <path
+            d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
+        </svg>
       </div>
-      <p class="text-xl text-secondary-content">{{ skippedAnswerCount }}</p>
+      <div class="stat-title">Skipped</div>
+      <div class="stat-value">
+        {{ skippedCount }}
+      </div>
+      <div class="stat-desc">Percentage: {{ skippedPercentage }}%</div>
     </div>
-    <div class="ml-8 flex flex-col items-center gap-4">
-      <div
-        data-tip="Total Answer Amount"
-        class="tooltip-base flex h-16 w-16 items-center justify-center rounded-xl bg-base2 text-base3 shadow">
-        <mat-icon class="scale-150 font-bold">bar_chart</mat-icon>
+    <div class="stat">
+      <div class="stat-figure">
+        <svg
+          class="inline-block h-10 w-10 fill-secondary-content"
+          viewBox="0 0 24 24">
+          <path
+            d="M12 20C16.4 20 20 16.4 20 12S16.4 4 12 4 4 7.6 4 12 7.6 20 12 20M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M15.3 16.2L14 17L11 11.8V7H12.5V11.4L15.3 16.2Z" />
+        </svg>
       </div>
-      <p class="text-xl text-secondary-content">{{ totalAnwerCount }}</p>
+      <div class="stat-title">Completed in</div>
+      <div class="stat-value">
+        {{ quizRunTime }}
+      </div>
+      <div class="stat-desc">{{ secondsPerQuestion }}s per Question</div>
     </div>
   </div>
   <div class="flex items-center gap-10">

@@ -5,8 +5,11 @@ export class QuizRunTime {
     public seconds: number
   ) {}
 
-  static getCurrentQuizRunTime(startTime: number) {
-    const diff = Date.now() - startTime;
+  static getElapsedTime(
+    startTime: number,
+    stopTime: number | undefined = undefined
+  ) {
+    const diff = (stopTime ?? Date.now()) - startTime;
     const seconds = Math.floor((diff / 1000) % 60);
     const minutes = Math.floor((diff / 1000 / 60) % 60);
     const hours = Math.floor((diff / 1000 / 60 / 60) % 60);
@@ -21,4 +24,8 @@ export class QuizRunTime {
 
     return `${hourString}:${minutesString}:${secondsString}`;
   };
+
+  getSeconds() {
+    return this.hours * 3600 + this.minutes * 60 + this.seconds;
+  }
 }

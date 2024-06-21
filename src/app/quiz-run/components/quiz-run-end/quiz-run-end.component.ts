@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { QuestionStatus } from '../../models/question-status.model';
 import { QuizRunService } from '../../services/quiz-run.service';
 import { QuestionHistorySquareComponent } from '../question-history-square/question-history-square.component';
+import { QuizRunTime } from '../../models/quiz-run-time.model';
 
 @Component({
   selector: 'app-quiz-run-end',
@@ -20,10 +21,16 @@ import { QuestionHistorySquareComponent } from '../question-history-square/quest
 export class QuizRunEndComponent implements OnInit {
   questionStatuses: QuestionStatus[] = [];
 
-  correctAnswerCount = 0;
-  wrongAnswerCount = 0;
-  skippedAnswerCount = 0;
-  totalAnwerCount = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  skippedCount = 0;
+
+  correctPercentage = 0;
+  wrongPercentage = 0;
+  skippedPercentage = 0;
+
+  quizRunTime: string = '';
+  secondsPerQuestion = 0;
 
   constructor(
     private quizRunService: QuizRunService,
@@ -34,16 +41,32 @@ export class QuizRunEndComponent implements OnInit {
   ngOnInit(): void {
     this.questionStatuses = this.quizRunService.getQuestionStatuses();
 
-    this.correctAnswerCount = this.questionStatuses.filter(
+    this.correctCount = this.questionStatuses.filter(
       (v) => v === QuestionStatus.Correct
     ).length;
-    this.wrongAnswerCount = this.questionStatuses.filter(
+    this.wrongCount = this.questionStatuses.filter(
       (v) => v === QuestionStatus.Wrong
     ).length;
-    this.skippedAnswerCount = this.questionStatuses.filter(
+    this.skippedCount = this.questionStatuses.filter(
       (v) => v === QuestionStatus.Skipped
     ).length;
-    this.totalAnwerCount = this.questionStatuses.length;
+
+    const totalAmount = this.questionStatuses.length;
+
+    this.correctPercentage =
+      Math.round((this.correctCount / totalAmount) * 10000.0) / 100;
+    this.wrongPercentage =
+      Math.round((this.wrongCount / totalAmount) * 10000.0) / 100;
+    this.skippedPercentage =
+      Math.round((this.skippedCount / totalAmount) * 10000.0) / 100;
+
+    this.quizRunTime = this.quizRunService.getElaspedTime()?.toString() ?? '';
+
+    const totalSeconds =
+      this.quizRunService.getElaspedTime()?.getSeconds() ?? 0;
+
+    this.secondsPerQuestion =
+      Math.round((totalSeconds / totalAmount) * 10.0) / 10.0;
   }
 
   onGoHome() {
