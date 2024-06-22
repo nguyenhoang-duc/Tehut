@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { CardIconButtonComponent } from './card-icon-button.component';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
   template: `
     <label
-      class="input input-bordered flex items-center gap-2 rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
+      class="input input-bordered flex h-10 w-full min-w-24 items-center justify-between rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
       <input
         type="text"
-        class="grow text-primary-content placeholder-secondary-content"
+        class="w-full text-sm text-primary-content placeholder-secondary-content lg:text-base lg:text-primary-content"
         placeholder="Search"
         [(ngModel)]="searchText"
         (keyup)="onSearch()" />

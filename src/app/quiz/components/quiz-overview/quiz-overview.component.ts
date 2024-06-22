@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Quiz } from '../../models/quiz.model';
-import { QuizService } from '../../services/quiz.service';
-import { QuizCardComponent } from '../quiz-card/quiz-card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
 import { SearchBarComponent } from '../../../shared/components/search-bar.component';
+import { Quiz } from '../../models/quiz.model';
 import { FilterQuizPipe } from '../../services/filter-quiz.pipe';
+import { QuizService } from '../../services/quiz.service';
+import { QuizCardComponent } from '../quiz-card/quiz-card.component';
 
 @Component({
   standalone: true,

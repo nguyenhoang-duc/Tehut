@@ -6,10 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-header-icon-button',
   template: `
     <button
-      class="enabled:tooltip-base enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2"
+      class="flex items-center enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2"
       [disabled]="disabled"
-      [attr.data-tip]="tooltip">
-      <mat-icon class="min-h-9 min-w-9 text-4xl">{{ iconType }}</mat-icon>
+      [attr.data-tip]="tooltip"
+      [ngClass]="{ 'tooltip-base': !disabled }">
+      <mat-icon class="scale-125 md:scale-150">
+        {{ iconType }}
+      </mat-icon>
     </button>
   `,
   standalone: true,
