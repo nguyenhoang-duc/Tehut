@@ -34,9 +34,9 @@ scienceQuiz.questions = [
   new QuizQuestion(
     'What was Charles Darwin known for?',
     'He was the Prince of Wales',
-    'He was the scientiest who uncovered the Theory of Evolution',
+    'He was the scientist who uncovered the Theory of Evolution',
     'He contributed to cell theory',
-    'He was discovered the workings of DNA',
+    'He discovered the workings of DNA',
     2
   ),
   new QuizQuestion(
@@ -88,7 +88,7 @@ aviationQuiz.questions = [
     3
   ),
   new QuizQuestion(
-    'In which Russian city can you find Yuri Gagarin Airport?',
+    'In which Russian city can you find the Yuri Gagarin Airport?',
     'Kaluga',
     'Orenburg',
     'St. Petersburg',
