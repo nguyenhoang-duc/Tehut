@@ -1,34 +1,27 @@
 <article
-  class="shadow-baseshadow flex h-[22rem] w-56 flex-col flex-nowrap justify-between gap-4 rounded-2xl bg-base2 p-4 shadow">
+  class="flex h-[19rem] w-44 flex-col flex-nowrap justify-between gap-4 rounded-2xl bg-base2 p-4 shadow shadow-baseshadow md:h-[22rem] md:w-56">
   <!-- Question Overview -->
-  <div class="">
+  <div>
     <h1
-      class="line-clamp-2 min-h-14 truncate text-balance text-xl text-primary-content">
+      class="line-clamp-3 min-h-14 truncate text-balance text-primary-content md:line-clamp-2 md:text-xl">
       {{ quizQuestion.question }}
     </h1>
     <hr class="my-2" />
-    <ol class="ml-4 list-decimal text-primary-content">
-      <li>
-        <div class="line-clamp-2 truncate text-wrap">
-          {{ quizQuestion.answer1 }}
-        </div>
-      </li>
-      <li>
-        <div class="line-clamp-2 truncate text-wrap">
-          {{ quizQuestion.answer2 }}
-        </div>
-      </li>
-      <li>
-        <div class="line-clamp-2 truncate text-wrap">
-          {{ quizQuestion.answer3 }}
-        </div>
-      </li>
-      <li>
-        <div class="line-clamp-2 truncate text-wrap">
-          {{ quizQuestion.answer4 }}
-        </div>
-      </li>
-    </ol>
+    <div
+      class="text-sm text-primary-content md:text-base md:text-primary-content">
+      <p class="line-clamp-2 truncate hyphens-auto text-balance break-words">
+        1. {{ quizQuestion.answer1 }}
+      </p>
+      <p class="line-clamp-2 truncate hyphens-auto text-balance break-words">
+        2. {{ quizQuestion.answer2 }}
+      </p>
+      <p class="line-clamp-2 truncate hyphens-auto text-balance break-words">
+        3. {{ quizQuestion.answer3 }}
+      </p>
+      <p class="line-clamp-2 truncate hyphens-auto text-balance break-words">
+        4. {{ quizQuestion.answer4 }}
+      </p>
+    </div>
   </div>
 
   <!-- Quiz Question Action Buttons -->

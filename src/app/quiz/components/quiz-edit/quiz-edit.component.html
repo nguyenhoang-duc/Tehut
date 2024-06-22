@@ -1,45 +1,45 @@
-<main class="flex flex-col gap-12">
+<main class="mb-4 flex flex-col gap-6 lg:gap-12">
   <!-- Header -->
-  <header class="flex items-end gap-6">
+  <header class="flex max-w-[56rem] items-center gap-2 md:gap-4 lg:gap-8">
     <app-header-icon-button
-      class="mb-1"
       (click)="onNavigateBack()"
       tooltip="Quiz Overview"
       iconType="arrow_back" />
-    <h1 class="mb-1 text-6xl text-primary-content">{{ quiz.name }}</h1>
-    <app-search-bar class="ml-10" (search)="onSearch($event)" />
+    <h1
+      class="line-clamp-1 min-w-12 max-w-96 text-xl text-primary-content md:pb-1 md:text-4xl">
+      {{ quiz.name }}
+    </h1>
+    <app-search-bar
+      class="ml-2 max-w-96 flex-1 md:ml-4 lg:ml-6"
+      (search)="onSearch($event)" />
     <app-header-icon-button
-      class="mb-1"
       (click)="onRunQuiz()"
       tooltip="Run Quiz"
       iconType="play_arrow" />
     <app-header-icon-button
-      class="mb-1"
       (click)="onEditNameQuiz()"
       tooltip="Edit Name"
       iconType="edit" />
     <app-header-icon-button
-      class="mb-1"
       (click)="onAddEmptyQuizQuestion()"
       tooltip="Add Question"
       iconType="add" />
   </header>
 
   <!-- Quiz Question List -->
-  <section class="flex flex-wrap">
+  <section
+    class="flex flex-wrap justify-center gap-4 md:justify-start md:gap-6">
     @for (question of questions | filterquestion: searchText; track $index) {
-      <app-question-card
-        class="mb-8 mr-8"
-        [quizQuestion]="question"></app-question-card>
+      <app-question-card [quizQuestion]="question" />
     }
 
     <!-- Quiz Question Add Button  -->
     <button
-      class="tooltip-base group mb-8 mr-8"
+      class="tooltip-base group"
       data-tip="Add Question"
       (click)="onAddEmptyQuizQuestion()">
       <div
-        class="flex h-[22rem] w-56 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow shadow-baseshadow group-hover:border-primary-content">
+        class="flex h-[19rem] w-44 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow shadow-baseshadow group-hover:border-primary-content md:h-[22rem] md:w-56">
         <span
           class="inline-block text-center text-6xl text-secondary-content group-hover:text-primary-content">
           +

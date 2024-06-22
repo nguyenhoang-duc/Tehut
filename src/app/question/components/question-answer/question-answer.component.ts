@@ -1,11 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  FormGroup,
-  FormGroupDirective,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
