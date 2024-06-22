@@ -36,14 +36,20 @@ export class QuizService {
   }
 
   createQuiz() {
-    const newQuiz = new Quiz('No Title', '');
-    newQuiz.id = uuid();
+    this.createQuizByTemplate(new Quiz('No Title', ''));
+  }
+
+  createQuizByTemplate(quizTemplate: Quiz) {
+    quizTemplate.id = uuid();
 
     const quizIds = localStorage.getItem('quizzes')?.split(',') ?? [];
-    quizIds.push(newQuiz.id);
+    quizIds.push(quizTemplate.id);
 
     localStorage.setItem('quizzes', quizIds.join(','));
-    localStorage.setItem(`quizzes/${newQuiz.id}`, JSON.stringify(newQuiz));
+    localStorage.setItem(
+      `quizzes/${quizTemplate.id}`,
+      JSON.stringify(quizTemplate)
+    );
 
     this.quizListChanged.next();
   }

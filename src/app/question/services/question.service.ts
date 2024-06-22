@@ -41,14 +41,21 @@ export class QuestionService {
       'Empty Answer 4'
     );
 
-    question.quizid = quizId;
-    question.id = uuid();
+    this.createQuestionByTemplate(quizId, question);
+  }
 
-    localStorage.setItem(`questions/${question.id}`, JSON.stringify(question));
+  createQuestionByTemplate(quizId: string, questionTemplate: QuizQuestion) {
+    questionTemplate.quizid = quizId;
+    questionTemplate.id = uuid();
+
+    localStorage.setItem(
+      `questions/${questionTemplate.id}`,
+      JSON.stringify(questionTemplate)
+    );
 
     const questionIds: string[] = this.getQuestionIds(quizId);
 
-    questionIds.push(question.id);
+    questionIds.push(questionTemplate.id);
     localStorage.setItem(`quizzes/${quizId}/questions`, questionIds.join(','));
 
     this.quizService.updateQuestionCount(quizId);
