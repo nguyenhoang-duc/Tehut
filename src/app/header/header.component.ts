@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  EventType,
-  Router,
-  RouterEvent,
-  RouterModule,
-} from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { EventType, Router, RouterEvent, RouterModule } from '@angular/router';
+import { QuizRunClockComponent } from '../quiz-run/components/quiz-run-clock/quiz-run-clock.component';
 import { QuizRunService } from '../quiz-run/services/quiz-run.service';
 import { TextButtonComponent } from '../shared/components/text-button.component';
-import { QuizRunClockComponent } from '../quiz-run/components/quiz-run-clock/quiz-run-clock.component';
 
 @Component({
   standalone: true,
   selector: 'app-header',
   templateUrl: './header.component.html',
-  imports: [RouterModule, TextButtonComponent, QuizRunClockComponent],
+  imports: [
+    RouterModule,
+    TextButtonComponent,
+    QuizRunClockComponent,
+    MatIconModule,
+  ],
 })
 export class HeaderComponent implements OnInit {
   runningQuizName = '';

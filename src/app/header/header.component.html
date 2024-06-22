@@ -1,21 +1,24 @@
 <div
-  class="flex h-16 items-center justify-between border-b-[1px] border-[#2a2a2a] bg-base3 px-4">
-  <a routerLink="/" class="group">
-    <div class="flex items-center gap-3">
+  class="flex h-16 w-full items-center justify-between gap-4 border-b-[1px] border-[#2a2a2a] bg-base3 pl-1 md:pl-2 xl:px-4">
+  <a routerLink="/">
+    <div class="flex items-center">
       <img
         class="mt-2 border-b-2 border-transparent pb-1 hover:border-secondary-content"
         src="../../assets/icon.svg" />
     </div>
   </a>
-  <div class="flex h-full items-center gap-4">
+  <div
+    class="flex h-full flex-1 items-center justify-end gap-3 text-secondary-content xl:gap-6">
     @if (showRunningQuiz) {
-      <p class="text-secondary-content">
+      <p class="sm:hidden">Running Quiz...</p>
+      <p class="line-clamp-1 hidden truncate sm:block">
         {{ '"' + runningQuizName + '"' + " running..." }}
       </p>
       <button
-        class="h-8 rounded-lg bg-base2 px-3 py-1 text-primary-content shadow shadow-baseshadow hover:outline-none hover:outline-secondary-content"
-        (click)="onNavigateToQuizRun()">
-        Take me there
+        class="tooltip-base h-8 rounded-lg bg-base2 px-2 py-1 text-primary-content shadow shadow-baseshadow hover:outline-none hover:outline-secondary-content md:px-3"
+        (click)="onNavigateToQuizRun()"
+        data-tip="Go To Quiz">
+        <mat-icon class="scale-75">arrow_forward</mat-icon>
       </button>
     }
     <app-quiz-run-clock />
