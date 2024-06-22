@@ -1,50 +1,43 @@
-<form
-  (keydown.enter)="$event.preventDefault()"
-  [formGroup]="questionForm"
-  (ngSubmit)="onSubmit()">
-  <div class="flex flex-col items-stretch gap-8">
-    <div
-      class="shadow-baseshadow flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow">
-      <label
-        class="input flex h-56 flex-1 items-center gap-4 bg-base2"
-        for="question">
-        <input
-          type="text"
-          class="h-28 flex-1 text-center text-2xl text-primary-content"
-          id="question"
-          name="question"
-          formControlName="question"
-          required />
-      </label>
+<main>
+  <form
+    (keydown.enter)="$event.preventDefault()"
+    [formGroup]="questionForm"
+    (ngSubmit)="onSubmit()">
+    <div class="flex flex-col items-center gap-8">
+      <div
+        class="flex h-56 w-[80%] max-w-[72rem] items-center justify-center rounded-lg bg-base2 text-center shadow shadow-baseshadow">
+        <label
+          class="input flex h-56 flex-1 items-center gap-4 bg-base2"
+          for="question">
+          <input
+            type="text"
+            class="h-28 flex-1 text-center text-2xl text-primary-content"
+            id="question"
+            name="question"
+            formControlName="question"
+            required />
+        </label>
+      </div>
+      <div class="mx-8 mt-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
+        <app-question-answer class="flex-1" [index]="1" [form]="questionForm" />
+        <app-question-answer class="flex-1" [index]="2" [form]="questionForm" />
+      </div>
+      <div class="mx-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
+        <app-question-answer class="flex-1" [index]="3" [form]="questionForm" />
+        <app-question-answer class="flex-1" [index]="4" [form]="questionForm" />
+      </div>
+
+      <div class="mt-14 flex justify-center gap-6">
+        <app-text-button
+          type="submit"
+          [disabled]="!questionForm.valid"
+          bg="bg-correct">
+          Save
+        </app-text-button>
+        <app-text-button bg="bg-base2" (click)="close()">
+          Cancel
+        </app-text-button>
+      </div>
     </div>
-    <div class="mx-8 mt-8 flex gap-16 rounded-lg">
-      <app-question-answer
-        class="flex-1"
-        [index]="1"
-        [form]="questionForm"></app-question-answer>
-      <app-question-answer
-        class="flex-1"
-        [index]="2"
-        [form]="questionForm"></app-question-answer>
-    </div>
-    <div class="mx-8 flex gap-16 rounded-lg">
-      <app-question-answer
-        class="flex-1"
-        [index]="3"
-        [form]="questionForm"></app-question-answer>
-      <app-question-answer
-        class="flex-1"
-        [index]="4"
-        [form]="questionForm"></app-question-answer>
-    </div>
-    <div class="mt-14 flex justify-center gap-6">
-      <app-text-button
-        type="submit"
-        [disabled]="!questionForm.valid"
-        bg="bg-correct">
-        Save
-      </app-text-button>
-      <app-text-button bg="bg-base2" (click)="close()">Cancel</app-text-button>
-    </div>
-  </div>
-</form>
+  </form>
+</main>

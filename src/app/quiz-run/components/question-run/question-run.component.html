@@ -1,11 +1,11 @@
-<div class="flex flex-col items-stretch gap-8" (keydown)="onKeyDown($event)">
+<div class="flex flex-col items-center gap-8" (keydown)="onKeyDown($event)">
   <div
-    class="shadow-baseshadow flex h-56 items-center justify-center rounded-lg bg-base2 text-center shadow">
+    class="flex h-56 w-[80%] max-w-[72rem] items-center justify-center rounded-lg bg-base2 text-center shadow shadow-baseshadow">
     <span class="text-center text-2xl text-primary-content">
       {{ question?.question ?? "" }}
     </span>
   </div>
-  <div class="mx-8 flex gap-16 rounded-lg">
+  <div class="mx-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
     <app-question-run-answer
       class="flex-1"
       [index]="1"
@@ -13,7 +13,7 @@
       [disabled]="answersRevealed"
       [selected]="selectedAnswer === 1"
       [correct]="question?.correctAnswerIndex === 1"
-      (clicked)="onAnswerClicked($event)"></app-question-run-answer>
+      (clicked)="onAnswerClicked($event)" />
     <app-question-run-answer
       class="flex-1"
       [index]="2"
@@ -21,9 +21,9 @@
       [disabled]="answersRevealed"
       [selected]="selectedAnswer === 2"
       [correct]="question?.correctAnswerIndex === 2"
-      (clicked)="onAnswerClicked($event)"></app-question-run-answer>
+      (clicked)="onAnswerClicked($event)" />
   </div>
-  <div class="mx-8 flex gap-16 rounded-lg">
+  <div class="mx-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
     <app-question-run-answer
       class="flex-1"
       [index]="3"
@@ -31,7 +31,7 @@
       [disabled]="answersRevealed"
       [selected]="selectedAnswer === 3"
       [correct]="question?.correctAnswerIndex === 3"
-      (clicked)="onAnswerClicked($event)"></app-question-run-answer>
+      (clicked)="onAnswerClicked($event)" />
     <app-question-run-answer
       class="flex-1"
       [index]="4"
@@ -39,6 +39,6 @@
       [disabled]="answersRevealed"
       [selected]="selectedAnswer == 4"
       [correct]="question?.correctAnswerIndex === 4"
-      (clicked)="onAnswerClicked($event)"></app-question-run-answer>
+      (clicked)="onAnswerClicked($event)" />
   </div>
 </div>
