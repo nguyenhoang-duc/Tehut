@@ -1,5 +1,7 @@
-@if (timer$) {
-  <time class="rounded-lg px-4 py-1 text-lg text-secondary-content">
-    {{ timer$ | async }}
-  </time>
-}
+<div class="w-12">
+  @if (timer$) {
+    <time class="text-secondary-content md:text-lg">
+      {{ timer$ | async }}
+    </time>
+  }
+</div>

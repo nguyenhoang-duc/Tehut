@@ -1,43 +1,48 @@
-<main class="flex flex-col gap-7">
-  <header class="mb-7 flex items-end gap-6">
-    <h1 class="mr-10 text-5xl text-primary-content">
-      {{ quizHeader }}
-    </h1>
+<main class="flex justify-center">
+  <section
+    class="flex w-[95%] max-w-[78rem] flex-col items-center gap-6 lg:gap-12">
+    <header
+      class="mt-4 flex w-full items-end justify-between gap-6 px-2 md:mb-7">
+      <h1 class="truncate text-wrap text-2xl text-primary-content md:text-4xl">
+        {{ quizHeader }}
+      </h1>
 
-    <app-header-icon-button
-      (click)="onRevealAnswer()"
-      tooltip="Reveal Answer"
-      iconType="remove_red_eye"
-      [disabled]="questionAnswered" />
+      <div class="flex gap-6 lg:gap-12">
+        <app-header-icon-button
+          (click)="onRevealAnswer()"
+          tooltip="Reveal Answer"
+          iconType="remove_red_eye"
+          [disabled]="questionAnswered" />
 
-    <app-header-icon-button
-      (click)="onLeaveQuiz()"
-      tooltip="Leave Quiz"
-      iconType="exit_to_app" />
-  </header>
+        <app-header-icon-button
+          (click)="onLeaveQuiz()"
+          tooltip="Leave Quiz"
+          iconType="exit_to_app" />
+      </div>
+    </header>
 
-  <app-question-run autofocus [currentQuestionIndex]="currentQuestionIndex" />
+    <app-question-run
+      class="w-full"
+      [currentQuestionIndex]="currentQuestionIndex" />
 
-  <div class="flex h-14 justify-center">
-    @if (questionAnswered) {
-      <button
-        class="tooltip-base flex w-20 items-center justify-center rounded text-2xl text-secondary-content hover:outline-none hover:outline-secondary-content"
-        [attr.data-tip]="!quizRunFinished ? 'Next Question' : 'Finish Quiz'"
-        (click)="onNextQuestion()">
-        <mat-icon class="scale-150">
-          {{
-            !quizRunFinished ? "arrow_forward" : "keyboard_double_arrow_right"
-          }}
-        </mat-icon>
-      </button>
-    }
-  </div>
+    <div class="flex h-5 items-center justify-center">
+      @if (questionAnswered) {
+        <app-header-icon-button
+          [tooltip]="!quizRunFinished ? 'Next Question' : 'Finish Quiz'"
+          (click)="onNextQuestion()"
+          [iconType]="
+            !quizRunFinished ? 'arrow_forward' : 'keyboard_double_arrow_right'
+          " />
+      }
+    </div>
 
-  <div class="flex w-full items-center justify-center">
-    <app-quiz-run-navigation
-      [questionStatuses]="questionStatuses"
-      [highlightedIndex]="currentQuestionIndex"
-      (navigateTo)="onNavigateQuestion($event)"
-      #quizRunNavigation />
-  </div>
+    <div class="mx-4 flex w-full justify-center">
+      <app-quiz-run-navigation
+        class="max-w-full pt-1"
+        [questionStatuses]="questionStatuses"
+        [highlightedIndex]="currentQuestionIndex"
+        (navigateTo)="onNavigateQuestion($event)"
+        #quizRunNavigation />
+    </div>
+  </section>
 </main>

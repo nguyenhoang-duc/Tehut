@@ -1,44 +1,45 @@
-<main class="flex h-full items-center justify-center">
-  <div class="flex flex-col gap-5">
-    @if (showLeaveQuizRunWarning) {
-      <div class="mb-8 flex justify-center">
-        <p class="w-60 text-balance text-center text-wrong">
-          {{ leaveQuizWarning }}
-        </p>
-      </div>
-    }
-    @if (quizHasNoQuestions) {
-      <div class="mb-8 flex justify-center">
-        <p class="w-60 text-balance text-center text-wrong">
-          The quiz does not contain any questions and can not be started.
-        </p>
-      </div>
-    }
-    <div
-      class="shadow-baseshadow flex h-72 w-72 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat shadow-md outline-base2"
-      [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
-      [ngClass]="{
-        'border-2': !quiz.imagePath,
-        'border-base2': !quiz.imagePath
-      }">
-      @if (!quiz.imagePath) {
-        <p class="select-none text-center text-6xl text-secondary-content">?</p>
-      }
+<main class="flex min-h-full flex-col items-center justify-center gap-5">
+  @if (showLeaveQuizRunWarning) {
+    <div class="mb-2 flex justify-center md:mb-8">
+      <p class="w-60 text-balance text-center text-wrong">
+        {{ leaveQuizWarning }}
+      </p>
     </div>
+  }
+  @if (quizHasNoQuestions) {
+    <div class="mb-2 flex justify-center md:mb-8">
+      <p class="w-60 text-balance text-center text-wrong">
+        The quiz does not contain any questions and can not be started.
+      </p>
+    </div>
+  }
+  <div
+    class="flex h-48 w-48 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat shadow-md shadow-baseshadow outline-base2 md:h-72 md:w-72"
+    [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
+    [ngClass]="{
+      'border-2': !quiz.imagePath,
+      'border-base2': !quiz.imagePath
+    }">
+    @if (!quiz.imagePath) {
+      <p class="select-none text-center text-6xl text-secondary-content">?</p>
+    }
+  </div>
+  <div class="flex flex-col gap-1">
     <h1 class="text-center text-4xl text-primary-content">{{ quiz.name }}</h1>
     <h2 class="text-center text-secondary-content">
       {{ quiz.questionCount }} Questions
     </h2>
-    <div class="mt-8 flex justify-center gap-6">
-      <app-text-button
-        bg="bg-correct"
-        (click)="onStartQuizRun()"
-        [disabled]="quizHasNoQuestions">
-        Start
-      </app-text-button>
-      <app-text-button bg="bg-base2" (click)="onNavigateBack()">
-        Back
-      </app-text-button>
-    </div>
+  </div>
+
+  <div class="mt-8 flex justify-center gap-6">
+    <app-text-button
+      bg="bg-correct"
+      (click)="onStartQuizRun()"
+      [disabled]="quizHasNoQuestions">
+      Start
+    </app-text-button>
+    <app-text-button bg="bg-base2" (click)="onNavigateBack()">
+      Back
+    </app-text-button>
   </div>
 </main>

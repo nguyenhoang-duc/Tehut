@@ -1,13 +1,13 @@
-<div class="flex flex-col items-center gap-8" (keydown)="onKeyDown($event)">
+<div class="flex justify-center">
   <div
-    class="flex h-56 w-[80%] max-w-[72rem] items-center justify-center rounded-lg bg-base2 text-center shadow shadow-baseshadow">
-    <span class="text-center text-2xl text-primary-content">
+    class="grid w-full max-w-[78rem] grid-cols-2 gap-3 text-primary-content md:gap-4 lg:gap-6"
+    (keydown)="onKeyDown($event)">
+    <div
+      class="col-span-2 mb-4 h-32 flex-1 resize-none rounded-lg bg-base2 py-8 text-center shadow shadow-baseshadow md:h-56 md:py-10 md:text-2xl lg:mb-8 lg:py-16">
       {{ question?.question ?? "" }}
-    </span>
-  </div>
-  <div class="mx-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
+    </div>
     <app-question-run-answer
-      class="flex-1"
+      class="col-span-2 mx-3 md:mx-6 lg:col-span-1 lg:ml-12"
       [index]="1"
       [answer]="question?.answer1 ?? ''"
       [disabled]="answersRevealed"
@@ -15,17 +15,15 @@
       [correct]="question?.correctAnswerIndex === 1"
       (clicked)="onAnswerClicked($event)" />
     <app-question-run-answer
-      class="flex-1"
+      class="col-span-2 mx-3 md:mx-6 lg:col-span-1 lg:mr-12"
       [index]="2"
       [answer]="question?.answer2 ?? ''"
       [disabled]="answersRevealed"
       [selected]="selectedAnswer === 2"
       [correct]="question?.correctAnswerIndex === 2"
       (clicked)="onAnswerClicked($event)" />
-  </div>
-  <div class="mx-8 flex w-[75%] max-w-[68rem] gap-16 rounded-lg">
     <app-question-run-answer
-      class="flex-1"
+      class="col-span-2 mx-3 md:mx-6 lg:col-span-1 lg:ml-12"
       [index]="3"
       [answer]="question?.answer3 ?? ''"
       [disabled]="answersRevealed"
@@ -33,7 +31,7 @@
       [correct]="question?.correctAnswerIndex === 3"
       (clicked)="onAnswerClicked($event)" />
     <app-question-run-answer
-      class="flex-1"
+      class="col-span-2 mx-3 md:mx-6 lg:col-span-1 lg:mr-12"
       [index]="4"
       [answer]="question?.answer4 ?? ''"
       [disabled]="answersRevealed"

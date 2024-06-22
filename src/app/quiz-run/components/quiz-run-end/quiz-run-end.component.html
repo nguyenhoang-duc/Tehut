@@ -1,91 +1,110 @@
-<main class="flex h-full flex-col items-center justify-center gap-12">
-  <h1 class="mb-12 text-5xl font-semibold text-secondary-content">Results</h1>
+<main class="flex w-full justify-center">
+  <div
+    class="my-3 flex h-full w-full max-w-[70rem] flex-col items-center justify-center gap-10 px-2 lg:gap-16">
+    <h1 class="text-3xl font-semibold text-secondary-content xl:text-5xl">
+      Results
+    </h1>
 
-  <section class="flex flex-wrap gap-6">
-    @for (questionStatus of questionStatuses; track $index) {
-      <a routerLink=".." [queryParams]="{ current: $index + 1 }">
-        <app-question-history-square
-          [questionindex]="$index + 1"
-          [questionStatus]="questionStatus"></app-question-history-square>
-      </a>
-    }
-  </section>
+    <!-- Quiz run history and navigation -->
+    <section class="flex flex-wrap gap-4 md:gap-6">
+      @for (questionStatus of questionStatuses; track $index) {
+        <a routerLink=".." [queryParams]="{ current: $index + 1 }">
+          <app-question-history-square
+            [questionindex]="$index + 1"
+            [questionStatus]="questionStatus"></app-question-history-square>
+        </a>
+      }
+    </section>
 
-  <section
-    class="stats my-10 bg-base3 text-secondary-content shadow shadow-baseshadow">
-    <div class="stat">
-      <div class="stat-figure">
-        <svg
-          class="h-10 w-10 fill-wrong"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24">
-          <path
-            d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-        </svg>
+    <!-- Statistics section -->
+    <section
+      class="flex h-28 max-w-full items-stretch overflow-x-auto rounded-xl bg-base3 text-secondary-content shadow shadow-baseshadow">
+      <div
+        class="flex flex-1 flex-col justify-center gap-1 border-r-[1px] border-base2 py-5 pl-8 pr-16">
+        <h4>Correct</h4>
+        <div class="flex items-center gap-5">
+          <svg class="h-10 w-10 fill-correct" viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M16.59 7.58L10 14.17L7.41 11.59L6 13L10 17L18 9L16.59 7.58Z" />
+          </svg>
+          <h3 class="text-3xl font-bold text-primary-content">
+            {{ correctCount }}
+          </h3>
+        </div>
+        <h5 class="whitespace-nowrap text-xs">
+          Percentage: {{ correctPercentage }}%
+        </h5>
       </div>
-      <div class="stat-title">Wrong</div>
-      <div class="stat-value text-primary-content">
-        {{ wrongCount }}
+      <div
+        class="flex flex-1 flex-col justify-center gap-1 border-r-[1px] border-base2 py-5 pl-8 pr-16">
+        <h4>Wrong</h4>
+        <div class="flex items-center gap-5">
+          <svg
+            class="h-8 w-8 fill-wrong md:h-10 md:w-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24">
+            <path
+              d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+          </svg>
+          <h3 class="text-3xl font-bold text-primary-content">
+            {{ wrongCount }}
+          </h3>
+        </div>
+        <h5 class="whitespace-nowrap text-xs">
+          Percentage: {{ wrongPercentage }}%
+        </h5>
       </div>
-      <div class="stat-desc">Percentage: {{ wrongPercentage }}%</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure">
-        <svg class="h-10 w-10 fill-correct" viewBox="0 0 24 24">
-          <path
-            d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M16.59 7.58L10 14.17L7.41 11.59L6 13L10 17L18 9L16.59 7.58Z" />
-        </svg>
+      <div
+        class="flex flex-1 flex-col justify-center gap-1 border-r-[1px] border-base2 py-5 pl-8 pr-16">
+        <h4>Skipped</h4>
+        <div class="flex items-center gap-5">
+          <svg
+            class="inline-block h-10 w-10 fill-secondary-content"
+            viewBox="0 0 24 24">
+            <path
+              d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
+          </svg>
+          <h3 class="text-3xl font-bold text-primary-content">
+            {{ skippedCount }}
+          </h3>
+        </div>
+        <h5 class="whitespace-nowrap text-xs">
+          Percentage: {{ skippedPercentage }}%
+        </h5>
       </div>
-      <div class="stat-title">Correct</div>
-      <div class="stat-value text-primary-content">
-        {{ correctCount }}
+      <div class="flex flex-1 flex-col justify-center gap-1 py-5 pl-8 pr-16">
+        <h4>Completed in</h4>
+        <div class="flex items-center gap-5">
+          <svg
+            class="inline-block h-10 w-10 fill-secondary-content"
+            viewBox="0 0 24 24">
+            <path
+              d="M12 20C16.4 20 20 16.4 20 12S16.4 4 12 4 4 7.6 4 12 7.6 20 12 20M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M15.3 16.2L14 17L11 11.8V7H12.5V11.4L15.3 16.2Z" />
+          </svg>
+          <h3 class="text-3xl font-bold text-primary-content">
+            {{ quizRunTime }}
+          </h3>
+        </div>
+        <h5 class="whitespace-nowrap text-xs">
+          {{ secondsPerQuestion }}s per Question
+        </h5>
       </div>
-      <div class="stat-desc">Percentage: {{ correctPercentage }} %</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure">
-        <svg
-          class="inline-block h-10 w-10 fill-secondary-content"
-          viewBox="0 0 24 24">
-          <path
-            d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" />
-        </svg>
-      </div>
-      <div class="stat-title">Skipped</div>
-      <div class="stat-value text-primary-content">
-        {{ skippedCount }}
-      </div>
-      <div class="stat-desc">Percentage: {{ skippedPercentage }}%</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure">
-        <svg
-          class="inline-block h-10 w-10 fill-secondary-content"
-          viewBox="0 0 24 24">
-          <path
-            d="M12 20C16.4 20 20 16.4 20 12S16.4 4 12 4 4 7.6 4 12 7.6 20 12 20M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M15.3 16.2L14 17L11 11.8V7H12.5V11.4L15.3 16.2Z" />
-        </svg>
-      </div>
-      <div class="stat-title">Completed in</div>
-      <div class="stat-value text-primary-content">
-        {{ quizRunTime }}
-      </div>
-      <div class="stat-desc">{{ secondsPerQuestion }}s per Question</div>
-    </div>
-  </section>
+    </section>
 
-  <section class="flex items-center gap-10">
-    <button
-      class="tooltip-base flex h-14 w-14 items-center justify-center rounded text-secondary-content hover:outline-none hover:outline-secondary-content"
-      data-tip="Go Home"
-      (click)="onGoHome()">
-      <mat-icon class="scale-150">home</mat-icon>
-    </button>
-    <button
-      class="tooltip-base flex h-14 w-14 items-center justify-center rounded text-secondary-content hover:outline-none hover:outline-secondary-content"
-      data-tip="Restart Quiz"
-      (click)="onRestartQuiz()">
-      <mat-icon class="scale-150">refresh</mat-icon>
-    </button>
-  </section>
+    <!-- Action Buttons -->
+    <section class="flex items-center gap-10">
+      <button
+        class="tooltip-base flex h-14 w-14 items-center justify-center rounded text-secondary-content hover:outline-none hover:outline-secondary-content"
+        data-tip="Go Home"
+        (click)="onGoHome()">
+        <mat-icon class="scale-150">home</mat-icon>
+      </button>
+      <button
+        class="tooltip-base flex h-14 w-14 items-center justify-center rounded text-secondary-content hover:outline-none hover:outline-secondary-content"
+        data-tip="Restart Quiz"
+        (click)="onRestartQuiz()">
+        <mat-icon class="scale-150">refresh</mat-icon>
+      </button>
+    </section>
+  </div>
 </main>

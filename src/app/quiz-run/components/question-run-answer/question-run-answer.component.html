@@ -7,10 +7,10 @@
     'outline-none': selected,
     'outline-secondary-content': selected
   }"
-  class="shadow-baseshadow line-clamp-3 flex h-24 w-full items-center truncate text-balance rounded-lg bg-base2 pl-8 text-left text-primary-content shadow">
+  class="line-clamp-3 flex h-14 w-full items-center overflow-hidden truncate text-balance rounded-lg bg-base2 pl-6 pr-2 text-left text-primary-content shadow shadow-baseshadow md:h-16 md:pl-8 lg:h-24">
   <p
     [ngClass]="{ 'text-secondary-content': !correct && disabled }"
-    class="mr-4 text-xl text-primary-content">
+    class="mr-4 text-primary-content">
     {{ index + "." }}
   </p>
   <span [ngClass]="{ 'text-secondary-content': !correct && disabled }">

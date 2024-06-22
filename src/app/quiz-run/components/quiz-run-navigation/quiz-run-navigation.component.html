@@ -4,12 +4,11 @@
     iconType="chevron_left"
     [disabled]="highlightedIndex === 0"
     (click)="onNavigateBack()"
-    class="mb-10" />
-  <div
-    class="carousel box-border flex h-28 max-w-[28rem] items-center rounded-box">
+    class="mb-11 md:mb-10" />
+  <div class="carousel flex w-full max-w-[28rem] flex-1 items-start">
     @for (questionStatus of questionStatuses; track $index) {
       <div
-        class="carousel-item flex w-16 justify-center"
+        class="carousel-item mt-1 flex w-12 justify-center md:w-16"
         [id]="'question' + ($index + 1)">
         <a routerLink="." [queryParams]="{ current: $index + 1 }">
           <div
@@ -20,7 +19,7 @@
             }">
             <app-question-history-square
               [questionindex]="$index + 1"
-              [questionStatus]="questionStatus"></app-question-history-square>
+              [questionStatus]="questionStatus" />
           </div>
         </a>
       </div>
@@ -31,5 +30,5 @@
     iconType="chevron_right"
     [disabled]="highlightedIndex === questionStatuses.length - 1"
     (click)="onNavigateForward()"
-    class="mb-10" />
+    class="mb-11 md:mb-10" />
 </div>
