@@ -9,7 +9,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "clean": "rimraf ./dist",
-    "setversion": "node ./src/scripts/set-app-version.ts"
+    "setversion": "node ./src/scripts/set-app-version.ts",
+    "e2e": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +36,8 @@
     "@angular/compiler-cli": "^18.0.4",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.19",
+    "chance": "^1.1.11",
+    "cypress": "^13.12.0",
     "daisyui": "^4.11.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
