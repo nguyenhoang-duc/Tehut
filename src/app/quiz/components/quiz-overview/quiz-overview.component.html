@@ -8,6 +8,7 @@
     <app-header-icon-button
       (click)="onAddEmptyQuiz()"
       tooltip="Add Quiz"
+      data-cy="add-quiz-header-button"
       iconType="add" />
   </header>
 
@@ -22,6 +23,7 @@
     <button
       class="tooltip-base group flex h-[17rem] w-44 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content text-6xl text-secondary-content shadow shadow-baseshadow hover:border-primary-content hover:text-primary-content md:h-80 md:w-56"
       data-tip="Add Quiz"
+      data-cy="add-quiz-card-button"
       (click)="onAddEmptyQuiz()">
       +
     </button>

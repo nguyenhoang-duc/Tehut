@@ -3,6 +3,7 @@
   <!-- Quiz Image -->
   <button
     data-tip="Upload Image"
+    data-cy="upload-image-button"
     class="tooltip-base group flex h-52 items-center justify-center rounded-xl bg-base bg-cover bg-center bg-no-repeat hover:outline-none hover:outline-secondary-content"
     [ngStyle]="{ 'background-image': 'url(' + quiz.imagePath + ')' }"
     (click)="onEditImageUrl()">
@@ -18,6 +19,7 @@
       contenteditable="true"
       (blur)="onEditQuizName(quizNameLabel)"
       (keydown)="onKeyDown($event, quizNameLabel)"
+      data-cy="quiz-name"
       #quizNameLabel>
       {{ quiz.name }}
     </h3>
@@ -30,26 +32,29 @@
       iconType="play_arrow"
       (click)="onRun()"
       tooltip="Run Quiz"
+      data-button-type="play"
       [disabled]="quiz.questionCount === 0" />
     <app-card-icon-button
       tooltip="Edit Quiz"
       (click)="onEdit()"
-      iconType="edit" />
+      iconType="edit"
+      data-button-type="edit" />
     <app-card-icon-button
       tooltip="Delete Quiz"
       (click)="onDelete()"
-      iconType="delete" />
+      iconType="delete"
+      data-button-type="delete" />
   </div>
 
   <!-- Dialog to confirm deletion -->
   <app-quiz-deletion-dialog
     [ngClass]="{ hidden: !showDeletionDialog }"
     (closed)="onDeletionDialogClosed($event)"
-    #deletionDialog></app-quiz-deletion-dialog>
+    #deletionDialog />
 
   <!-- Dialog to edit the image url -->
   <app-quiz-editimage-dialog
     [ngClass]="{ hidden: !showEditImageDialog }"
     (closed)="onEditImageDialogClosed($event)"
-    #editImageDialog></app-quiz-editimage-dialog>
+    #editImageDialog />
 </article>

@@ -19,6 +19,7 @@ import { CardIconButtonComponent } from './card-icon-button.component';
         [iconType]="!searchText ? 'search' : 'clear'"
         tooltip="Clear Search"
         [disabled]="!searchText"
+        data-button-type="clear"
         (click)="onClear()" />
     </label>
   `,

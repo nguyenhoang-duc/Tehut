@@ -16,9 +16,9 @@
               !editImageInput.valid && editImageInput.touched
           }"
           for="imageUrl">
-          <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
-            >edit</mat-icon
-          >
+          <mat-icon class="h-4 w-4 text-secondary-content opacity-70">
+            edit
+          </mat-icon>
           <input
             type="text"
             class="grow text-primary-content placeholder-secondary-content"
@@ -36,6 +36,7 @@
         <app-text-button
           bg="bg-correct"
           type="submit"
+          data-button-type="submit"
           [disabled]="!editForm.valid">
           Save
         </app-text-button>

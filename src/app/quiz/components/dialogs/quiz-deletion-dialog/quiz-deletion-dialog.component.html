@@ -8,12 +8,18 @@
       The quiz is not empty. All contained questions will be deleted!
     </p>
     <div class="modal-action flex gap-2">
-      <app-text-button bg="bg-wrong" (click)="onConfirmed()">
-        Delete</app-text-button
-      >
-      <app-text-button bg="bg-base2" (click)="onCancelled()">
-        Cancel</app-text-button
-      >
+      <app-text-button
+        bg="bg-wrong"
+        (click)="onConfirmed()"
+        data-button-type="submit">
+        Delete
+      </app-text-button>
+      <app-text-button
+        bg="bg-base2"
+        (click)="onCancelled()"
+        data-button-type="cancel">
+        Cancel
+      </app-text-button>
     </div>
   </div>
   <form method="dialog" class="modal-backdrop">
