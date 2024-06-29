@@ -40,8 +40,13 @@
         Save
       </app-text-button>
     </div>
-    <app-text-button bg="bg-base2" (click)="close()" class="mt-6">
-      Cancel
-    </app-text-button>
+    <div class="mt-6 flex">
+      <app-text-button
+        bg="bg-base2"
+        (click)="close()"
+        data-button-type="cancel">
+        Cancel
+      </app-text-button>
+    </div>
   </form>
 </main>
