@@ -4,7 +4,8 @@
     <app-header-icon-button
       (click)="onNavigateBack()"
       tooltip="Quiz Overview"
-      iconType="arrow_back" />
+      iconType="arrow_back"
+      data-button-type="back" />
     <h1
       class="line-clamp-1 min-w-12 max-w-96 text-xl text-primary-content md:pb-1 md:text-4xl">
       {{ quiz.name }}
@@ -15,15 +16,18 @@
     <app-header-icon-button
       (click)="onRunQuiz()"
       tooltip="Run Quiz"
-      iconType="play_arrow" />
+      iconType="play_arrow"
+      data-button-type="play" />
     <app-header-icon-button
       (click)="onEditNameQuiz()"
       tooltip="Edit Name"
-      iconType="edit" />
+      iconType="edit"
+      data-button-type="edit" />
     <app-header-icon-button
       (click)="onAddEmptyQuizQuestion()"
       tooltip="Add Question"
-      iconType="add" />
+      iconType="add"
+      data-button-type="add" />
   </header>
 
   <!-- Quiz Question List -->
@@ -37,6 +41,7 @@
     <button
       class="tooltip-base group"
       data-tip="Add Question"
+      data-cy="add-question-card-button"
       (click)="onAddEmptyQuizQuestion()">
       <div
         class="flex h-[19rem] w-44 items-center justify-center rounded-xl border-[3px] border-dashed border-secondary-content shadow shadow-baseshadow group-hover:border-primary-content md:h-[22rem] md:w-56">
@@ -51,5 +56,5 @@
   <app-quiz-editname-dialog
     (nameChanged)="onEditNameConfirmed($event)"
     [ngClass]="{ hidden: !showEditDialog }"
-    #editNameDialog></app-quiz-editname-dialog>
+    #editNameDialog />
 </main>

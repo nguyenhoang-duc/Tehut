@@ -16,9 +16,9 @@
               !editNameInput.valid && editNameInput.touched
           }"
           for="name">
-          <mat-icon class="h-4 w-4 text-secondary-content opacity-70"
-            >edit</mat-icon
-          >
+          <mat-icon class="h-4 w-4 text-secondary-content opacity-70">
+            edit
+          </mat-icon>
           <input
             type="text"
             class="grow text-primary-content placeholder-secondary-content"
@@ -39,9 +39,12 @@
           [disabled]="!editForm.valid">
           Save
         </app-text-button>
-        <app-text-button bg="bg-base2" (click)="onCancelled()"
-          >Cancel</app-text-button
-        >
+        <app-text-button
+          bg="bg-base2"
+          (click)="onCancelled()"
+          data-button-type="cancel">
+          Cancel
+        </app-text-button>
       </div>
     </form>
   </div>
