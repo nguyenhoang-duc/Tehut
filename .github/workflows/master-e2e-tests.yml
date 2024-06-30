@@ -1,0 +1,43 @@
+# Automatically create a live release on push of tag
+
+name: "E2E Tests on master push"
+on:
+  push:
+    branch: "master"
+
+jobs:
+  deploy:
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Clean up distribution directory
+        run: npm run clean
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
