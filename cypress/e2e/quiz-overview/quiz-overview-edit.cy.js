@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-import Chance from "chance";
-const chance = new Chance();
-
 describe("Basic Quiz Edit", () => {
   beforeEach(() => {
     cy.visit("http://localhost:4200");
