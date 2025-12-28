@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -11,11 +11,10 @@ import { QuizRunTime } from '../../models/quiz-run-time.model';
     selector: 'app-quiz-run-end',
     templateUrl: './quiz-run-end.component.html',
     imports: [
-        QuestionHistorySquareComponent,
-        CommonModule,
-        RouterModule,
-        MatIconModule,
-    ]
+    QuestionHistorySquareComponent,
+    RouterModule,
+    MatIconModule
+]
 })
 export class QuizRunEndComponent implements OnInit {
   questionStatuses: QuestionStatus[] = [];

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { QuestionService } from '../../services/question.service';
 @Component({
   selector: 'app-question-card',
   templateUrl: './question-card.component.html',
-  imports: [MatIconModule, CommonModule, CardIconButtonComponent],
+  imports: [MatIconModule, CardIconButtonComponent],
 })
 export class QuestionCardComponent implements OnInit {
   @Input()

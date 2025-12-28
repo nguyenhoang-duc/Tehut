@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -19,9 +19,8 @@ import { QuizRunNavigationComponent } from '../quiz-run-navigation/quiz-run-navi
     QuestionRunComponent,
     HeaderIconButtonComponent,
     QuizRunNavigationComponent,
-    RouterModule,
-    CommonModule,
-  ],
+    RouterModule
+],
 })
 export class QuizRunComponent implements OnInit, OnDestroy {
   quiz: Quiz | undefined;

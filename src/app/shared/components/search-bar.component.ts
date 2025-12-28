@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,7 +23,7 @@ import { CardIconButtonComponent } from './card-icon-button.component';
         (click)="onClear()" />
     </label>
   `,
-    imports: [CommonModule, MatIconModule, CardIconButtonComponent, FormsModule]
+    imports: [MatIconModule, CardIconButtonComponent, FormsModule]
 })
 export class SearchBarComponent {
   @Output()
