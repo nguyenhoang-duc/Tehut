@@ -2,16 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TruncatePipe } from '../../../shared/pipes/truncate.pipe';
+import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 import { QuizQuestion } from '../../models/question.model';
 import { QuestionService } from '../../services/question.service';
-import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
 
 @Component({
-  standalone: true,
   selector: 'app-question-card',
   templateUrl: './question-card.component.html',
-  imports: [MatIconModule, CommonModule, TruncatePipe, CardIconButtonComponent],
+  imports: [MatIconModule, CommonModule, CardIconButtonComponent],
 })
 export class QuestionCardComponent implements OnInit {
   @Input()

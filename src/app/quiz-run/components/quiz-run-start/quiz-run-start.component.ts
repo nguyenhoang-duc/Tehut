@@ -10,10 +10,9 @@ import { TextButtonComponent } from '../../../shared/components/text-button.comp
 import { QuizRunService } from '../../services/quiz-run.service';
 
 @Component({
-  standalone: true,
-  selector: 'app-quiz-run-start',
-  templateUrl: './quiz-run-start.component.html',
-  imports: [MatIconModule, CommonModule, TextButtonComponent],
+    selector: 'app-quiz-run-start',
+    templateUrl: './quiz-run-start.component.html',
+    imports: [MatIconModule, CommonModule, TextButtonComponent]
 })
 export class QuizRunStartComponent implements OnInit {
   quiz!: Quiz;

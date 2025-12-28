@@ -3,10 +3,9 @@ import { QuestionStatus } from '../../models/question-status.model';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-question-history-square',
-  templateUrl: './question-history-square.component.html',
-  standalone: true,
-  imports: [MatIconModule],
+    selector: 'app-question-history-square',
+    templateUrl: './question-history-square.component.html',
+    imports: [MatIconModule]
 })
 export class QuestionHistorySquareComponent {
   @Input()

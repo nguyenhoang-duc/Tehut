@@ -9,16 +9,15 @@ import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/qui
 import { QuizEditImageDialogComponent } from '../dialogs/quiz-editimage-dialog/quiz-editimage-dialog.component';
 
 @Component({
-  standalone: true,
-  selector: 'app-quiz-card',
-  templateUrl: './quiz-card.component.html',
-  imports: [
-    MatIconModule,
-    QuizDeletionDialogComponent,
-    QuizEditImageDialogComponent,
-    CommonModule,
-    CardIconButtonComponent,
-  ],
+    selector: 'app-quiz-card',
+    templateUrl: './quiz-card.component.html',
+    imports: [
+        MatIconModule,
+        QuizDeletionDialogComponent,
+        QuizEditImageDialogComponent,
+        CommonModule,
+        CardIconButtonComponent,
+    ]
 })
 export class QuizCardComponent {
   @Input()

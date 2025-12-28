@@ -12,15 +12,14 @@ import { QuestionAnswerComponent } from '../question-answer/question-answer.comp
 import { TextButtonComponent } from '../../../shared/components/text-button.component';
 
 @Component({
-  standalone: true,
-  selector: 'app-question-edit',
-  templateUrl: './question-edit.component.html',
-  imports: [
-    QuestionAnswerComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    TextButtonComponent,
-  ],
+    selector: 'app-question-edit',
+    templateUrl: './question-edit.component.html',
+    imports: [
+        QuestionAnswerComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        TextButtonComponent,
+    ]
 })
 export class QuestionEditComponent implements OnInit {
   private quizQuestion!: QuizQuestion;

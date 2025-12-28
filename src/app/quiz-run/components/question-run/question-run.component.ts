@@ -13,10 +13,9 @@ import { QuizRunService } from '../../services/quiz-run.service';
 import { QuestionRunAnswerComponent } from '../question-run-answer/question-run-answer.component';
 
 @Component({
-  selector: 'app-question-run',
-  templateUrl: './question-run.component.html',
-  standalone: true,
-  imports: [QuestionRunAnswerComponent, MatIconModule],
+    selector: 'app-question-run',
+    templateUrl: './question-run.component.html',
+    imports: [QuestionRunAnswerComponent, MatIconModule]
 })
 export class QuestionRunComponent implements OnInit, OnDestroy {
   @Input()

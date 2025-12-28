@@ -5,8 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CardIconButtonComponent } from './card-icon-button.component';
 
 @Component({
-  selector: 'app-search-bar',
-  template: `
+    selector: 'app-search-bar',
+    template: `
     <label
       class="input input-bordered flex h-10 w-full min-w-24 items-center justify-between rounded-3xl border-base2 bg-base focus-within:outline-secondary-content">
       <input
@@ -23,8 +23,7 @@ import { CardIconButtonComponent } from './card-icon-button.component';
         (click)="onClear()" />
     </label>
   `,
-  standalone: true,
-  imports: [CommonModule, MatIconModule, CardIconButtonComponent, FormsModule],
+    imports: [CommonModule, MatIconModule, CardIconButtonComponent, FormsModule]
 })
 export class SearchBarComponent {
   @Output()

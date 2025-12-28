@@ -1,26 +1,17 @@
-import {
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { QuizQuestion } from '../../../question/models/question.model';
 import { Quiz } from '../../../quiz/models/quiz.model';
-import { QuizRunService } from '../../services/quiz-run.service';
-import { QuestionRunComponent } from '../question-run/question-run.component';
-import { Subscription } from 'rxjs';
 import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
 import { QuestionStatus } from '../../models/question-status.model';
-import { QuestionHistorySquareComponent } from '../question-history-square/question-history-square.component';
-import { CommonModule } from '@angular/common';
+import { QuizRunService } from '../../services/quiz-run.service';
+import { QuestionRunComponent } from '../question-run/question-run.component';
 import { QuizRunNavigationComponent } from '../quiz-run-navigation/quiz-run-navigation.component';
-import { QuizRunClockComponent } from '../quiz-run-clock/quiz-run-clock.component';
 
 @Component({
-  standalone: true,
   selector: 'app-quiz-run',
   templateUrl: './quiz-run.component.html',
   imports: [
@@ -30,7 +21,6 @@ import { QuizRunClockComponent } from '../quiz-run-clock/quiz-run-clock.componen
     QuizRunNavigationComponent,
     RouterModule,
     CommonModule,
-    QuizRunClockComponent,
   ],
 })
 export class QuizRunComponent implements OnInit, OnDestroy {

@@ -3,31 +3,26 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionCardComponent } from '../../../question/components/question-card/question-card.component';
+import { QuizQuestion } from '../../../question/models/question.model';
 import { QuestionService } from '../../../question/services/question.service';
+import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
+import { SearchBarComponent } from '../../../shared/components/search-bar.component';
 import { Quiz } from '../../models/quiz.model';
+import { FilterQuestionPipe } from '../../services/filter-question.pipe';
 import { QuizService } from '../../services/quiz.service';
-import { QuizDeletionDialogComponent } from '../dialogs/quiz-deletion-dialog/quiz-deletion-dialog.component';
 import {
   QuizEditnameDialogComponent as QuizEditNameDialogComponent,
   QuizEditnameDialogComponent,
 } from '../dialogs/quiz-editname-dialog/quiz-editname-dialog.component';
-import { QuizQuestion } from '../../../question/models/question.model';
-import { CardIconButtonComponent } from '../../../shared/components/card-icon-button.component';
-import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
-import { SearchBarComponent } from '../../../shared/components/search-bar.component';
-import { FilterQuestionPipe } from '../../services/filter-question.pipe';
 
 @Component({
-  standalone: true,
   selector: 'app-quiz-edit',
   templateUrl: './quiz-edit.component.html',
   imports: [
     MatIconModule,
     QuestionCardComponent,
     CommonModule,
-    QuizDeletionDialogComponent,
     QuizEditnameDialogComponent,
-    CardIconButtonComponent,
     HeaderIconButtonComponent,
     SearchBarComponent,
     FilterQuestionPipe,

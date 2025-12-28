@@ -5,10 +5,9 @@ import { CommonModule } from '@angular/common';
 import { QuizRunTime } from '../../models/quiz-run-time.model';
 
 @Component({
-  selector: 'app-quiz-run-clock',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './quiz-run-clock.component.html',
+    selector: 'app-quiz-run-clock',
+    imports: [CommonModule],
+    templateUrl: './quiz-run-clock.component.html'
 })
 export class QuizRunClockComponent implements OnInit, OnDestroy {
   timer$: Observable<QuizRunTime> | undefined;

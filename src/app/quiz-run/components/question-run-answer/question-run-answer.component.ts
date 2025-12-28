@@ -2,10 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-question-run-answer',
-  templateUrl: './question-run-answer.component.html',
-  standalone: true,
-  imports: [CommonModule],
+    selector: 'app-question-run-answer',
+    templateUrl: './question-run-answer.component.html',
+    imports: [CommonModule]
 })
 export class QuestionRunAnswerComponent {
   @Input()

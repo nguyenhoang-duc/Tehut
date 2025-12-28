@@ -8,15 +8,14 @@ import { QuestionHistorySquareComponent } from '../question-history-square/quest
 import { QuizRunTime } from '../../models/quiz-run-time.model';
 
 @Component({
-  selector: 'app-quiz-run-end',
-  templateUrl: './quiz-run-end.component.html',
-  standalone: true,
-  imports: [
-    QuestionHistorySquareComponent,
-    CommonModule,
-    RouterModule,
-    MatIconModule,
-  ],
+    selector: 'app-quiz-run-end',
+    templateUrl: './quiz-run-end.component.html',
+    imports: [
+        QuestionHistorySquareComponent,
+        CommonModule,
+        RouterModule,
+        MatIconModule,
+    ]
 })
 export class QuizRunEndComponent implements OnInit {
   questionStatuses: QuestionStatus[] = [];

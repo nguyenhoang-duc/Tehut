@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-text-button',
-  template: `
+    selector: 'app-text-button',
+    template: `
     <button
       class="shadow-baseshadow rounded-lg px-7 py-3 text-sm tracking-wide shadow enabled:text-primary-content enabled:hover:outline-none enabled:hover:outline-secondary-content disabled:bg-base3 disabled:text-secondary-content"
       [ngClass]="bg"
@@ -12,8 +12,7 @@ import { Component, Input } from '@angular/core';
       <ng-content></ng-content>
     </button>
   `,
-  standalone: true,
-  imports: [CommonModule],
+    imports: [CommonModule]
 })
 export class TextButtonComponent {
   @Input()

@@ -9,16 +9,15 @@ import { QuizService } from '../../services/quiz.service';
 import { QuizCardComponent } from '../quiz-card/quiz-card.component';
 
 @Component({
-  standalone: true,
-  selector: 'app-quiz-overview',
-  templateUrl: './quiz-overview.component.html',
-  imports: [
-    QuizCardComponent,
-    MatIconModule,
-    HeaderIconButtonComponent,
-    SearchBarComponent,
-    FilterQuizPipe,
-  ],
+    selector: 'app-quiz-overview',
+    templateUrl: './quiz-overview.component.html',
+    imports: [
+        QuizCardComponent,
+        MatIconModule,
+        HeaderIconButtonComponent,
+        SearchBarComponent,
+        FilterQuizPipe,
+    ]
 })
 export class QuizOverviewComponent implements OnInit, OnDestroy {
   quizzes: Quiz[] = [];

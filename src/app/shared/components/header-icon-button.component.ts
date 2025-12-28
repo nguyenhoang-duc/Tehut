@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-header-icon-button',
-  template: `
+    selector: 'app-header-icon-button',
+    template: `
     <button
       class="flex items-center enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2"
       [disabled]="disabled"
@@ -15,8 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
       </mat-icon>
     </button>
   `,
-  standalone: true,
-  imports: [CommonModule, MatIconModule],
+    imports: [CommonModule, MatIconModule]
 })
 export class HeaderIconButtonComponent {
   @Input()

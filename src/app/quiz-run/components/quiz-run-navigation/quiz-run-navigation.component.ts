@@ -7,16 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderIconButtonComponent } from '../../../shared/components/header-icon-button.component';
 
 @Component({
-  selector: 'app-quiz-run-navigation',
-  templateUrl: './quiz-run-navigation.component.html',
-  standalone: true,
-  imports: [
-    QuestionHistorySquareComponent,
-    CommonModule,
-    RouterModule,
-    MatIconModule,
-    HeaderIconButtonComponent,
-  ],
+    selector: 'app-quiz-run-navigation',
+    templateUrl: './quiz-run-navigation.component.html',
+    imports: [
+        QuestionHistorySquareComponent,
+        CommonModule,
+        RouterModule,
+        MatIconModule,
+        HeaderIconButtonComponent,
+    ]
 })
 export class QuizRunNavigationComponent {
   @Input()
