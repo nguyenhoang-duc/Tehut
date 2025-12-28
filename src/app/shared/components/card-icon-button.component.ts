@@ -3,10 +3,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-card-icon-button',
-    template: `
+  selector: 'app-card-icon-button',
+  template: `
     <button
-      class="flex items-center enabled:text-secondary-content hover:enabled:cursor-pointer hover:enabled:text-primary-content disabled:text-base2_disabled"
+      class="enabled:text-secondary-content hover:enabled:text-primary-content disabled:text-base2-disabled flex items-center hover:enabled:cursor-pointer"
       [disabled]="disabled"
       [attr.data-tip]="tooltip"
       [ngClass]="{ 'tooltip-base': !disabled }"
@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
       <mat-icon>{{ iconType }}</mat-icon>
     </button>
   `,
-    imports: [CommonModule, MatIconModule]
+  imports: [CommonModule, MatIconModule],
 })
 export class CardIconButtonComponent {
   @Input()

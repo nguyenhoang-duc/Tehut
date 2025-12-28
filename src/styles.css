@@ -1,10 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: false;
+}
 
-@layer components {
-  .tooltip-base {
-    @apply tooltip tooltip-bottom before:border-[1px] before:border-base2 before:bg-base3 before:text-primary-content before:hover:delay-[1500ms] after:hover:delay-[1500ms];
-  }
+@theme {
+  --color-base: #1d1d1f;
+  --color-base2: #333235;
+  --color-base2-disabled: #434145;
+  --color-base3: #1b1b1d;
+  --color-baseshadow: #131313;
+  --color-primary: #edb525;
+  --color-accent: #e4440f;
+  --color-primary-content: #fbf7f5;
+  --color-secondary-content: #85838a;
+  --color-correct: #2c9a44;
+  --color-wrong: #cc3636;
+}
+
+.tooltip-base {
+  @apply tooltip tooltip-bottom before:border-base2 before:bg-base3 before:text-primary-content before:border-[1px] before:hover:delay-[1500ms] after:hover:delay-[1500ms];
 }
